@@ -1,0 +1,58 @@
+XTerm*title: XTerm
+XTerm*background: steel blue
+XTerm*foreground: white
+XTerm*cursorColor: MediumTurquoise
+XTerm*font: -*-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
+XTerm*scrollBar: True
+XTerm*saveLines: 256
+XTerm*autoWrap: True
+XTerm*geometry: 80x30
+XTerm.mainMenu.geometry: +0
+XTerm.vtMenu.geometry: +0
+XTerm.fontMenu.geometry: +0
+XTerm.tekMenu.geometry: +0
+XTerm*color0: rgb:00/00/00
+XTerm*color1: rgb:80/00/00
+XTerm*color2: rgb:00/40/20
+XTerm*color3: rgb:70/70/30
+XTerm*color4: rgb:00/00/60
+XTerm*color5: rgb:50/00/60
+XTerm*color6: rgb:00/40/50
+XTerm*color7: rgb:80/80/80
+XTerm*color8: rgb:50/50/50
+XTerm*color9: rgb:80/00/00
+XTerm*color10: rgb:00/40/20
+XTerm*color11: rgb:70/70/30
+XTerm*color12: rgb:00/00/60
+XTerm*color13: rgb:50/00/60
+XTerm*color14: rgb:00/40/50
+XTerm*color15: rgb:80/80/80
+
+!Emacs.font: -*-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
+!#if WIDTH >= 1600
+!Emacs.font: -*-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
+!Emacs.font: -*-lucidatypewriter-bold-*-*-*-12-*-*-*-*-*-*-*
+!#else
+!Emacs.font: 6x13
+!#endif
+
+Emacs.FontBackend: xft
+!Emacs.Font: Bitstream Vera Sans Mono-9
+
+Emacs.foreground: black
+Emacs.background: white
+!Emacs.cursorColor: grey50
+Emacs.cursorColor: rgb:60/95/85
+Emacs.pointerColor: grey30
+Emacs.borderColor: grey30
+Emacs.Font: Monospace-9
+!Emacs.paneFont: -*-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
+!Emacs.pane.menubar.*.fontList: -*-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
+Emacs.*.*.*.marginHeight: 1
+Emacs.*.*.*.background: grey60
+Emacs.*.*.*.foreground: white
+Emacs.menuBar: off
+Emacs.toolBar: off
+Emacs.internalBorder: 0
+Emacs.BorderWidth: 0
+

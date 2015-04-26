@@ -1,0 +1,348 @@
+#!/usr/bin/python
+#-----------------------------------------------------------------------
+#
+# terminal window helper script
+#
+# copyright 2002 Alex Samuel
+#
+#-----------------------------------------------------------------------
+
+#-----------------------------------------------------------------------
+# imports
+#-----------------------------------------------------------------------
+
+import colorsys
+import getopt
+import os
+import re
+import subprocess
+import sys
+
+#-----------------------------------------------------------------------
+# configuration
+#-----------------------------------------------------------------------
+
+config_dir = os.path.join(os.path.dirname(sys.argv[0]), "..", "share")
+local_rc_path = os.path.join(config_dir, "winrc.local")
+hosts_rc_path = os.path.join(config_dir, "winrc.hosts")
+
+# The path to the host configuration database file.
+host_config_db_file = os.path.join(
+    os.path.dirname (sys.argv[0]), "../share/win.hosts")
+
+try:
+    user_name = os.getlogin()
+except:
+    user_name = os.environ["USER"]
+
+gconftool = "/usr/bin/gconftool-2"
+gt_profile_path = "/apps/gnome-terminal/profiles"
+
+#-----------------------------------------------------------------------
+# helper functions
+#-----------------------------------------------------------------------
+
+def error(message, exit_code=1):
+    sys.stderr.write(message + '\n')
+    sys.exit(exit_code)
+
+
+def print_usage_and_exit(exit_code):
+    if exit_code == 0:
+        file = sys.stdout
+    else:
+        file = sys.stderr
+    file.write("Usage: %s [ OPTIONS ] [ HOST ]\n" % sys.argv[0])
+    sys.exit(exit_code)
+
+
+def parse_local_rc(lines):
+    config = {
+        "windowsize": "40",
+        "font": "fixed",
+        "terminal": "rxvt -sb -sl 512 -si " \
+               + "-fn '%(font)s' " \
+               + "-T %(host_name)s " \
+               + "-n %(host_name)s " \
+               + "-fg '%(foreground)s' " \
+               + "-bg '%(background)s' " \
+               + "-cr '%(cursor)s' ",
+        "commandopt": "-e '%s'",
+        }
+
+    line_iter = iter(lines)
+    for line in line_iter:
+        line = line.strip()
+        if line == "" or line[0] == "#":
+            continue
+        tag = line.split(" ", 1)[0]
+        rest = line[len(tag):].strip()
+
+        if tag == "terminal":
+            terminal_lines = []
+            while 1:
+                next_line = line_iter.next()
+                next_line = next_line.strip()
+                if next_line == "":
+                    break
+                terminal_lines.append(next_line)
+
+            config["terminal"] = " ".join(terminal_lines)
+
+        elif config.has_key(tag):
+            config[tag] = rest
+
+        else:
+            raise RuntimeError, \
+                  "syntax error in configuration:\n%s\n" % line
+
+    return config
+    
+
+def parse_hosts_rc(lines):
+    default_config = {
+        "foreground": "hsv:0.00/0.00/0.00",
+        "background": "hsv:1.00/1.00/1.00",
+        "cursor": "hsv:1.00/1.00/1.00",
+        "username": user_name,
+        "domain": ".".join(os.uname()[1].split(".")[1:]),
+        }
+    
+    current_hosts = None
+    current_config = None
+    hosts = {}
+
+    for line in lines:
+        line = line.strip()
+
+        if line == "":
+            if current_hosts is not None:
+                hosts[current_hosts] = current_config
+                current_hosts = None
+            continue
+
+        if line[0] == "#":
+            continue
+
+        tag = line.split(" ", 1)[0]
+        rest = line[len(tag):].strip()
+
+        if tag == "host":
+            if current_hosts is not None:
+                hosts[current_hosts] = current_config
+
+            current_hosts = rest
+            current_config = dict(default_config)
+
+        elif default_config.has_key(tag):
+            if current_hosts is None:
+                default_config[tag] = rest
+            else:
+                current_config[tag] = rest
+
+        else:
+            raise RuntimeError, \
+                  "syntax error in configuration:\n%s\n" % line
+
+    if current_hosts is not None:
+        hosts[current_hosts] = current_config
+
+    for config in hosts.values():
+        for key, value in config.items():
+            if value.startswith("hsv:"):
+                hsv = map(float, value[4:].split("/"))
+                rgb = map(lambda v: "%02x" % int(v * 255),
+                          apply(colorsys.hsv_to_rgb, hsv))
+                config[key] = "rgb:%s/%s/%s" % tuple(rgb)
+
+    return hosts
+
+
+def make_gnome_terminal_profiles(hosts_config, verbose):
+    if verbose:
+        print 'making gnome-terminal profiles'
+        
+    hosts = {}
+
+    stdout, _ = subprocess.Popen(
+        (gconftool, "--all-dirs", gt_profile_path), 
+        stdout=subprocess.PIPE
+        ).communicate()
+    for line in stdout.splitlines():
+        line = line.strip()
+        if len(line) > 0:
+            profile = line[len(gt_profile_path) + 1 :]
+
+            stdout, _ = subprocess.Popen(
+                (gconftool, "-a", gt_profile_path + "/" + profile),
+                stdout=subprocess.PIPE
+                ).communicate()
+            for line in stdout.splitlines():
+                name, value = line.strip().split("=", 1)
+                name = name.strip()
+                value = value.strip()
+                print name, value
+                if name == "visible_name":
+                    host_name, config = find_host_config(value)
+                    if host_name is not None:
+                        hosts[profile] = config
+
+    for host_name, config in hosts.items():
+        if verbose:
+            print 'updating host %s:' % host_name,
+
+        foreground = \
+            "#" + "".join(config["foreground"][4:].split("/")).upper()
+        background = \
+            "#" + "".join(config["background"][4:].split("/")).upper()
+        fq_host_name = host_name + '.' + config["domain"]
+
+        replacements = dict(local_config)
+        replacements.update(config)
+        replacements["hostname"] = host_name
+        replacements["fqhostname"] = fq_host_name
+
+        ssh_command = make_ssh_command(replacements, verbose)
+
+        def set(key, type, value):
+            command = "%s -t %s --set %s/%s/%s '%s'" \
+                % (gconftool, type, gt_profile_path, host_name, key, value)
+            if verbose:
+                print command
+            os.system(command)
+
+        set("background_color", "string", background)
+        set("default_show_menubar", "bool", "false")
+        set("foreground_color", "string", foreground)
+        set("scrollback_lines", "int", "2000")
+        set("title", "string", host_name)
+        # set("visible_name", "string", host_name)
+        set("use_theme_colors", "bool", "false")
+        set("font", "string", "Bitstream Vera Sans Mono 7.5")
+        
+        if False and ssh_command is not None:
+            set("use_custom_command", "bool", "true")
+            set("custom_command", "string", ssh_command)
+        else:
+            set("use_custom_command", "bool", "false")
+
+
+def make_ssh_command(replacements, flag_verbose):
+    if replacements["hostname"] == local_host_name:
+        return None
+    
+    ssh_flags = []
+    if flag_verbose:
+        ssh_flags.append("-v")
+    ssh_command = 'ssh %s "%s" -l "%s" ' \
+                  % (" ".join(ssh_flags), replacements["fqhostname"],
+                     replacements["username"])
+    return ssh_command
+
+
+def find_host_config(host_name):
+    for host_patterns, config in hosts_config.items():
+        for pattern in host_patterns.split(" "):
+            if re.match(pattern, host_name):
+                return host_name, config
+    return None, None
+
+
+#-----------------------------------------------------------------------
+# main script
+#-----------------------------------------------------------------------
+
+local_host_name = os.uname()[1].split(".", 1)[0]
+
+# Process command line.
+
+flag_no_login = 0
+flag_verbose = 0
+login_name = None
+flag_make_profiles = 0
+
+short_options = "l:nv"
+long_options = [ "login-name", "nologin", "verbose", "make-profiles", ]
+
+try:
+    options, arguments = \
+             getopt.getopt(sys.argv[1:], short_options, long_options)
+except getopt.error, message:
+    error(str(message))
+
+for opt, value in options:
+    if opt in ("-l", "--login-name"):
+        login_name = value
+    elif opt in ("-n", "--nologin"):
+        flag_no_login = 1
+    elif opt in ("-v", "--verbose"):
+        flag_verbose = 1
+    elif opt in ("--make-profiles", ):
+        flag_make_profiles = 1
+    else:
+        error("unrecognized option: %s" % opt)
+
+
+# Validate arguments.
+
+if len(arguments) > 1:
+    print_usage_and_exit(1)
+elif len(arguments) == 0:
+    host_name = local_host_name
+else:
+    host_name = arguments[0]
+
+
+# Read the configuration files.
+
+local_config = parse_local_rc(open(local_rc_path))
+hosts_config = parse_hosts_rc(open(hosts_rc_path))
+
+
+# Make gnome-terminal profiles, if requested.
+if flag_make_profiles:
+    make_gnome_terminal_profiles(hosts_config, flag_verbose)
+    sys.exit(0)
+
+
+# Look up the configuration.
+
+host = None
+host, host_config = find_host_config(host_name)
+if host is None:
+    error("no match found for host %s" % host_name)
+
+
+# Build the command.
+
+fq_host_name = host_name + '.' + host_config["domain"]
+replacements = dict(local_config)
+replacements.update(host_config)
+replacements["hostname"] = host_name
+replacements["fqhostname"] = fq_host_name
+
+hostname_nonumber = host_name
+while hostname_nonumber[-1] in "0123456789":
+    hostname_nonumber = hostname_nonumber[:-1]
+replacements["hostname_nonumber"] = hostname_nonumber
+
+command = local_config["terminal"] % replacements
+
+# If the user name was specified with a command option, use that.
+if login_name is not None:
+    replacements["username"] = login_name
+
+if not flag_no_login and not host_name == local_host_name:
+    ssh_command = make_ssh_command(replacements, flag_verbose)
+    if replacements["commandopt"] != "":
+        command = command + " " + replacements["commandopt"] % ssh_command
+
+command = command + " &"
+
+
+# Let's see that window.
+
+if flag_verbose:
+    print 'Invoking: "%s"' % command
+os.system (command)
+

@@ -1,0 +1,61 @@
+#!/usr/bin/python
+
+########################################################################
+#
+# crlf.py
+#
+# Add or strip linefeed characters to convert between DOS and ordinary
+# text.
+#
+# Usage: crlf.py [ --add | --strip ] [ files... ]
+#
+# Default is --strip.  Reads from stdin if no files are given.
+#
+########################################################################
+
+import getopt
+import sys
+
+# For `add CRLF' mode, this is zero.  For `strip CRLF' mode, it's one.
+strip = 0
+
+available_flags = [
+    'add',
+    'strip',
+    ]
+
+flags, args = getopt.getopt (sys.argv[1:], 'as', available_flags)
+
+for ( flag, flag_arg ) in flags:
+    if flag == '--add' or flag == '-a':
+        strip = 0
+    elif flag == '--strip' or flag == 's':
+        strip = 1
+
+def do_work (input):
+    while 1:
+        char = input.read (1)
+        if char == '':
+            break
+        char = char[0]
+
+        if not strip and char == '\n':
+            sys.stdout.write ('\r')
+            sys.stdout.write ('\n')
+        elif strip and char == '\r':
+            char = input.read (1)
+            if char == '':
+                break
+            char = char[0]
+            if char != '\n':
+                sys.stdout.write ('\r')
+            sys.stdout.write ('\n')
+        else:
+            sys.stdout.write (char)
+
+
+if len (args) == 0:
+    do_work (sys.stdin)
+else:
+    for filename in args:
+        do_work (open (filename, 'r'))

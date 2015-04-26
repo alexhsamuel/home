@@ -1,0 +1,53 @@
+#!/usr/bin/python
+
+#-----------------------------------------------------------------------
+# imports
+#-----------------------------------------------------------------------
+
+import getopt
+import string
+import sys
+
+#-----------------------------------------------------------------------
+# script
+#-----------------------------------------------------------------------
+
+def printUsageAndExit(message=None):
+    if message is not None:
+        sys.stderr.write(message + "\n")
+    sys.stderr.write("Usage: %s START END\n" % sys.argv[0])
+    sys.exit(1)
+    
+
+try:
+    options, arguments = getopt.getopt(sys.argv[1:], "z:", ["zero-pad="])
+except:
+    printUsageAndExit()
+    
+zero_pad = None
+
+for option, value in options:
+    if option in ("-z", "--zero-pad"):
+        zero_pad = int(value)
+    else:
+        printUsageAndExit("unrecognized option '%s'" % option)
+
+if len(arguments) != 2:
+    printUsageAndExit()
+
+try:
+    start, end = map(int, arguments)
+    if start > end:
+        raise ValueError
+except ValueError:
+    printUsageAndExit("invalid range")
+
+if zero_pad is None:
+    format = "%d"
+else:
+    format = "%%0%dd" % zero_pad
+
+for i in xrange(start, end):
+    print format % i,
+print
+

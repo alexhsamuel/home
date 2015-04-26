@@ -1,0 +1,63 @@
+#!/usr/bin/python
+
+from   contextlib import closing
+import optparse
+import os
+import random
+import re
+import sys
+
+ALIAS_FILE = "/etc/postfix/virtual-alexsamuel.net"
+POSTMAP = "/usr/sbin/postmap"
+
+def parse_aliases(filename):
+    comment_re = re.compile(r"^# (.+) *$")
+    alias_re = re.compile(r"(\d{6}@alexsamuel\.net)\s+samuel\s*")
+
+    aliases = {}
+    name = None
+    for line in file(filename):
+        # Trim the trailing newline.
+        line = line[: -1]
+
+        match = comment_re.match(line)
+        if match is not None:
+            name = match.group(1)
+
+        match = alias_re.match(line)
+        if match is not None and name is not None:
+            aliases[name] = match.group(1)
+
+    return aliases
+
+
+if __name__ == "__main__":
+    parser = optparse.OptionParser(usage="%prog [ NAME ]")
+    parser.add_option(
+        "--alias-file", metavar="FILE", default=ALIAS_FILE,
+        help="use aliases in FILE")
+    opts, args = parser.parse_args()
+
+    alias_map = parse_aliases(opts.alias_file)
+
+    if len(sys.argv) == 1:
+        for name, alias in sorted(alias_map.items()):
+            print "{0:32s}: {1}".format(name, alias)
+
+    elif len(sys.argv) == 2:
+        name = sys.argv[1]
+        addresses = alias_map.values()
+        while True:
+            address = "%06d@alexsamuel.net" % (random.randint(0, 1000000), )
+            if address not in addresses:
+                break
+        print address
+
+        with closing(open(opts.alias_file, "a")) as file:
+            file.write("# %s\n%s\t\t\tsamuel\n" % (name, address))
+        os.system("%s %s" % (POSTMAP, opts.alias_file))
+
+    else:
+        parser.error("Wrong number of arguments.")
+
+
