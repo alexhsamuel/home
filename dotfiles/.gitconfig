@@ -3,3 +3,5 @@
 [user]
 	name = Alex Samuel
 	email = alex@alexsamuel.net
+[credential]
+	helper = cache --timeout=360000
