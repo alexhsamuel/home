@@ -7,4 +7,4 @@
 |`dev` |my code |
 |`dev/home` |clone of this repo |
 |`log` |log files |
-
+|`mail` |mail folders |
