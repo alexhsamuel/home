@@ -22,11 +22,6 @@ spam
  *^To: .*@indetermi.net.*
 spam
 
-# :0:
-#  *^To: .*@indetermi.net.*
-#  *^X-Original-To: samuel@indetermi.net$
-# spam
-
 :0:
  *^To: .*(368637|344464|976192|173863|571643|996133|810809|695171|217954|799024|402525)@alexsamuel.net.*
 spam
@@ -62,9 +57,6 @@ spam
 #-----------------------------------------------------------------------
 # Run spam filter.
 #-----------------------------------------------------------------------
-
-#:0fw: spamassassin.lock
-#| /usr/bin/spamc
 
 :0:
  *^X-Spam-Level: \*\*\*\*\*
@@ -166,10 +158,6 @@ people/ilan
 # Send a copy to gmail.
 # :0 c:
 # !alexhsamuel@gmail.com
-
-# :0:
-#  *^From:.*samuel(-.*)?@(indetermi.net|caltech.edu|slac.stanford.edu).*
-# Sent
 
 :0:
  *^From:.*@alexsamuel.net.*
