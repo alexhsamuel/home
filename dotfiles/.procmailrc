@@ -1,0 +1,241 @@
+MAILDIR=$HOME/mail
+LOGFILE=$HOME/log/procmail.log
+LOGABSTRACT=yes
+VERBOSE=false
+DEFAULT=inbox
+
+#-----------------------------------------------------------------------
+# Copy email into appropriate repositories.
+#-----------------------------------------------------------------------
+
+# Local mail.
+:0:
+ *^Received: by [a-z]+\.indetermi\.net
+inbox
+
+# cithep.caltech.edu doesn't exist; these messages are all bounced spam.
+:0:
+ *^To: .*cithep.caltech.edu.*
+spam
+
+:0:
+ *^To: .*@indetermi.net.*
+spam
+
+# :0:
+#  *^To: .*@indetermi.net.*
+#  *^X-Original-To: samuel@indetermi.net$
+# spam
+
+:0:
+ *^To: .*(368637|344464|976192|173863|571643|996133|810809|695171|217954|799024|402525)@alexsamuel.net.*
+spam
+
+:0:
+ *From: Alex Samuel <samuel@hep.caltech.edu>
+/home/samuel/archive/hep/caltech/mail/mail
+
+:0:
+ *From: samuel@SLAC.Stanford.EDU
+/home/samuel/archive/hep/caltech/mail/mail
+
+:0:
+ *for .*@hep.caltech.edu
+/home/samuel/archive/hep/caltech/mail/mail
+
+:0:
+ *Received: from neutrino1.hep.caltech.edu
+/home/samuel/archive/hep/caltech/mail/mail
+
+:0:
+ *^Received:.*ORCPT samuel@.*SLAC.Stanford.EDU.*
+/home/samuel/archive/hep/caltech/mail/mail
+
+:0:
+ *^Received:.*by mailbox.SLAC.Stanford.EDU.*
+ *^To|CC|Cc:.*samuel@SLAC.*
+/home/samuel/archive/hep/caltech/mail/mail
+
+:0 c:
+/home/samuel/archive/mail/incoming/mail
+
+#-----------------------------------------------------------------------
+# Run spam filter.
+#-----------------------------------------------------------------------
+
+#:0fw: spamassassin.lock
+#| /usr/bin/spamc
+
+:0:
+ *^X-Spam-Level: \*\*\*\*\*
+spam
+
+:0:
+ *^To:.*(173863|217954|344464|368637|571643|695171|810809|976192|996133)@alexsamuel.net.*
+disabled
+
+#-----------------------------------------------------------------------
+# Local programs.
+#-----------------------------------------------------------------------
+
+# Process thoughts.
+:0 cw: process_thoughts.lock
+ *^To:.*thoughts@alexsamuel.net.*
+|/home/samuel/local/bin/process_thoughts
+
+#-----------------------------------------------------------------------
+# Sort other senders.
+#-----------------------------------------------------------------------
+
+:0:
+ *From:.*edigitalresearch.com.*
+Junk
+
+:0:
+ *From:.*fence.fencebooks@gmail.com.*
+lists/other
+
+:0:
+ *From:.*(@(lamama|joespub|lincoln).pmailus.com|@henrystreet.org|@galapagosartspace.com|@artsatstanns.org|@stannswarehouse.org|@lamama.org|@nycopera.com|@bacnyc.com|info@dromnyc.com|@lincolncenter.org|NYClassical-announce@meetup.com|words@wordlessmusic.org|adomenech@voicesofascension.org|worldmusic@worldmusic.pmailus.com|info@reply.BAM.org|contact@arsnovanyc.com|robert@robertbrowningassociates.com|concerts@excessdb.com|info@bowerypresents.com|harrice@gmail.com|ginger@roulette.org).*
+life/music
+
+:0:
+ *From.*(hello@hyperallergic.com|info@artonair.org|membership@upriseart.com|info@miyakoyoshinaga.com|info@roberthenrycontemporary.com|metropolitanmuseum@email.metmuseum.org|info@clocktower.org)
+life/art
+
+:0:
+ *From.*@(brewersassociation.org|captainlawrencebrewing.com|contact@seriouseats.com).*
+life/food
+
+:0:
+ *From:.*nrosenblatt@halstead.com.*
+life/real estate
+
+:0:
+ *From:.*Vanguard@eonline.evanguard.com
+life/financial
+
+:0:
+ *From:.*matchmail@connect.match.com.*
+people/more/dates
+
+:0:
+ *From:.*technical-alerts@us-cert.gov.*
+lists/security
+
+:0:
+ *From: .*(events@babeland.com|@babeland.com|newsletter@email.threadless.com|support@e.macys.com|shop@email.macys.com|@e.newegg.com|email@allsaintsnews.com|email@news.allsaints.com|info@astorwines.com|ninjas@email.bonobos.com|hugoboss.com|newyork@moorebrothers.com|info@brandylibrary.com|@onassisclothing.com|info@thegiantpeach.com|contact@humblebundle.com|info@northernspyfoodco.com|dave@newyorksocialnetwork.com|threadless@email.threadless.com|custserv@korin.com|store@icp.org|ninjas@bonobos.com|k-way@k-way.ca|info@brooklynbrewery.com|resto@resto.*.com).*
+online/commercial
+
+:0:
+ *From: .*(releaseyogastudio@gmail.com|alterbrooklyn@gmail.com|fresheggs@thedutchnyc.com|info@massdrop.com).*
+online/commercial
+
+:0:
+ *From: .*(newsletter@lprnyc.com|feedback@carnegiehall.org|@wordlessmusic.com|@issueprojectroom.org|@festival.pmailus.com|info@roulette.org|mailinglist@popgunbooking.com|events@cameony.com|alvero@mercuryloungenyc.com).*
+life/music
+
+:0:
+ *Subject:.*(Alex Ross: The Rest Is Noise|[[]NYClassical)
+life/music
+
+:0:
+ *From: .*(bookstore@housingworks.com|no-reply@parks.nyc.gov|@onebrick.org).*
+life/volunteer
+
+:0:
+ *To: simplenote-api@googlegroups.com
+online/computers
+
+:0:
+ *To: .*hack-and-tell-list@meetup.com.*
+online/computers
+
+:0:
+ *Subject:.*EM Bits.*
+people/ilan
+
+:0:
+ *From:.*EM Bits.*
+people/ilan
+
+#-----------------------------------------------------------------------
+# Sort email appropriately.
+#-----------------------------------------------------------------------
+
+# Send a copy to gmail.
+# :0 c:
+# !alexhsamuel@gmail.com
+
+# :0:
+#  *^From:.*samuel(-.*)?@(indetermi.net|caltech.edu|slac.stanford.edu).*
+# Sent
+
+:0:
+ *^From:.*@alexsamuel.net.*
+Sent
+
+:0:
+ *^From:.*alexhsamuel@gmail.com
+Sent
+
+:0:
+ *^From:.*\(Cron Daemon\).*
+systems
+
+:0:
+ *^From: root <root@.*\.indetermi\.net>*
+systems
+
+#-----------------------------------------------------------------------
+# Filter as necessary.
+#-----------------------------------------------------------------------
+
+#-----------------------------------------------------------------------
+# Sort lists.
+#-----------------------------------------------------------------------
+
+:0:
+ *From: .*(Info@StrictlyWestieNYC.com|jak@bailatango.com|loveandtango@gmail.com|hetherdsamuels@yahoo.com|jookjointshimmyblues.com|info@tangonyc.com|carina@tangonyc.com|carpiweb@gmail.com).*
+life/dance
+
+:0:
+ *To:.*ballroom-alumni@hcs.harvard.edu
+life/dance
+
+:0:
+ *From: .*(@bhakticenter.org|bkabak@gmail.com|dave@newyorksocialnetwork.com).*
+life/local
+
+:0:
+ *Sender: .*(Subway-Bus@alerts.mta.info|info@meetup.com|GothamRecruits@yahoogroups.com|bkabak@gmail.com).*
+life/local
+
+:0:
+ *To: (everybody@cims.nyu.edu|ahs322@nyu.edu|info@symmys.com|StanfordOnline-support@stanford.edu)
+life/school
+
+:0:
+ *From: (education@icp.org)
+life/school
+
+:0:
+ *Received: .*ORCPT ahs322@mail.nyu.edu.*
+life/school
+
+:0:
+ *From: .*enotes@nybg.org.*
+life/school
+
+:0:
+ *From: (python-(dev|ideas)-request)
+lists/python
+
+:0:
+ *From: (fedora-announce-list-request@redhat.com|kdist@linux.kernel.org)
+lists/linux
+
+#-----------------------------------------------------------------------
+
+# Everything else goes into the default mailbox.
+
