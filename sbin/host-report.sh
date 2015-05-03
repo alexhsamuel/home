@@ -32,7 +32,7 @@ print y.strftime("%b %d").replace(" 0", "  ")
 ')
 
 echo "Mail statistics:"
-num_send=$(grep -e "^$yesterday .* postfix/smtp.* relay=" /var/log/mail.info | wc -l)
-num_recv=$(grep -e "^$yesterday .* postfix/qmgr.* nrcpt=" /var/log/mail.info | wc -l)
+num_send=$(grep -e "^$yesterday .* postfix/smtp.* relay=" /var/log/mail.log | wc -l)
+num_recv=$(grep -e "^$yesterday .* postfix/qmgr.* nrcpt=" /var/log/mail.log | wc -l)
 echo "email sent $num_send received $num_recv yesterday"
 echo
