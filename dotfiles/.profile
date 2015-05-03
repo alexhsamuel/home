@@ -4,9 +4,13 @@
 #
 ########################################################################
 
+# Who am I?
+export EMAIL="alex@alexsamuel.net"
+
 export PATH="/usr/local/bin:${PATH}"
 export PATH="${PATH}:/usr/sbin:/sbin"
 export LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
+export MAIL=$HOME/mail/inbox
 
 # The one true program.
 export EDITOR="emacs"
