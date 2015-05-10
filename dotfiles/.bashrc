@@ -23,6 +23,13 @@ if ps | grep /usr/X11R6/bin/XWin > /dev/null; then
     export DISPLAY=:0
 fi
 
+# Set up the searchpath shell function.
+_searchpath=$HOME/dev/home/dotfiles/searchpath.py
+function searchpath {
+    var=$1
+    shift
+    eval $var="$(/usr/bin/python -E "$_searchpath" "${!var}" $@)"
+}
   
 #-----------------------------------------------------------------------------
 # aliases
@@ -43,5 +50,23 @@ function rwin {
 function set_title {
     title="$1"
     echo -ne "\033]0;${title}\007"
+}
+
+#
+# git-clone NAMESPACE/NAME
+#
+# Clones a github repo into ~/github/NAMESPACE/NAME.
+#
+function git-clone {
+    repo="$1"
+    namespace=$(echo "$repo" | (IFS=/ read ns name; echo $ns))
+
+    [[ -d $HOME/github ]] || (
+        echo "~/github doesn't exist" >&2
+        exit 1
+    )
+
+    mkdir -p "$HOME/github/$namespace"
+    git -C "$HOME/github/$namespace" clone "git@github.com:$repo.git"
 }
 
