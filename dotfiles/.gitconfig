@@ -5,3 +5,5 @@
 	email = alex@alexsamuel.net
 [credential]
 	helper = cache --timeout=360000
+[core]
+	excludesfile = /Users/samuel/.gitignore
