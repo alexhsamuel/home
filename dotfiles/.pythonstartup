@@ -1,0 +1,14 @@
+#------------------------------------------------------------------*- python -*-
+#
+# Interactive Python environment setup.
+# 
+# Set `PYTHONSTARTUP` to this file.
+#
+#-------------------------------------------------------------------------------
+
+import sys
+
+if sys.version_info.major >= 3:
+    from   imp import reload
+    from   pprint import pprint
+
