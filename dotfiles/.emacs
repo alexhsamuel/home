@@ -95,7 +95,8 @@
 ;; Style
 ;; =====
 
-(set-face-attribute 'default nil :font "Meslo LG S 9")
+;; (set-face-attribute 'default nil :font "Meslo LG S 12")
+(set-face-attribute 'default nil :font "Menlo 12")
 
 ;; ===================
 ;; LaTeX customization
@@ -172,8 +173,12 @@
  ;; Use auto-fill in Python mode.
  (add-hook 'python-mode-hook 'turn-on-auto-fill)
 
- ;; Use python2 to evaluate.
- (setq py-python-command "python2"))
+ ;; Use python3 to evaluate.
+ (setq py-python-command "python3")
+
+ ;; Keymap.
+ (define-key python-mode-map "\C-x#" 'comment-region)
+ )
 
 
 ;; =========
@@ -390,6 +395,15 @@
  (progn
    (setq-default js-indent-level 2)
    (setq auto-mode-alist (cons '("\\.json\\'" . javascript-mode) auto-mode-alist))))
+
+
+;; ===========
+;; Octave mode
+;; ===========
+
+(autoload 'octave-mode "octave-mod" nil t)
+(setq auto-mode-alist
+      (cons '("\\.m$" . octave-mode) auto-mode-alist))
 
 
 ;; ===============
