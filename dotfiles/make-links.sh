@@ -10,7 +10,17 @@ for file in dev/home/dotfiles/.*; do
     if [[ -f $file ]]; then
 	base=$(basename $file)
 	if [[ -e $base ]]; then
-	    echo "$base already exists"
+            if [[ -L $base ]]; then
+                target=$(readlink $base)
+                if [[ $target = $file ]]; then
+                    # Good.
+                    :
+                else
+                    echo "already exists: $base -> $target" >&2
+                fi
+            else
+                echo "already exists: $base" >&2 
+            fi
 	else
 	    ln -s $file $base
 	fi
