@@ -23,6 +23,10 @@ export EDITOR="emacs"
 # Remote file access for rsync.
 export RSYNC_RSH="ssh"
 
+# Customize pager.
+export PAGER="less"
+export LESS="-SFX"
+
 # Virtualenv is obnoxious.  Features should be opt-in.
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
