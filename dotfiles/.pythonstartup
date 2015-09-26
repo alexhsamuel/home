@@ -10,5 +10,19 @@ import sys
 
 if sys.version_info.major >= 3:
     from   imp import reload
+    from   pathlib import Path
+    import pickle
     from   pprint import pprint
+
+    def load_pickle_file(path):
+        path = Path(path)
+        with path.open("rb") as file:
+            return pickle.load(file)
+
+    def dump_pickle_file(obj, path):
+        path = Path(path)
+        with path.open("wb") as file:
+            pickle.dump(obj, file, pickle.HIGHEST_PROTOCOL)
+
+
 
