@@ -6,4 +6,4 @@
 [credential]
 	helper = cache --timeout=360000
 [core]
-	excludesfile = /Users/samuel/.gitignore
+	excludesfile = ~/.gitignore
