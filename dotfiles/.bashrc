@@ -53,11 +53,11 @@ function set_title {
 }
 
 #
-# git-clone NAMESPACE/NAME
+# github-clone NAMESPACE/NAME
 #
 # Clones a github repo into ~/github/NAMESPACE/NAME.
 #
-function git-clone {
+function github-clone {
     repo="$1"
     namespace=$(echo "$repo" | (IFS=/ read ns name; echo $ns))
 
