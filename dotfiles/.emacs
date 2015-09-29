@@ -91,13 +91,6 @@
   (set-buffer-file-coding-system default-buffer-file-coding-system))
 
 
-;; =====
-;; Style
-;; =====
-
-;; (set-face-attribute 'default nil :font "Meslo LG S 12")
-(set-face-attribute 'default nil :font "Menlo 12")
-
 ;; ===================
 ;; LaTeX customization
 ;; ===================
