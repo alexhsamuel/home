@@ -171,6 +171,9 @@
 
  ;; Keymap.
  (define-key python-mode-map "\C-x#" 'comment-region)
+
+ ;; Put triple quotes for docstrings on their own lines.
+ (setq python-fill-docstring-style 'django)
  )
 
 
