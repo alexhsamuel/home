@@ -18,11 +18,6 @@ if [ -f "$HOME/.bashrc.local" ]; then
     source "$HOME/.bashrc.local"
 fi
 
-# If the Cygwin X server is running locally, set DISPLAY accordingly.
-if ps | grep /usr/X11R6/bin/XWin > /dev/null; then
-    export DISPLAY=:0
-fi
-
 # Set up the searchpath shell function.
 _searchpath=$HOME/dev/home/dotfiles/searchpath.py
 function searchpath {
@@ -69,4 +64,6 @@ function github-clone {
     mkdir -p "$HOME/github/$namespace"
     git -C "$HOME/github/$namespace" clone "git@github.com:$repo.git"
 }
+
+
 
