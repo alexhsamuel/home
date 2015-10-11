@@ -408,8 +408,14 @@
 
 ;; Requires emacs24.
 
-;; (require 'package)
-;; (add-to-list 
-;;  'package-archives
-;;  '("marmalade" . "http://marmalade-repo.org/packages/"))
-;; (package-initialize)
+(require 'package)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
+
+;; ==========
+;; Scala mode
+;; ==========
+
+(unless (package-installed-p 'scala-mode2)
+  (package-refresh-contents) (package-install 'scala-mode2))
