@@ -25,7 +25,7 @@ export RSYNC_RSH="ssh"
 
 # Customize pager.
 export PAGER="less"
-export LESS="-FRSX"
+export LESS="-RSX"
 
 # Virtualenv is obnoxious.  Features should be opt-in.
 export VIRTUAL_ENV_DISABLE_PROMPT=1
