@@ -27,25 +27,10 @@ function searchpath {
 }
   
 #-----------------------------------------------------------------------------
-# aliases
-#-----------------------------------------------------------------------------
-
-alias +="less -S"
-
-
-#-----------------------------------------------------------------------------
 # functions
 #-----------------------------------------------------------------------------
 
-function rwin {
-    host=$1
-    ssh -f -X $host "bash --login -c win"
-}
-
-function set_title {
-    title="$1"
-    echo -ne "\033]0;${title}\007"
-}
+function + { less "$@"; }
 
 #
 # github-clone NAMESPACE/NAME
@@ -65,5 +50,15 @@ function github-clone {
     git -C "$HOME/github/$namespace" clone "git@github.com:$repo.git"
 }
 
+function rwin {
+    host=$1
+    ssh -f -X $host "bash --login -c win"
+}
 
+function set_title {
+    title="$1"
+    echo -ne "\033]0;${title}\007"
+}
+
+function utcdate { date -u +"%Y-%m-%dT%H:%M:%SZ"; }
 
