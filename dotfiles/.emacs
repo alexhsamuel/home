@@ -54,6 +54,8 @@
 (toggle-uniquify-buffer-names)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
+(global-set-key '[(meta ?o)] 'overwrite-mode)
+
 ;; Functions to draw lines.
 
 (defun ahs-finish-line (character)
@@ -412,6 +414,7 @@
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
+
 
 ;; ==========
 ;; Scala mode
