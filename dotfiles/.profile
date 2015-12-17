@@ -37,6 +37,10 @@ fi
 # Don't print whether we have mail.
 unset MAILCHECK
 
+# Find some of our stuff.
+export AHS_DEV_DIR=$HOME/dev
+export AHS_GITHUB_DIR=$AHS_DEV_DIR/github
+
 # Perform local configuration, if necessary.
 if [[ -f $HOME/.profile.local ]]; 
 then

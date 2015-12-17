@@ -41,13 +41,13 @@ function github-clone {
     repo="$1"
     namespace=$(echo "$repo" | (IFS=/ read ns name; echo $ns))
 
-    [[ -d $HOME/github ]] || (
-        echo "~/github doesn't exist" >&2
+    [[ -d $AHS_GITHUB_DIR ]] || (
+        echo "$AHS_GITHUB_DIR doesn't exist" >&2
         exit 1
     )
 
-    mkdir -p "$HOME/github/$namespace"
-    git -C "$HOME/github/$namespace" clone "git@github.com:$repo.git"
+    mkdir -p "$AHS_GITHUB_DIR/$namespace"
+    git -C "$AHS_GITHUB_DIR/$namespace" clone "git@github.com:$repo.git"
 }
 
 function rwin {
