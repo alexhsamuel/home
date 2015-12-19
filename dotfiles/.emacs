@@ -160,7 +160,7 @@
 
 ;; Load Python mode.
 (and
- (load "python-mode" t)
+ (load "python" t)
 
  ;; Associate it with .py files.
  (setq auto-mode-alist (append auto-mode-alist '(("\\.py\\'" . python-mode))))
