@@ -176,8 +176,8 @@
 
  ;; Put triple quotes for docstrings on their own lines.
  (setq python-fill-docstring-style 'django)
- )
 
+ )
 
 ;; =========
 ;; SGML mode
@@ -411,8 +411,12 @@
 ;; Requires emacs24.
 
 (require 'package)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives (quote
+ (("marmalade" . "http://marmalade-repo.org/packages/")
+  ("melpa" . "http://melpa.milkbox.net/packages/")
+  ("melpa-stable" . "http://stable.melpa.org/packages/")
+  ("gnu" . "http://elpa.gnu.org/packages/")
+  )))
 (package-initialize)
 
 
@@ -422,4 +426,12 @@
 
 (unless (package-installed-p 'scala-mode2)
   (package-refresh-contents) (package-install 'scala-mode2))
+
+
+;; ============
+;; Haskell mode
+;; ============
+
+(unless (package-installed-p 'haskell-mode)
+  (package-refresh-contents) (package-install 'haskell-mode))
 
