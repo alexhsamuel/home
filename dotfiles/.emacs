@@ -92,6 +92,10 @@
   (interactive)
   (set-buffer-file-coding-system default-buffer-file-coding-system))
 
+;; I hate electric indent.
+(electric-indent-mode -1)
+(add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
+
 
 ;; ===================
 ;; LaTeX customization
@@ -434,4 +438,5 @@
 
 (unless (package-installed-p 'haskell-mode)
   (package-refresh-contents) (package-install 'haskell-mode))
+
 
