@@ -32,6 +32,10 @@
 ;; Miscellanea
 ;; ===========
 
+;; Fuck that C-z shit.  Who thought it was a good idea?
+(global-unset-key [(control z)])
+(global-unset-key [(control x)(control z)])
+
 ;; Use the form of my name that I prefer.
 (setq-default user-full-name "Alex Samuel")
 
