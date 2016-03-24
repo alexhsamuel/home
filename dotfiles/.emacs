@@ -128,7 +128,12 @@
    (arglist-intro . +)
    (arglist-close . 0)
    (inline-open . 0)
+   (member-init-intro . -)
+   (member-init-cont . +)
+   (statement-cont . +)
    (c-offsets-alist . ((innamespace . [0])))))
+
+(setq-default c-default-style "ahs")
 
 (setq-default c-basic-offset 2)
 (defun ahs-c-mode-common-hook ()
