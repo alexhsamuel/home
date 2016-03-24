@@ -305,15 +305,6 @@
 ;;  (set-face-background 'flyspell-duplicate-face "rgb:60/20/40")
 ;;  (set-face-underline-p 'flyspell-duplicate-face nil))
 
-(and
- (load "rpm-spec-mode" t)
- (set-face-foreground 'rpm-spec-tag-face "rgb:70/00/50")
- (set-face-foreground 'rpm-spec-dir-face "rgb:70/00/00")
- (set-face-foreground 'rpm-spec-doc-face "grey50")
- (set-face-foreground 'rpm-spec-macro-face "rgb:90/70/00")
- (set-face-foreground 'rpm-spec-package-face "rgb:80/40/40")
- (set-face-foreground 'rpm-spec-ghost-face "rgb:80/40/40"))
-
 
 ;; =====
 ;; dired
