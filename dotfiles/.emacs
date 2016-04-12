@@ -161,11 +161,6 @@
 (setq auto-mode-alist (append auto-mode-alist '(("\\.inc\\'" . fortran-mode))))
 (setq auto-mode-alist (append auto-mode-alist '(("\..icc\\'" . c++-mode))))
 
-(and
- (load "haskell-mode" t)
- (setq auto-mode-alist 
-       (append auto-mode-alist '(("\\.hs\\'" . haskell-mode)))))
-
 
 ;; ===========
 ;; Python mode
