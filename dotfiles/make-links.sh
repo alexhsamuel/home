@@ -1,6 +1,7 @@
 #!/bin/bash
 
-dir=$(readlink -f $(dirname $0))
+# dir=$(readlink -f $(dirname $0))
+dir=$(cd $(dirname $0); pwd)
 if [[ $dir != $HOME/dev/home/dotfiles ]]; then
     echo "please clone this repo to $HOME/dev/home"
 fi
