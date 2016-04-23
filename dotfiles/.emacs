@@ -14,9 +14,8 @@
 ;; Elisp search path.
 (set-variable 'load-path 
 	      (append (list "/usr/local/share/emacs/site-lisp"
-			    (concat home-directory "/local/elisp")
-			    (concat home-directory 
-				    "/sw/emacs/share/emacs/site-lisp"))
+			    (concat home-directory "/dev/home/elisp")
+                            )
 		      load-path))
 
 ;; Info search path.
@@ -434,4 +433,10 @@
 (unless (package-installed-p 'haskell-mode)
   (package-refresh-contents) (package-install 'haskell-mode))
 
+
+;; =======
+;; Go mode
+;; =======
+
+(require 'go-mode-autoloads)
 
