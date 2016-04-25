@@ -32,6 +32,9 @@ function searchpath {
 
 function + { less "$@"; }
 
+function c++11 { c++ -std=c++11 "$@"; }
+function c++14 { c++ -std=c++14 "$@"; }
+
 #
 # github-clone NAMESPACE/NAME
 #
