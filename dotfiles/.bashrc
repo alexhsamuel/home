@@ -13,11 +13,6 @@ if [ $TERM != dumb -a -x /usr/bin/dircolors ]; then
     eval $(SHELL=${SHELL:-/bin/bash} TERM=xterm-256color /usr/bin/dircolors "$HOME/.dircolors")
 fi
 
-# Perform local configuration, if necessary.
-if [ -f "$HOME/.bashrc.local" ]; then
-    source "$HOME/.bashrc.local"
-fi
-
 # Set up the searchpath shell function.
 _searchpath=$HOME/dev/home/dotfiles/searchpath.py
 function searchpath {
@@ -64,4 +59,11 @@ function set_title {
 }
 
 function utcdate { date -u +"%Y-%m-%dT%H:%M:%SZ"; }
+
+#-------------------------------------------------------------------------------
+
+# Perform local configuration, if necessary.
+if [ -f "$HOME/.bashrc.local" ]; then
+    source "$HOME/.bashrc.local"
+fi
 
