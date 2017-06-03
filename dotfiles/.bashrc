@@ -22,8 +22,12 @@ function searchpath {
 }
   
 # Load the path library, if present.
-if [[ -f $HOME/dev/path/path.sh ]]; then
-    . $HOME/dev/path/path.sh
+if [[ -d $HOME/dev/path ]]; then
+    if [[ $BASH_VERSION =~ 3 ]]; then
+        . $HOME/dev/path/path-v3.sh
+    else
+        . $HOME/dev/path/path.sh
+    fi
     PATH_VARNAME_ALIASES=(
         [CP]=CLASSPATH
         [LD]=LD_LIBRARY_PATH
