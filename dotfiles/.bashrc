@@ -21,6 +21,20 @@ function searchpath {
     eval $var="$(/usr/bin/python -E "$_searchpath" "${!var}" $@)"
 }
   
+# Load the path library, if present.
+if [[ -f $HOME/dev/path/path.sh ]]; then
+    . $HOME/dev/path/path.sh
+    PATH_VARNAME_ALIASES=(
+        [CP]=CLASSPATH
+        [LD]=LD_LIBRARY_PATH
+        [MAN]=MANPATH
+        [PY]=PYTHONPATH
+        [P]=PATH
+    )
+else
+    echo "path library missing" >&2
+fi
+
 #-----------------------------------------------------------------------------
 # functions
 #-----------------------------------------------------------------------------
