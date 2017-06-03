@@ -472,3 +472,8 @@
 
 (require 'go-mode-autoloads)
 
+
+;; =========
+;; Rust mode
+;; =========
+
