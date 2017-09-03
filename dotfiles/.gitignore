@@ -2,3 +2,7 @@
 #   git config --global core.excludesfile $HOME/.gitignore
 
 *~
+.DS_Store
+.ipynb_checkpoints/
+.pythonstartup
+

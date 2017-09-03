@@ -1,5 +1,7 @@
 # Alex's account configuration stuff
 
+This repo contains my various Linux / OSX configuration files.
+
 ## Directory layout
 
 | path | description |
