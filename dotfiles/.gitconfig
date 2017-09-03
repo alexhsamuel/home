@@ -7,3 +7,6 @@
 	helper = cache --timeout=360000
 [core]
 	excludesfile = ~/.gitignore
+[http]
+        sslVerify = true
+        sslCAinfo = /etc/ssl/certs/ca-certificates.crt
