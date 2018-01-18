@@ -53,6 +53,9 @@
 ;; Turn off annoying end-of-buffer newline query.
 (setq require-final-newline nil)
 
+;; Stop beeping at me.
+(setq ring-bell-function 'ignore)
+
 ;; Use the more explicit uniquifying method.
 (toggle-uniquify-buffer-names)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
@@ -441,9 +444,8 @@
 ;; Requires emacs24.
 
 (require 'package)
-(add-to-list 'package-archives (quote
+(set 'package-archives (quote
  (("marmalade" . "http://marmalade-repo.org/packages/")
-  ("melpa" . "http://melpa.milkbox.net/packages/")
   ("melpa-stable" . "http://stable.melpa.org/packages/")
   ("gnu" . "http://elpa.gnu.org/packages/")
   )))
@@ -472,6 +474,19 @@
 
 (require 'go-mode-autoloads)
 
+
+;; ========
+;; Flycheck
+;; ========
+
+(require 'flycheck)
+
+(if (not (require 'flycheck-pyflakes nil t))
+    (message "no flycheck-pyflakes")
+  (add-hook 'python-mode-hook 'flycheck-mode)
+  (add-to-list 'flycheck-disabled-checkers 'python-flake8)
+  (add-to-list 'flycheck-disabled-checkers 'python-pylint)
+  )
 
 ;; =========
 ;; Rust mode
