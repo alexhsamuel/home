@@ -50,6 +50,7 @@ function + { less "$@"; }
 function lo { ls -G -oh "$@"; }
 function ll { ls -G -al "$@"; }
 
+function rg { $HOME/sw/ripgrep/rg "$@"; }
 function c++11 { c++ -std=c++11 -fdiagnostics-color=always "$@"; }
 function c++14 { c++ -std=c++14 -fdiagnostics-color=always "$@"; }
 
