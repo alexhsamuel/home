@@ -159,64 +159,8 @@
 (setq auto-mode-alist (append auto-mode-alist '(("\\.F\\'" . fortran-mode))))
 (setq auto-mode-alist (append auto-mode-alist '(("\\.inc\\'" . fortran-mode))))
 (setq auto-mode-alist (append auto-mode-alist '(("\..icc\\'" . c++-mode))))
+(setq auto-mode-alist (append auto-mode-alist '(("\\.mjs\\'" . js-mode))))
 
-
-;; ===========
-;; Python mode
-;; ===========
-
-;; For getting the latest python.el:
-
-;; (add-to-list 'load-path user-emacs-directory)
-;; (defun my:ensure-python.el (&optional branch overwrite)
-;;   "Install python.el from BRANCH.
-;; After the first install happens the file is not overwritten again
-;; unless the optional argument OVERWRITE is non-nil.  When called
-;; interactively python.el will always be overwritten with the
-;; latest version."
-;;   (interactive
-;;    (list
-;;     (completing-read "Install python.el from branch: "
-;;                      (list "master" "emacs-24")
-;;                      nil t)
-;;     t))
-;;   (let* ((branch (or branch "master"))
-;;          (url (format
-;;                (concat "http://git.savannah.gnu.org/cgit/emacs.git/plain"
-;;                        "/lisp/progmodes/python.el?h=%s") branch))
-;;          (destination (expand-file-name "python.el" user-emacs-directory))
-;;          (write (or (not (file-exists-p destination)) overwrite)))
-;;     (when write
-;;       (with-current-buffer
-;;           (url-retrieve-synchronously url)
-;;         (delete-region (point-min) (1+ url-http-end-of-headers))
-;;         (write-file destination))
-;;       (byte-compile-file destination t)
-;;       destination)))
-
-;; (my:ensure-python.el)
-
-
-;; Load Python mode.
-(and
- (load "python" t)
-
- ;; Associate it with .py files.
- (setq auto-mode-alist (append auto-mode-alist '(("\\.py\\'" . python-mode))))
-
- ;; Use auto-fill in Python mode.
- (add-hook 'python-mode-hook 'turn-on-auto-fill)
-
- ;; Use python3 to evaluate.
- (setq py-python-command "python3")
-
- ;; Keymap.
- (define-key python-mode-map "\C-x#" 'comment-region)
-
- ;; Put triple quotes for docstrings on their own lines.
- (setq python-fill-docstring-style 'django)
-
- )
 
 ;; =========
 ;; SGML mode
@@ -441,14 +385,12 @@
 ;; Requires emacs24.
 
 (require 'package)
-(add-to-list 'package-archives (quote
- (("marmalade" . "http://marmalade-repo.org/packages/")
-  ("melpa" . "http://melpa.milkbox.net/packages/")
-  ("melpa-stable" . "http://stable.melpa.org/packages/")
-  ("gnu" . "http://elpa.gnu.org/packages/")
-  )))
+(setq package-archives '(
+ ("melpa" . "http://melpa.milkbox.net/packages/")
+ ("melpa-stable" . "http://stable.melpa.org/packages/")
+ ("gnu" . "http://elpa.gnu.org/packages/")
+))
 (package-initialize)
-
 
 ;; ==========
 ;; Scala mode
@@ -476,4 +418,35 @@
 ;; =========
 ;; Rust mode
 ;; =========
+
+;; ===========
+;; Python mode
+;; ===========
+
+;; Load Python mode.
+(and
+ (load "python" t)
+
+ ;; Associate it with .py files.
+ (setq auto-mode-alist (append auto-mode-alist '(("\\.py\\'" . python-mode))))
+
+ ;; Use auto-fill in Python mode.
+ (add-hook 'python-mode-hook 'turn-on-auto-fill)
+
+ ;; Use python3 to evaluate.
+ (setq py-python-command "python3")
+
+ ;; Keymap.
+ (define-key python-mode-map "\C-x#" 'comment-region)
+
+ ;; Put triple quotes for docstrings on their own lines.
+ (setq python-fill-docstring-style 'django)
+
+ )
+
+;; Pyflakes
+(require 'flycheck-pyflakes)
+(add-hook 'python-mode-hook 'flycheck-mode)
+(add-to-list 'flycheck-disabled-checkers 'python-flake8)
+(add-to-list 'flycheck-disabled-checkers 'python-pylint)
 
