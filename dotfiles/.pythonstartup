@@ -6,7 +6,10 @@
 #
 #-------------------------------------------------------------------------------
 
+import os
 import sys
+
+#-------------------------------------------------------------------------------
 
 if sys.version_info.major >= 3:
     from   imp import reload
@@ -25,4 +28,13 @@ if sys.version_info.major >= 3:
             pickle.dump(obj, file, pickle.HIGHEST_PROTOCOL)
 
 
+
+#-------------------------------------------------------------------------------
+
+# If there's a .pythonstartup in cwd, source this too.
+if (os.path.isfile(".pythonstartup") 
+    and not os.path.samefile(".pythonstartup", __file__)):
+    with open(".pythonstartup") as _file:
+        exec(_file.read())
+    del _file
 
