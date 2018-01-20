@@ -11,6 +11,10 @@
 [core]
 	excludesfile = ~/.gitignore
 
+[http]
+        sslVerify = true
+        sslCAinfo = /etc/ssl/certs/ca-certificates.crt
+
 [color "diff"]
         whitespace = 
 
