@@ -416,7 +416,33 @@
 ;; Go mode
 ;; =======
 
-(require 'go-mode-autoloads)
+; (require 'go-mode-autoloads)
+
+
+;; ===========
+;; Python mode
+;; ===========
+
+;; Load Python mode.
+(and
+ (load "python" t)
+
+ ;; Associate it with .py files.
+ (setq auto-mode-alist (append auto-mode-alist '(("\\.py\\'" . python-mode))))
+
+ ;; Don't auto-fill in Python mode.
+ (add-hook 'python-mode-hook 'turn-off-auto-fill)
+
+ ;; Use python3 to evaluate.
+ (setq py-python-command "python3")
+
+ ;; Keymap.
+ (define-key python-mode-map "\C-x#" 'comment-region)
+
+ ;; Put triple quotes for docstrings on their own lines.
+ (setq python-fill-docstring-style 'django)
+
+ )
 
 
 ;; ========
@@ -431,39 +457,4 @@
   (add-to-list 'flycheck-disabled-checkers 'python-flake8)
   (add-to-list 'flycheck-disabled-checkers 'python-pylint)
   )
-
-;; =========
-;; Rust mode
-;; =========
-
-;; ===========
-;; Python mode
-;; ===========
-
-;; Load Python mode.
-(and
- (load "python" t)
-
- ;; Associate it with .py files.
- (setq auto-mode-alist (append auto-mode-alist '(("\\.py\\'" . python-mode))))
-
- ;; Use auto-fill in Python mode.
- (add-hook 'python-mode-hook 'turn-on-auto-fill)
-
- ;; Use python3 to evaluate.
- (setq py-python-command "python3")
-
- ;; Keymap.
- (define-key python-mode-map "\C-x#" 'comment-region)
-
- ;; Put triple quotes for docstrings on their own lines.
- (setq python-fill-docstring-style 'django)
-
- )
-
-;; Pyflakes
-(require 'flycheck-pyflakes)
-(add-hook 'python-mode-hook 'flycheck-mode)
-(add-to-list 'flycheck-disabled-checkers 'python-flake8)
-(add-to-list 'flycheck-disabled-checkers 'python-pylint)
 
