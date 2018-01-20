@@ -12,6 +12,9 @@ PATH="${PATH}:/usr/sbin:/sbin"
 if [[ -d $HOME/local/bin ]]; then
     PATH="$HOME/local/bin:$PATH"
 fi
+if [[ -d $HOME/.cargo/bin ]]; then
+    PATH="$PATH:$HOME/.cargo/bin"
+fi
 export PATH
 
 export LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
