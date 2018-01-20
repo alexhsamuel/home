@@ -1,9 +1,22 @@
 [push]
 	default = simple
+
 [user]
 	name = Alex Samuel
 	email = alex@alexsamuel.net
+
 [credential]
 	helper = cache --timeout=360000
+
 [core]
 	excludesfile = ~/.gitignore
+
+[color "diff"]
+        whitespace = 
+
+[alias]
+        br = branch -vv
+        co = checkout
+        di = diff
+        st = status -s
+
