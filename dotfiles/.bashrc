@@ -28,13 +28,6 @@ if [[ -d $HOME/dev/path ]]; then
     else
         . $HOME/dev/path/path.sh
     fi
-    PATH_VARNAME_ALIASES=(
-        [CP]=CLASSPATH
-        [LD]=LD_LIBRARY_PATH
-        [MAN]=MANPATH
-        [PY]=PYTHONPATH
-        [P]=PATH
-    )
 else
     echo "path library missing" >&2
 fi
@@ -53,6 +46,8 @@ function ll { ls -G -al "$@"; }
 
 function c++11 { c++ -std=c++11 -fdiagnostics-color=always "$@"; }
 function c++14 { c++ -std=c++14 -fdiagnostics-color=always "$@"; }
+
+function py { python -q "$@"; }
 
 #
 # Compile a one-file C++14 progam to an executable, and run it.
@@ -97,6 +92,10 @@ function set_title {
 function utcdate { date -u +"%Y-%m-%dT%H:%M:%SZ"; }
 function use-env { source activate "$@"; }
 function use-root { source deactivate "$@"; }
+
+function git-delete-merged {
+    git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d
+}
 
 #-------------------------------------------------------------------------------
 
