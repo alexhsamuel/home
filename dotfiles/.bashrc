@@ -7,8 +7,14 @@
 # Set the shell prompt.
 export PS1='\h:\w\$ '
 
-if [[ -f $HOME/dev/path/path.sh ]]; then
-    source $HOME/dev/path/path.sh
+if [[ $BASH_VERSION =~ 3 ]]; then
+    if [[ -f $HOME/dev/path/path-v3.sh ]]; then
+        source $HOME/dev/path/path-v3.sh
+    fi
+else
+    if [[ -f $HOME/dev/path/path.sh ]]; then
+        source $HOME/dev/path/path.sh
+    fi
 fi
 
 # List directories in color.
