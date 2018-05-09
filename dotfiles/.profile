@@ -12,10 +12,18 @@ PATH="${PATH}:/usr/sbin:/sbin"
 if [[ -d $HOME/local/bin ]]; then
     PATH="$HOME/local/bin:$PATH"
 fi
+export PATH
+
+# Rust setup.
 if [[ -d $HOME/.cargo/bin ]]; then
     PATH="$PATH:$HOME/.cargo/bin"
 fi
-export PATH
+
+# Node setup.
+if [[ -d $HOME/node ]]; then
+    PATH="$HOME/sw/node/bin:$HOME/.npm-global/bin:$PATH"
+    export NODE_PATH=$HOME/sw/node
+fi
 
 export LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
 export MAIL=$HOME/mail/inbox
