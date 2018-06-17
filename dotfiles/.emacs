@@ -60,7 +60,12 @@
 (toggle-uniquify-buffer-names)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
+(defun ahs-revert-buffer ()
+  (interactive)
+  (revert-buffer t t))
+
 (global-set-key '[(meta ?o)] 'overwrite-mode)
+(global-set-key '[(control ?x) (?j)] 'ahs-revert-buffer)
 
 ;; Functions to draw lines.
 
