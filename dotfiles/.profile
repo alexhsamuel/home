@@ -30,7 +30,7 @@ if [[ -d $HOME/.cargo/bin ]]; then
 fi
 
 # Node setup.
-if [[ -d $HOME/node ]]; then
+if [[ -d $HOME/sw/node ]]; then
     PATH="$HOME/sw/node/bin:$HOME/.npm-global/bin:$PATH"
     export NODE_PATH=$HOME/sw/node
 fi
