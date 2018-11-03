@@ -484,7 +484,7 @@
  '(markdown-gfm-additional-languages (quote ("py")))
  '(package-selected-packages
    (quote
-    (scss-mode vue-mode flx-ido projectile markdown-mode yaml-mode haskell-mode flycheck))))
+    (pug-mode scss-mode vue-mode flx-ido projectile markdown-mode yaml-mode haskell-mode flycheck))))
  )
 
 (custom-set-faces
