@@ -485,8 +485,7 @@
  '(package-selected-packages
    (quote
     (pug-mode scss-mode vue-mode flx-ido projectile markdown-mode yaml-mode haskell-mode flycheck))))
- )
-
+ 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
