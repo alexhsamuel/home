@@ -484,7 +484,8 @@
  '(markdown-gfm-additional-languages (quote ("py")))
  '(package-selected-packages
    (quote
-    (vue-mode flx-ido projectile markdown-mode yaml-mode haskell-mode flycheck))))
+    (scss-mode vue-mode flx-ido projectile markdown-mode yaml-mode haskell-mode flycheck))))
+ )
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
