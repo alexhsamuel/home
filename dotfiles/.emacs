@@ -254,6 +254,7 @@
 ;; =======
 
 (set-face-foreground 'default "black")
+(set-face-attribute 'default nil :font "Menlo 8")
 
 ;; Set the default background depending on the user.
 (setq background-color-alist '(("samuel" . "white")
@@ -454,7 +455,6 @@
   (add-to-list 'flycheck-disabled-checkers 'python-pylint)
   )
 
-
 ;; =========
 ;; customize
 ;; =========
@@ -486,6 +486,7 @@
    (quote
     (pug-mode scss-mode vue-mode flx-ido projectile markdown-mode yaml-mode haskell-mode flycheck))))
  
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
