@@ -12,7 +12,7 @@ import sys
 #-------------------------------------------------------------------------------
 
 if sys.version_info.major >= 3:
-    from   imp import reload
+    from   importlib import reload
     from   pathlib import Path
     import pickle
     from   pprint import pprint
