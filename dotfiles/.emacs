@@ -27,6 +27,18 @@
 			Info-default-directory-list
 		      Info-directory-list)))
 
+;; ============
+;; Backup files
+;; ============
+
+(setq backup-directory-alist `(("." . "~/.saves")))
+(setq backup-by-copying t)
+(setq delete-old-versions t
+  kept-new-versions 6
+  kept-old-versions 2
+  version-control t)
+
+
 ;; ===========
 ;; Miscellanea
 ;; ===========
@@ -484,7 +496,7 @@
  '(markdown-gfm-additional-languages (quote ("py")))
  '(package-selected-packages
    (quote
-    (pug-mode scss-mode vue-mode flx-ido projectile markdown-mode yaml-mode haskell-mode flycheck))))
+    (racer rust-mode pug-mode scss-mode vue-mode flx-ido projectile markdown-mode yaml-mode haskell-mode flycheck)))
  
 
 (custom-set-faces
