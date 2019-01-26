@@ -266,7 +266,9 @@
 ;; =======
 
 (set-face-foreground 'default "black")
-(set-face-attribute 'default nil :font "Menlo 8")
+
+;; Set the face in ~/.Xresources instead.
+;; (set-face-attribute 'default nil :font "Menlo 8")
 
 ;; Set the default background depending on the user.
 (setq background-color-alist '(("samuel" . "white")

@@ -46,6 +46,8 @@ Emacs.cursorColor: rgb:60/95/85
 Emacs.pointerColor: grey30
 Emacs.borderColor: grey30
 Emacs.Font: Monospace-9
+Emacs.Font: DejaVu Sans Mono-9
+!Emacs.Font: Menlo-8  ! MacOS
 !Emacs.paneFont: -*-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
 !Emacs.pane.menubar.*.fontList: -*-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
 Emacs.*.*.*.marginHeight: 1
