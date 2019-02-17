@@ -392,15 +392,6 @@
    (setq auto-mode-alist (cons '("\\.json\\'" . javascript-mode) auto-mode-alist))))
 
 
-;; ===========
-;; Octave mode
-;; ===========
-
-(autoload 'octave-mode "octave-mod" nil t)
-(setq auto-mode-alist
-      (cons '("\\.m$" . octave-mode) auto-mode-alist))
-
-
 ;; ===============
 ;; Package manager
 ;; ===============
@@ -497,8 +488,19 @@
  '(markdown-fontify-code-blocks-natively t)
  '(markdown-gfm-additional-languages (quote ("py")))
  '(package-selected-packages
-   (quote
-    (racer rust-mode pug-mode scss-mode vue-mode flx-ido projectile markdown-mode yaml-mode haskell-mode flycheck)))
+   (quote (
+           racer 
+           rust-mode 
+           pug-mode
+           scss-mode
+           vue-mode
+           flx-ido
+           projectile
+           markdown-mode
+           yaml-mode
+           haskell-mode
+           flycheck
+           ))))
  
 
 (custom-set-faces
