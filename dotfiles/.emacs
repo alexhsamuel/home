@@ -119,6 +119,9 @@
 (electric-indent-mode -1)
 (add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
 
+;; C-x 8 r inserts RIGHTWARDS ARROW.
+(global-set-key (kbd "C-x 8 r") (lambda () (interactive) (insert "→")))
+
 
 ;; ===================
 ;; LaTeX customization
