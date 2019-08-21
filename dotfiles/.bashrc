@@ -62,6 +62,12 @@ function c++14 { c++ -std=c++14 -fdiagnostics-color=always "$@"; }
 
 function py { python -q "$@"; }
 
+# Use my emacs.
+if [[ -d $HOME/sw/emacs ]]; then
+    function emacs { $HOME/sw/emacs/bin/emacs "$@"; }
+    export EDITOR=$HOME/sw/emacs/bin/emacs
+fi
+
 #
 # Compile a one-file C++14 progam to an executable, and run it.
 #
