@@ -119,6 +119,9 @@
 (electric-indent-mode -1)
 (add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
 
+;; C-x 8 r inserts RIGHTWARDS ARROW.
+(global-set-key (kbd "C-x 8 r") (lambda () (interactive) (insert "→")))
+
 
 ;; ===================
 ;; LaTeX customization
@@ -513,5 +516,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(markdown-code-face ((t (:inherit nil :background "#f850f850f850")))))
+ '(markdown-code-face ((t (:inherit nil :background "#f6f8ff"))))
+ '(mmm-default-submode-face ((t (:inherit nil :background "#f6faff")))))
 
