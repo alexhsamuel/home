@@ -265,27 +265,32 @@
 ;; Display
 ;; =======
 
-(set-face-foreground 'default "black")
+;; ;; Set the face in ~/.Xresources instead.
+;; ;; (set-face-attribute 'default nil :font "Menlo 8")
 
-;; Set the face in ~/.Xresources instead.
-;; (set-face-attribute 'default nil :font "Menlo 8")
+;; Colors
+;; 
+;; M-x list-colors-display to show available colors.
 
-;; Set the default background depending on the user.
-(setq background-color-alist '(("samuel" . "white")
-			       ("root" . "rgb:ff/f4/f4")))
-;; (if (equal (framep (car (frame-list))) 'x)
-;;     (let ((background-color 
-;; 	   (assoc-default user-name background-color-alist nil "Grey95")))
-;;       (set-face-background 'default background-color)
-;;       (set-background-color background-color)))
+(set-face-background 'default "black")
+(set-face-foreground 'default "#c8c0c8")
+
+;; ;; Set the default background depending on the user.
+;; (setq background-color-alist '(("samuel" . "black")
+;; 			       ("root" . "rgb:ff/f4/f4")))
+;; ;; (if (equal (framep (car (frame-list))) 'x)
+;; ;;     (let ((background-color 
+;; ;; 	   (assoc-default user-name background-color-alist nil "Grey95")))
+;; ;;       (set-face-background 'default background-color)
+;; ;;       (set-background-color background-color)))
        
-;(set-face-background 'modeline "grey50")
+(set-face-background 'modeline "grey50")
 ;(set-face-foreground 'modeline "white")
-(set-face-background 'region "rgb:f0/e0/d0")
+(set-face-background 'region "rgb:a0/a0/a0")
 (set-face-background 'highlight "rgb:70/30/90")
-(set-face-foreground 'font-lock-keyword-face "rgb:50/00/70")
-(set-face-foreground 'font-lock-constant-face "rgb:30/00/70")
-(set-face-foreground 'font-lock-builtin-face "gray30")
+(set-face-foreground 'font-lock-keyword-face "#b9c")
+(set-face-foreground 'font-lock-constant-face "#baf")
+(set-face-foreground 'font-lock-builtin-face "#bbf")
 (set-face-foreground 'font-lock-type-face "rgb:00/00/70")
 (set-face-foreground 'font-lock-variable-name-face "rgb:00/70/90")
 (set-face-foreground 'font-lock-function-name-face "rgb:00/70/90")
@@ -294,14 +299,14 @@
 (if (>= emacs-major-version 21)
     (set-face-foreground 'font-lock-doc-face "rgb:c0/c0/c0"))
 
-;; (and
-;;  (load "flyspell" t)
-;;  (set-face-foreground 'flyspell-incorrect-face "white")
-;;  (set-face-background 'flyspell-incorrect-face "rgb:80/40/60")
-;;  (set-face-underline-p 'flyspell-incorrect-face nil)
-;;  (set-face-foreground 'flyspell-duplicate-face "white")
-;;  (set-face-background 'flyspell-duplicate-face "rgb:60/20/40")
-;;  (set-face-underline-p 'flyspell-duplicate-face nil))
+;; ;; (and
+;; ;;  (load "flyspell" t)
+;; ;;  (set-face-foreground 'flyspell-incorrect-face "white")
+;; ;;  (set-face-background 'flyspell-incorrect-face "rgb:80/40/60")
+;; ;;  (set-face-underline-p 'flyspell-incorrect-face nil)
+;; ;;  (set-face-foreground 'flyspell-duplicate-face "white")
+;; ;;  (set-face-background 'flyspell-duplicate-face "rgb:60/20/40")
+;; ;;  (set-face-underline-p 'flyspell-duplicate-face nil))
 
 
 ;; =====
