@@ -111,6 +111,15 @@ function git-delete-merged {
 }
 
 #-------------------------------------------------------------------------------
+# MacOS
+
+if [[ $(uname) == Darwin ]]; then
+    function emacs {
+        /Applications/Emacs.app/Contents/MacOS/Emacs "$@";
+    }
+fi
+
+#-------------------------------------------------------------------------------
 
 # Perform local configuration, if necessary.
 if [ -f "$HOME/.bashrc.local" ]; then
