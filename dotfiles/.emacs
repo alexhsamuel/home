@@ -264,10 +264,9 @@
 (tool-bar-mode 0)
 (menu-bar-mode -99)
 
-(message "DISPLAY")
-;; =======
-;; Display
-;; =======
+;; ======
+;; Colors
+;; ======
 
 ;; ;; Set the face in ~/.Xresources instead.
 ;; ;; (set-face-attribute 'default nil :font "Menlo 8")
@@ -300,6 +299,8 @@
 
 (set-face-foreground 'minibuffer-prompt "#fff")
 
+(set-face-background 'diff-removed "#400")
+(set-face-background 'diff-added "#031")
 
 ;; ;; Set the default background depending on the user.
 ;; (setq background-color-alist '(("samuel" . "black")
@@ -313,24 +314,24 @@
 (set-face-foreground 'font-lock-builtin-face "#ccf")
 (set-face-foreground 'font-lock-comment-face "#999")
 (set-face-foreground 'font-lock-constant-face "#dcc")
-(set-face-foreground 'font-lock-doc-face "#bcd")
+(set-face-foreground 'font-lock-doc-face "#b0c0d8")
 (set-face-foreground 'font-lock-function-name-face "#9fe")
-(set-face-foreground 'font-lock-keyword-face "#b8b8b8")
-(set-face-foreground 'font-lock-string-face "#cab")
+(set-face-foreground 'font-lock-keyword-face "#b8b8c8")
+(set-face-foreground 'font-lock-string-face "#d0b0c8")
 (set-face-foreground 'font-lock-type-face "#8de")
 (set-face-foreground 'font-lock-variable-name-face "#8de")
 
 (set-face-background 'markdown-code-face "#223")
 (set-face-foreground 'markdown-code-face "#ccc")
 
-;; ;; (and
-;; ;;  (load "flyspell" t)
-;; ;;  (set-face-foreground 'flyspell-incorrect-face "white")
-;; ;;  (set-face-background 'flyspell-incorrect-face "rgb:80/40/60")
-;; ;;  (set-face-underline-p 'flyspell-incorrect-face nil)
-;; ;;  (set-face-foreground 'flyspell-duplicate-face "white")
-;; ;;  (set-face-background 'flyspell-duplicate-face "rgb:60/20/40")
-;; ;;  (set-face-underline-p 'flyspell-duplicate-face nil))
+;; (and
+;;  (load "flyspell" t)
+;;  (set-face-foreground 'flyspell-incorrect-face "white")
+;;  (set-face-background 'flyspell-incorrect-face "rgb:80/40/60")
+;;  (set-face-underline-p 'flyspell-incorrect-face nil)
+;;  (set-face-foreground 'flyspell-duplicate-face "white")
+;;  (set-face-background 'flyspell-duplicate-face "rgb:60/20/40")
+;;  (set-face-underline-p 'flyspell-duplicate-face nil))
 
 
 ;; =====
