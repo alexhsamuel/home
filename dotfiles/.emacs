@@ -269,7 +269,7 @@
 ;; ======
 
 ;; ;; Set the face in ~/.Xresources instead.
-;; ;; (set-face-attribute 'default nil :font "Menlo 8")
+;; ;; (set-face-attribute 'default nil :font "Menlo 12")
 
 ;; Colors
 ;; 
