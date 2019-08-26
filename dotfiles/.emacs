@@ -407,7 +407,7 @@
 (require 'package)
 (set 'package-archives '(
  ("marmalade"       . "http://marmalade-repo.org/packages/")
-;("melpa"           . "http://melpa.milkbox.net/packages/")
+ ("melpa"           . "http://melpa.milkbox.net/packages/")
  ("melpa-stable"    . "http://stable.melpa.org/packages/")
  ("gnu"             . "http://elpa.gnu.org/packages/")
  ))
@@ -468,6 +468,7 @@
   (add-to-list 'flycheck-disabled-checkers 'python-pylint)
   )
 
+
 ;; =========
 ;; customize
 ;; =========
@@ -496,19 +497,8 @@
  '(markdown-fontify-code-blocks-natively t)
  '(markdown-gfm-additional-languages (quote ("py")))
  '(package-selected-packages
-   (quote (
-           racer 
-           rust-mode 
-           pug-mode
-           scss-mode
-           vue-mode
-           flx-ido
-           projectile
-           markdown-mode
-           yaml-mode
-           haskell-mode
-           flycheck
-           ))))
+   (quote
+    (multiple-cursors flycheck-pyflakes racer rust-mode pug-mode scss-mode vue-mode flx-ido projectile markdown-mode yaml-mode haskell-mode flycheck))))
  
 
 (custom-set-faces
