@@ -315,7 +315,7 @@
 (set-face-foreground 'font-lock-comment-face "#999")
 (set-face-foreground 'font-lock-constant-face "#dcc")
 (set-face-foreground 'font-lock-doc-face "#b0c0d8")
-(set-face-foreground 'font-lock-function-name-face "#9fe")
+(set-face-foreground 'font-lock-function-name-face "#afe")
 (set-face-foreground 'font-lock-keyword-face "#b8b8c8")
 (set-face-foreground 'font-lock-string-face "#d0b0c8")
 (set-face-foreground 'font-lock-type-face "#8de")
