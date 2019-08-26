@@ -36,6 +36,12 @@ if [[ -d $HOME/sw/node ]]; then
     export NODE_PATH=$HOME/sw/node
 fi
 
+# SBCL setup.
+if [[ -d $HOME/sw/sbcl ]]; then
+    PATH="$HOME/sw/sbcl/bin:$PATH"
+    export SBCL_HOME=$HOME/sw/sbcl/lib/sbcl
+fi
+
 export MAIL=$HOME/mail/inbox
 
 # The one true program.
