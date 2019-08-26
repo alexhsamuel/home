@@ -264,6 +264,7 @@
 (tool-bar-mode 0)
 (menu-bar-mode -99)
 
+(message "DISPLAY")
 ;; =======
 ;; Display
 ;; =======
@@ -276,7 +277,29 @@
 ;; M-x list-colors-display to show available colors.
 
 (set-face-background 'default "black")
-(set-face-foreground 'default "#c8c0c8")
+(set-face-foreground 'default "#ddd")
+(set-face-background 'region "#333")
+(set-face-background 'highlight "rgb:70/30/90")
+
+; Mode line.
+(set-face-attribute
+ 'mode-line nil
+ :foreground "#eee"
+ :background "#555"
+ :box '(:line-width 1 :color "#555" :style "raised"))
+(set-face-attribute 
+ 'mode-line-highlight nil
+ :foreground "red"
+ :background "#000"
+ :box '(:line-width 1 :color "#f00" :style "raised"))
+(set-face-attribute 
+ 'mode-line-inactive nil
+ :foreground "#999"
+ :background "#333"
+ :box '(:line-width 1 :color "#333" :style "raised"))
+
+(set-face-foreground 'minibuffer-prompt "#fff")
+
 
 ;; ;; Set the default background depending on the user.
 ;; (setq background-color-alist '(("samuel" . "black")
@@ -287,20 +310,18 @@
 ;; ;;       (set-face-background 'default background-color)
 ;; ;;       (set-background-color background-color)))
        
-(set-face-background 'modeline "grey50")
-;(set-face-foreground 'modeline "white")
-(set-face-background 'region "rgb:a0/a0/a0")
-(set-face-background 'highlight "rgb:70/30/90")
-(set-face-foreground 'font-lock-keyword-face "#b9c")
-(set-face-foreground 'font-lock-constant-face "#baf")
-(set-face-foreground 'font-lock-builtin-face "#bbf")
-(set-face-foreground 'font-lock-type-face "rgb:00/00/70")
-(set-face-foreground 'font-lock-variable-name-face "rgb:00/70/90")
-(set-face-foreground 'font-lock-function-name-face "rgb:00/70/90")
-(set-face-foreground 'font-lock-string-face "rgb:40/40/80")
-(set-face-foreground 'font-lock-comment-face "grey50")
-(if (>= emacs-major-version 21)
-    (set-face-foreground 'font-lock-doc-face "rgb:c0/c0/c0"))
+(set-face-foreground 'font-lock-builtin-face "#ccf")
+(set-face-foreground 'font-lock-comment-face "#999")
+(set-face-foreground 'font-lock-constant-face "#dcc")
+(set-face-foreground 'font-lock-doc-face "#bcd")
+(set-face-foreground 'font-lock-function-name-face "#9fe")
+(set-face-foreground 'font-lock-keyword-face "#b8b8b8")
+(set-face-foreground 'font-lock-string-face "#cab")
+(set-face-foreground 'font-lock-type-face "#8de")
+(set-face-foreground 'font-lock-variable-name-face "#8de")
+
+(set-face-background 'markdown-code-face "#223")
+(set-face-foreground 'markdown-code-face "#ccc")
 
 ;; ;; (and
 ;; ;;  (load "flyspell" t)
