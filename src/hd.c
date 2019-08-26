@@ -6,8 +6,9 @@
 
 ***********************************************************************/
 
-#include <stdio.h>
 #include <ctype.h>
+#include <stdio.h>
+#include <string.h>
 
 #define ROW_MAX 64
 
