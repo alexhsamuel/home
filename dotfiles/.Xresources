@@ -1,8 +1,8 @@
 XTerm*title: XTerm
-XTerm*background: steel blue
+XTerm*background: black
 XTerm*foreground: white
 XTerm*cursorColor: MediumTurquoise
-XTerm*font: -*-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
+XTerm*font: 10x20
 XTerm*scrollBar: True
 XTerm*saveLines: 256
 XTerm*autoWrap: True
@@ -28,34 +28,18 @@ XTerm*color13: rgb:50/00/60
 XTerm*color14: rgb:00/40/50
 XTerm*color15: rgb:80/80/80
 
-!Emacs.font: -*-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
-!#if WIDTH >= 1600
-!Emacs.font: -*-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
-!Emacs.font: -*-lucidatypewriter-bold-*-*-*-12-*-*-*-*-*-*-*
-!#else
-!Emacs.font: 6x13
-!#endif
-
 Emacs.FontBackend: xft
-!Emacs.Font: Bitstream Vera Sans Mono-9
-
-Emacs.foreground: white
+Emacs.foreground: grey89
 Emacs.background: black
-!Emacs.cursorColor: grey50
 Emacs.cursorColor: rgb:60/95/85
 Emacs.pointerColor: grey30
 Emacs.borderColor: grey30
-Emacs.Font: Monospace-9
-Emacs.Font: DejaVu Sans Mono-9
-!Emacs.Font: Menlo-8  ! MacOS
-!Emacs.paneFont: -*-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
-!Emacs.pane.menubar.*.fontList: -*-lucidatypewriter-medium-*-*-*-12-*-*-*-*-*-*-*
+Emacs.Font: Monospace-12
 Emacs.*.*.*.marginHeight: 1
 Emacs.*.*.*.background: grey60
 Emacs.*.*.*.foreground: white
-Emacs.menuBar: off
-Emacs.toolBar: off
 Emacs.internalBorder: 0
 Emacs.BorderWidth: 0
 
 URxvt.font: xft:Inconsolata:9
+
