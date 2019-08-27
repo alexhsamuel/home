@@ -4,12 +4,14 @@
 ;;
 ;; =====================================================================
 
-;; Where are we?
-(setq host-name (substring (shell-command-to-string "hostname -s") 0 -1))
-(setq domain-name (substring (shell-command-to-string "hostname -d") 0 -1))
 ;; Who are we?
 (setq user-name (user-real-login-name))
 (setq home-directory (getenv "HOME"))
+
+
+;; ===================
+;; Local configuration
+;; ===================
 
 ;; Elisp search path.
 (set-variable 'load-path 
@@ -18,14 +20,24 @@
                             )
 		      load-path))
 
-;; Info search path.
-(load-library "info")
+(let ((local-config-file (concat home-directory "/.emacs.local")))
+  (if (file-exists-p local-config-file)
+      (load local-config-file)))
 
-(set-variable 'Info-directory-list 
-	      (cons "/usr/local/info" 
-		    (if (eq Info-directory-list nil)
-			Info-default-directory-list
-		      Info-directory-list)))
+
+;; ===============
+;; Package manager
+;; ===============
+
+(require 'package)
+(set 'package-archives '(
+ ("marmalade"       . "http://marmalade-repo.org/packages/")
+ ("melpa"           . "http://melpa.milkbox.net/packages/")
+ ("melpa-stable"    . "http://stable.melpa.org/packages/")
+ ("gnu"             . "http://elpa.gnu.org/packages/")
+ ))
+(package-initialize)
+
 
 ;; ============
 ;; Backup files
@@ -56,6 +68,15 @@
 ;; Wrap lines.
 (setq-default truncate-lines t)
 
+;; Enable auto-revert (reload).
+(global-auto-revert-mode t)
+
+(defun ahs-revert-buffer ()
+  (interactive)
+  (revert-buffer t t))
+
+(global-set-key '[(control ?x) (?j)] 'ahs-revert-buffer)
+
 ;; Fontify buffers up to 1MB.
 (set-variable 'font-lock-maximum-size (* 1024 1024))
 
@@ -72,12 +93,17 @@
 (toggle-uniquify-buffer-names)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
-(defun ahs-revert-buffer ()
-  (interactive)
-  (revert-buffer t t))
+;; Colorize wherever possible.
+(global-font-lock-mode t)
 
-(global-set-key '[(meta ?o)] 'overwrite-mode)
-(global-set-key '[(control ?x) (?j)] 'ahs-revert-buffer)
+;; I hate electric indent.
+(electric-indent-mode -1)
+(add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
+
+(defun set-default-coding ()
+  (interactive)
+  (set-buffer-file-coding-system default-buffer-file-coding-system))
+
 
 ;; Functions to draw lines.
 
@@ -111,23 +137,8 @@
 	(insert "\n"))
     (setq count (1- count))))
 
-(defun set-default-coding ()
-  (interactive)
-  (set-buffer-file-coding-system default-buffer-file-coding-system))
-
-;; I hate electric indent.
-(electric-indent-mode -1)
-(add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
-
 ;; C-x 8 r inserts RIGHTWARDS ARROW.
 (global-set-key (kbd "C-x 8 r") (lambda () (interactive) (insert "→")))
-
-
-;; ===================
-;; LaTeX customization
-;; ===================
-
-(set-variable 'tex-dvi-view-command "xdvi")
 
 
 ;; ====================
@@ -185,40 +196,11 @@
 (setq auto-mode-alist (append auto-mode-alist '(("\\.mjs\\'" . js-mode))))
 
 
-;; =========
-;; SGML mode
-;; =========
-
-;; PSGML and the usual emacs HTML mode don't get along.  Load PSGML
-;; first to make sure it wins.
-(and 
- (load "psgml" t)
-
- (progn
-   (defun ahs-sgml-mode-hook ()
-     ; Parse the DTD immediately.
-     (set-variable 'sgml-auto-activate-dtd t)
-     ; Show the current element in the mode line.
-     (set-variable 'sgml-live-element-indicator t)
-     ; Activate font lock for SGML.
-     (set-variable 'sgml-set-face t)
-     (set-variable 'sgml-markup-faces
-		   '((start-tag . font-lock-keyword-face)
-		     (end-tag . font-lock-keyword-face)
-		     (comment . font-lock-comment-face)
-		     (pi . bold)
-		     (sgml . font-lock-variable-name-face)
-		     (doctype . font-lock-variable-name-face)
-		     (entity . font-lock-constant-face)
-		     (shortref . font-lock-type-face))))
-
-   (add-hook 'sgml-mode-hook 'ahs-sgml-mode-hook)))
-
-
 ;; ==============
 ;; Global key map
 ;; ==============
 
+(global-set-key '[(meta ?o)] 'overwrite-mode)
 (global-set-key '[(control ?.)] 'shell)
 (global-set-key '[(control backspace)] 'backward-kill-word)
 (global-set-key '[(control delete)] 'backward-kill-word)
@@ -227,7 +209,6 @@
 (global-set-key '[(meta ?n)] 'forward-paragraph)
 (global-set-key '[(meta ?p)] 'backward-paragraph)
 (global-set-key '[(control tab)] 'other-window)
-(global-set-key '[(control ?c) (control ?o)] 'oo-browser)
 (global-set-key '[(control ?c) (control ?a)] 'auto-fill-mode)
 (global-set-key '[(control ?x) (control ?g)] 'goto-line)
 (global-set-key '[(control ?x) ?t] 'sort-lines)
@@ -249,9 +230,6 @@
 (setq line-number-mode t)
 (setq column-number-mode t)
 
-;; Colorize wherever possible.
-(global-font-lock-mode t)
-
 ;; Turn on some stuff.
 (put 'eval-expression 'disabled nil)
 (put 'upcase-region 'disabled nil)
@@ -264,15 +242,87 @@
 (tool-bar-mode 0)
 (menu-bar-mode -99)
 
+
+;; =====
+;; dired
+;; =====
+
+(require 'dired)
+
+;; Use `ls -oa' to display directory contents.
+(set-variable 'dired-listing-switches "-oa")
+
+
+;; ========
+;; SQL mode
+;; ========
+
+(setq-default sql-product 'ms)
+
+
+;; ===============
+;; JavaScript mode
+;; ===============
+
+(require 'js)
+
+(setq-default js-indent-level 2)
+(setq auto-mode-alist (cons '("\\.json\\'" . javascript-mode) auto-mode-alist))
+
+
+;; ===========
+;; Python mode
+;; ===========
+
+;; Load Python mode.
+(require 'python)
+
+;; Associate it with .py files.
+(setq auto-mode-alist (append auto-mode-alist '(("\\.py\\'" . python-mode))))
+
+;; Don't auto-fill in Python mode.
+(add-hook 'python-mode-hook 'turn-off-auto-fill)
+
+;; Use python3 to evaluate.
+(setq py-python-command "python3")
+
+;; Keymap.
+(define-key python-mode-map "\C-x#" 'comment-region)
+
+;; Put triple quotes for docstrings on their own lines.
+(setq python-fill-docstring-style 'django)
+
+
+;; ========
+;; Flycheck
+;; ========
+
+(require 'flycheck)
+(require 'flycheck-pyflakes)
+
+(add-hook 'python-mode-hook 'flycheck-mode)
+(add-to-list 'flycheck-disabled-checkers 'python-flake8)
+(add-to-list 'flycheck-disabled-checkers 'python-pylint)
+
+
+;; ========
+;; Markdown
+;; ========
+
+(require 'markdown-mode)
+
+
+;; ====
+;; Diff
+;; ====
+
+(require 'diff-mode)
+
+
 ;; ======
 ;; Colors
 ;; ======
 
-;; ;; Set the face in ~/.Xresources instead.
-;; ;; (set-face-attribute 'default nil :font "Menlo 12")
-
-;; Colors
-;; 
 ;; M-x list-colors-display to show available colors.
 
 (set-face-background 'default "black")
@@ -332,163 +382,6 @@
 ;;  (set-face-foreground 'flyspell-duplicate-face "white")
 ;;  (set-face-background 'flyspell-duplicate-face "rgb:60/20/40")
 ;;  (set-face-underline-p 'flyspell-duplicate-face nil))
-
-
-;; =====
-;; dired
-;; =====
-
-(require 'dired)
-
-;; Use `ls -oa' to display directory contents.
-(set-variable 'dired-listing-switches "-oa")
-
-
-;; ========
-;; ps-print
-;; ========
-
-; Don't print page headers.
-(setq ps-print-header nil)
-
-
-;; ===================
-;; Local configuration
-;; ===================
-
-(set-variable 'ahs-emacs-config-dir (concat home-directory "/ahs/config/"))
-(defun ahs-emacs-config-file (key)
-  (concat ahs-emacs-config-dir ".emacs." key))
-
-; Load laptop configration.
-(if (and (equal user-name "samuel")
-	 (equal host-name "parsley"))
-    (load (ahs-emacs-config-file "parsley")))
-	 
-; Load OS/X configuration.
-(if (and (equal host-name "peppermint"))
-    (load (ahs-emacs-config-file "osx")))
-
-; Load local configuration for the home network.
-(if (and (equal user-name "samuel")
-	 (equal domain-name "indetermi.net")
-	 (not (equal host-name "parsley")))
-    (load (ahs-emacs-config-file "home")))
-
-; Load local configuration for HEP machines.
-(if (and (equal user-name "samuel")
-	 (or (equal domain-name "hep.caltech.edu")
-	     (equal domain-name "slac.stanford.edu")))
-    (load (ahs-emacs-config-file "hep")))
-
-; Load host-specific local configuration, if present.
-(let ((host-config-file (ahs-emacs-config-file host-name)))
-  (if (file-exists-p host-config-file)
-      (load host-config-file)))
-
-(let ((local-config-file (concat home-directory "/.emacs.local")))
-  (if (file-exists-p local-config-file)
-      (load local-config-file)))
-
-
-;; ===========
-;; Matlab mode
-;; ===========
-
-(and
- (load "matlab" t)
- (progn
-   (setq auto-mode-alist (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
-
-   (setq matlab-indent-function t)
-   (setq matlab-shell-command-switches '("-nojvm"))))
-
-
-;; ========
-;; SQL mode
-;; ========
-
-(setq-default sql-product 'ms)
-
-
-;; ===============
-;; JavaScript mode
-;; ===============
-
-(and
- (load "js" t)
- (progn
-   (setq-default js-indent-level 2)
-   (setq auto-mode-alist (cons '("\\.json\\'" . javascript-mode) auto-mode-alist))))
-
-
-;; ===============
-;; Package manager
-;; ===============
-
-(require 'package)
-(set 'package-archives '(
- ("marmalade"       . "http://marmalade-repo.org/packages/")
- ("melpa"           . "http://melpa.milkbox.net/packages/")
- ("melpa-stable"    . "http://stable.melpa.org/packages/")
- ("gnu"             . "http://elpa.gnu.org/packages/")
- ))
-(package-initialize)
-
-
-;; ============
-;; Haskell mode
-;; ============
-
-(unless (package-installed-p 'haskell-mode)
-  (package-refresh-contents) (package-install 'haskell-mode))
-
-
-;; =======
-;; Go mode
-;; =======
-
-; (require 'go-mode-autoloads)
-
-
-;; ===========
-;; Python mode
-;; ===========
-
-;; Load Python mode.
-(and
- (load "python" t)
-
- ;; Associate it with .py files.
- (setq auto-mode-alist (append auto-mode-alist '(("\\.py\\'" . python-mode))))
-
- ;; Don't auto-fill in Python mode.
- (add-hook 'python-mode-hook 'turn-off-auto-fill)
-
- ;; Use python3 to evaluate.
- (setq py-python-command "python3")
-
- ;; Keymap.
- (define-key python-mode-map "\C-x#" 'comment-region)
-
- ;; Put triple quotes for docstrings on their own lines.
- (setq python-fill-docstring-style 'django)
-
- )
-
-
-;; ========
-;; Flycheck
-;; ========
-
-(require 'flycheck)
-
-(if (not (require 'flycheck-pyflakes nil t))
-    (message "no flycheck-pyflakes")
-  (add-hook 'python-mode-hook 'flycheck-mode)
-  (add-to-list 'flycheck-disabled-checkers 'python-flake8)
-  (add-to-list 'flycheck-disabled-checkers 'python-pylint)
-  )
 
 
 ;; =========
