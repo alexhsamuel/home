@@ -25,8 +25,8 @@ fi
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # Rust setup.
-if [[ -d $HOME/.cargo/bin ]]; then
-    PATH="$PATH:$HOME/.cargo/bin"
+if [[ -f $HOME/.cargo/env ]]; then
+    source $HOME/.cargo/env
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 
