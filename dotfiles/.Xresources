@@ -39,8 +39,8 @@ XTerm*color15: rgb:80/80/80
 Emacs.FontBackend: xft
 !Emacs.Font: Bitstream Vera Sans Mono-9
 
-Emacs.foreground: black
-Emacs.background: white
+Emacs.foreground: white
+Emacs.background: black
 !Emacs.cursorColor: grey50
 Emacs.cursorColor: rgb:60/95/85
 Emacs.pointerColor: grey30
@@ -58,3 +58,4 @@ Emacs.toolBar: off
 Emacs.internalBorder: 0
 Emacs.BorderWidth: 0
 
+URxvt.font: xft:Inconsolata:9

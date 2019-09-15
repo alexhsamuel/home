@@ -264,38 +264,65 @@
 (tool-bar-mode 0)
 (menu-bar-mode -99)
 
-;; =======
-;; Display
-;; =======
+;; ======
+;; Colors
+;; ======
 
-(set-face-foreground 'default "black")
+;; ;; Set the face in ~/.Xresources instead.
+;; ;; (set-face-attribute 'default nil :font "Menlo 12")
 
-;; Set the face in ~/.Xresources instead.
-;; (set-face-attribute 'default nil :font "Menlo 8")
+;; Colors
+;; 
+;; M-x list-colors-display to show available colors.
 
-;; Set the default background depending on the user.
-(setq background-color-alist '(("samuel" . "white")
-			       ("root" . "rgb:ff/f4/f4")))
-;; (if (equal (framep (car (frame-list))) 'x)
-;;     (let ((background-color 
-;; 	   (assoc-default user-name background-color-alist nil "Grey95")))
-;;       (set-face-background 'default background-color)
-;;       (set-background-color background-color)))
-       
-;(set-face-background 'modeline "grey50")
-;(set-face-foreground 'modeline "white")
-(set-face-background 'region "rgb:f0/e0/d0")
+(set-face-background 'default "black")
+(set-face-foreground 'default "#ddd")
+(set-face-background 'region "#333")
 (set-face-background 'highlight "rgb:70/30/90")
-(set-face-foreground 'font-lock-keyword-face "rgb:50/00/70")
-(set-face-foreground 'font-lock-constant-face "rgb:30/00/70")
-(set-face-foreground 'font-lock-builtin-face "gray30")
-(set-face-foreground 'font-lock-type-face "rgb:00/00/70")
-(set-face-foreground 'font-lock-variable-name-face "rgb:00/70/90")
-(set-face-foreground 'font-lock-function-name-face "rgb:00/70/90")
-(set-face-foreground 'font-lock-string-face "rgb:40/40/80")
-(set-face-foreground 'font-lock-comment-face "grey50")
-(if (>= emacs-major-version 21)
-    (set-face-foreground 'font-lock-doc-face "rgb:c0/c0/c0"))
+
+; Mode line.
+(set-face-attribute
+ 'mode-line nil
+ :foreground "#eee"
+ :background "#555"
+ :box '(:line-width 1 :color "#555" :style "raised"))
+(set-face-attribute 
+ 'mode-line-highlight nil
+ :foreground "red"
+ :background "#000"
+ :box '(:line-width 1 :color "#f00" :style "raised"))
+(set-face-attribute 
+ 'mode-line-inactive nil
+ :foreground "#999"
+ :background "#333"
+ :box '(:line-width 1 :color "#333" :style "raised"))
+
+(set-face-foreground 'minibuffer-prompt "#fff")
+
+(set-face-background 'diff-removed "#400")
+(set-face-background 'diff-added "#031")
+
+;; ;; Set the default background depending on the user.
+;; (setq background-color-alist '(("samuel" . "black")
+;; 			       ("root" . "rgb:ff/f4/f4")))
+;; ;; (if (equal (framep (car (frame-list))) 'x)
+;; ;;     (let ((background-color 
+;; ;; 	   (assoc-default user-name background-color-alist nil "Grey95")))
+;; ;;       (set-face-background 'default background-color)
+;; ;;       (set-background-color background-color)))
+       
+(set-face-foreground 'font-lock-builtin-face "#ccf")
+(set-face-foreground 'font-lock-comment-face "#999")
+(set-face-foreground 'font-lock-constant-face "#dcc")
+(set-face-foreground 'font-lock-doc-face "#b8c8e8")
+(set-face-foreground 'font-lock-function-name-face "#afe")
+(set-face-foreground 'font-lock-keyword-face "#b8b8c8")
+(set-face-foreground 'font-lock-string-face "#d0b0c8")
+(set-face-foreground 'font-lock-type-face "#8de")
+(set-face-foreground 'font-lock-variable-name-face "#8de")
+
+(set-face-background 'markdown-code-face "#223")
+(set-face-foreground 'markdown-code-face "#ccc")
 
 ;; (and
 ;;  (load "flyspell" t)
@@ -495,12 +522,4 @@
    (quote
     (multiple-cursors flycheck-pyflakes racer rust-mode pug-mode scss-mode vue-mode flx-ido projectile markdown-mode yaml-mode haskell-mode flycheck))))
  
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(markdown-code-face ((t (:inherit nil :background "#f6f8ff"))))
- '(mmm-default-submode-face ((t (:inherit nil :background "#f6faff")))))
 
