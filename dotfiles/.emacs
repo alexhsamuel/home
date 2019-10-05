@@ -326,9 +326,10 @@
 ;; M-x list-colors-display to show available colors.
 
 (set-face-background 'default "black")
-(set-face-foreground 'default "#ddd")
+(set-face-foreground 'default "#ccc")
 (set-face-background 'region "#333")
 (set-face-background 'highlight "rgb:70/30/90")
+(set-face-foreground 'link "#57b")
 
 ; Mode line.
 (set-face-attribute
@@ -362,14 +363,19 @@
 ;; ;;       (set-background-color background-color)))
        
 (set-face-foreground 'font-lock-builtin-face "#ccf")
-(set-face-foreground 'font-lock-comment-face "#999")
+(set-face-foreground 'font-lock-comment-face "#888")
 (set-face-foreground 'font-lock-constant-face "#dcc")
-(set-face-foreground 'font-lock-doc-face "#b8c8e8")
-(set-face-foreground 'font-lock-function-name-face "#afe")
+(set-face-foreground 'font-lock-doc-face "#b8c8c8")
+(set-face-attribute
+ 'font-lock-doc-face nil
+ :foreground "#98a0a0"
+ :weight `bold)
+(set-face-foreground 'font-lock-function-name-face "#8de")
 (set-face-foreground 'font-lock-keyword-face "#b8b8c8")
-(set-face-foreground 'font-lock-string-face "#d0b0c8")
-(set-face-foreground 'font-lock-type-face "#8de")
-(set-face-foreground 'font-lock-variable-name-face "#8de")
+(set-face-foreground 'font-lock-preprocessor-face "#556")
+(set-face-foreground 'font-lock-string-face "#b8a0b0")
+(set-face-foreground 'font-lock-type-face "#bfe")
+(set-face-foreground 'font-lock-variable-name-face "#acf")
 
 (set-face-background 'markdown-code-face "#223")
 (set-face-foreground 'markdown-code-face "#ccc")
