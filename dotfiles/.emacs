@@ -270,6 +270,13 @@
 (setq auto-mode-alist (cons '("\\.json\\'" . javascript-mode) auto-mode-alist))
 
 
+;; ========
+;; Flycheck
+;; ========
+
+(require 'flycheck)
+(require 'flycheck-pyflakes)
+
 ;; ===========
 ;; Python mode
 ;; ===========
@@ -293,12 +300,13 @@
 (setq python-fill-docstring-style 'django)
 
 
-;; ========
-;; Flycheck
-;; ========
+;; =========
+;; Rust mode
+;; =========
 
-(require 'flycheck)
-(require 'flycheck-pyflakes)
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
+(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+
 
 (add-hook 'python-mode-hook 'flycheck-mode)
 (add-to-list 'flycheck-disabled-checkers 'python-flake8)
