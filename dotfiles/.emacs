@@ -307,10 +307,11 @@
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
-
 (add-hook 'python-mode-hook 'flycheck-mode)
 (add-to-list 'flycheck-disabled-checkers 'python-flake8)
 (add-to-list 'flycheck-disabled-checkers 'python-pylint)
+
+(setq rust-rustfmt-bin (concat home-directory "/.cargo/bin/rustfmt"))
 
 
 ;; ========
@@ -382,7 +383,7 @@
 (set-face-foreground 'font-lock-keyword-face "#b8b8c8")
 (set-face-foreground 'font-lock-preprocessor-face "#556")
 (set-face-foreground 'font-lock-string-face "#b8a0b0")
-(set-face-foreground 'font-lock-type-face "#bfe")
+(set-face-foreground 'font-lock-type-face "#bdc")
 (set-face-foreground 'font-lock-variable-name-face "#acf")
 
 (set-face-background 'markdown-code-face "#223")
