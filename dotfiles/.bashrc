@@ -111,6 +111,7 @@ function set_title {
 }
 
 function utcdate { date -u +"%Y-%m-%dT%H:%M:%SZ"; }
+function pyrg { rg -g '*.py' "$@"; }
 function use-env { source activate "$@"; }
 function use-root { source deactivate "$@"; }
 
