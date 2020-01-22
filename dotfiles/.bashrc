@@ -55,8 +55,10 @@ function abspath {
 function + { less "$@"; }
 function lo { ls -G -oh "$@"; }
 function ll { ls -G -al "$@"; }
+function o { xdg-open "$@"; }
 
 function rg { $HOME/sw/ripgrep/rg "$@"; }
+function pyrg { rg -g '*.py' "$@"; }
 function c++11 { c++ -std=c++11 -fdiagnostics-color=always "$@"; }
 function c++14 { c++ -std=c++14 -fdiagnostics-color=always "$@"; }
 
