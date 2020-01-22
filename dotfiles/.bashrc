@@ -55,7 +55,7 @@ function abspath {
 function + { less "$@"; }
 function lo { ls -G -oh "$@"; }
 function ll { ls -G -al "$@"; }
-function o { xdg-open "$@"; }
+function open { xdg-open "$@"; }
 
 function rg { $HOME/sw/ripgrep/rg "$@"; }
 function pyrg { rg -g '*.py' "$@"; }
