@@ -380,9 +380,9 @@
  :foreground "#98a0a0"
  :weight `bold)
 (set-face-foreground 'font-lock-function-name-face "#8de")
-(set-face-foreground 'font-lock-keyword-face "#b8b8c8")
-(set-face-foreground 'font-lock-preprocessor-face "#556")
-(set-face-foreground 'font-lock-string-face "#b8a0b0")
+(set-face-foreground 'font-lock-keyword-face "#a0b8b8")
+(set-face-foreground 'font-lock-preprocessor-face "#b8a0b0")
+(set-face-foreground 'font-lock-string-face "#988898")
 (set-face-foreground 'font-lock-type-face "#bdc")
 (set-face-foreground 'font-lock-variable-name-face "#acf")
 
