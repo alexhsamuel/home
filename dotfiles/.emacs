@@ -386,6 +386,7 @@
 (set-face-foreground 'font-lock-type-face "#bdc")
 (set-face-foreground 'font-lock-variable-name-face "#acf")
 
+(set-face-font       'markdown-code-face "Inconsolata-14")
 (set-face-background 'markdown-code-face "#223")
 (set-face-foreground 'markdown-code-face "#ccc")
 
