@@ -430,6 +430,5 @@
  '(markdown-gfm-additional-languages (quote ("py")))
  '(package-selected-packages
    (quote
-    (multiple-cursors flycheck-pyflakes racer rust-mode pug-mode scss-mode vue-mode flx-ido projectile markdown-mode yaml-mode haskell-mode flycheck))))
+    (mmm-mode python-mode flycheck-rust dockerfile-mode lua-mode cargo multiple-cursors flycheck-pyflakes racer rust-mode pug-mode scss-mode vue-mode flx-ido projectile markdown-mode yaml-mode haskell-mode flycheck))))
  
-
