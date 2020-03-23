@@ -39,6 +39,10 @@
 (package-initialize)
 
 
+(eval-when-compile
+  (require 'use-package))
+
+
 ;; ============
 ;; Backup files
 ;; ============
@@ -54,6 +58,8 @@
 ;; ===========
 ;; Miscellanea
 ;; ===========
+
+(setq-default inhibit-startup-screen t)
 
 ;; Fuck that C-z shit.  Who thought it was a good idea?
 (global-unset-key [(control z)])
@@ -243,91 +249,6 @@
 (menu-bar-mode -99)
 
 
-;; =====
-;; dired
-;; =====
-
-(require 'dired)
-
-;; Use `ls -oa' to display directory contents.
-(set-variable 'dired-listing-switches "-oa")
-
-
-;; ========
-;; SQL mode
-;; ========
-
-(setq-default sql-product 'ms)
-
-
-;; ===============
-;; JavaScript mode
-;; ===============
-
-(require 'js)
-
-(setq-default js-indent-level 2)
-(setq auto-mode-alist (cons '("\\.json\\'" . javascript-mode) auto-mode-alist))
-
-
-;; ========
-;; Flycheck
-;; ========
-
-(require 'flycheck)
-(require 'flycheck-pyflakes)
-
-;; ===========
-;; Python mode
-;; ===========
-
-;; Load Python mode.
-(require 'python)
-
-;; Associate it with .py files.
-(setq auto-mode-alist (append auto-mode-alist '(("\\.py\\'" . python-mode))))
-
-;; Don't auto-fill in Python mode.
-(add-hook 'python-mode-hook 'turn-off-auto-fill)
-
-;; Use python3 to evaluate.
-(setq py-python-command "python3")
-
-;; Keymap.
-(define-key python-mode-map "\C-x#" 'comment-region)
-
-;; Put triple quotes for docstrings on their own lines.
-(setq python-fill-docstring-style 'django)
-
-
-;; =========
-;; Rust mode
-;; =========
-
-(add-hook 'rust-mode-hook 'cargo-minor-mode)
-(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-
-(add-hook 'python-mode-hook 'flycheck-mode)
-(add-to-list 'flycheck-disabled-checkers 'python-flake8)
-(add-to-list 'flycheck-disabled-checkers 'python-pylint)
-
-(setq rust-rustfmt-bin (concat home-directory "/.cargo/bin/rustfmt"))
-
-
-;; ========
-;; Markdown
-;; ========
-
-(require 'markdown-mode)
-
-
-;; ====
-;; Diff
-;; ====
-
-(require 'diff-mode)
-
-
 ;; ======
 ;; Colors
 ;; ======
@@ -359,18 +280,6 @@
 
 (set-face-foreground 'minibuffer-prompt "#fff")
 
-(set-face-background 'diff-removed "#400")
-(set-face-background 'diff-added "#031")
-
-;; ;; Set the default background depending on the user.
-;; (setq background-color-alist '(("samuel" . "black")
-;; 			       ("root" . "rgb:ff/f4/f4")))
-;; ;; (if (equal (framep (car (frame-list))) 'x)
-;; ;;     (let ((background-color 
-;; ;; 	   (assoc-default user-name background-color-alist nil "Grey95")))
-;; ;;       (set-face-background 'default background-color)
-;; ;;       (set-background-color background-color)))
-       
 (set-face-foreground 'font-lock-builtin-face "#ccf")
 (set-face-foreground 'font-lock-comment-face "#888")
 (set-face-foreground 'font-lock-constant-face "#dcc")
@@ -386,31 +295,111 @@
 (set-face-foreground 'font-lock-type-face "#bdc")
 (set-face-foreground 'font-lock-variable-name-face "#acf")
 
-(set-face-font       'markdown-code-face "Inconsolata-14")
-(set-face-background 'markdown-code-face "#223")
-(set-face-foreground 'markdown-code-face "#ccc")
 
-;; (and
-;;  (load "flyspell" t)
-;;  (set-face-foreground 'flyspell-incorrect-face "white")
-;;  (set-face-background 'flyspell-incorrect-face "rgb:80/40/60")
-;;  (set-face-underline-p 'flyspell-incorrect-face nil)
-;;  (set-face-foreground 'flyspell-duplicate-face "white")
-;;  (set-face-background 'flyspell-duplicate-face "rgb:60/20/40")
-;;  (set-face-underline-p 'flyspell-duplicate-face nil))
+;; =====
+;; dired
+;; =====
+
+(use-package dired
+  :init
+  (setq foo-variable t)
+  :config
+  ;; Use `ls -oa' to display directory contents.
+  (set-variable 'dired-listing-switches "-oa")
+)
+
+
+;; ========
+;; SQL mode
+;; ========
+
+(setq-default sql-product 'ms)
+
+
+;; ===============
+;; JavaScript mode
+;; ===============
+(use-package js
+  :config
+  (setq-default js-indent-level 2)
+  (setq auto-mode-alist (cons '("\\.json\\'" . javascript-mode) auto-mode-alist))
+)
+
+
+;; ========
+;; Flycheck
+;; ========
+
+(use-package flycheck)
+(use-package flycheck-pyflakes)
+
+
+;; ========
+;; Flyspell
+;; ========
+
+(use-package flyspell
+  :config
+  (set-face-foreground 'flyspell-incorrect "white")
+  (set-face-background 'flyspell-incorrect "rgb:80/40/60")
+  (set-face-underline-p 'flyspell-incorrect nil)
+  (set-face-foreground 'flyspell-duplicate "white")
+  (set-face-background 'flyspell-duplicate "rgb:60/20/40")
+  (set-face-underline-p 'flyspell-duplicate nil)
+)
+
+
+;; ===========
+;; Python mode
+;; ===========
+
+;; Load Python mode.
+(use-package python
+  :config
+  ;; Associate it with .py files.
+  (setq auto-mode-alist (append auto-mode-alist '(("\\.py\\'" . python-mode))))
+
+  ;; Don't auto-fill in Python mode.
+  (add-hook 'python-mode-hook 'turn-off-auto-fill)
+
+  ;; Use python3 to evaluate.
+  (setq py-python-command "python3")
+
+  ;; Keymap.
+  (define-key python-mode-map "\C-x#" 'comment-region)
+
+  ;; Put triple quotes for docstrings on their own lines.
+  (setq python-fill-docstring-style 'django)
+)
 
 
 ;; =========
-;; customize
+;; Rust mode
 ;; =========
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t)
- '(markdown-code-lang-modes
+(use-package rust-mode
+  :config
+  (add-hook 'rust-mode-hook 'cargo-minor-mode)
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+
+  (add-hook 'python-mode-hook 'flycheck-mode)
+  (add-to-list 'flycheck-disabled-checkers 'python-flake8)
+  (add-to-list 'flycheck-disabled-checkers 'python-pylint)
+
+  (setq rust-rustfmt-bin (concat home-directory "/.cargo/bin/rustfmt"))
+)
+
+
+;; ========
+;; Markdown
+;; ========
+
+(use-package markdown-mode
+  :config
+  (set-face-font       'markdown-code-face "Inconsolata-14")
+  (set-face-background 'markdown-code-face "#223")
+  (set-face-foreground 'markdown-code-face "#ccc")
+  (setq markdown-code-lang-modes
    (quote
     (("ocaml" . tuareg-mode)
      ("elisp" . emacs-lisp-mode)
@@ -426,9 +415,34 @@
      ("shell" . sh-mode)
      ("bash" . sh-mode)
      ("py" . python-mode))))
- '(markdown-fontify-code-blocks-natively t)
- '(markdown-gfm-additional-languages (quote ("py")))
- '(package-selected-packages
-   (quote
-    (mmm-mode python-mode flycheck-rust dockerfile-mode lua-mode cargo multiple-cursors flycheck-pyflakes racer rust-mode pug-mode scss-mode vue-mode flx-ido projectile markdown-mode yaml-mode haskell-mode flycheck))))
+  (setq markdown-fontify-code-blocks-natively t)
+  (setq markdown-gfm-additional-languages (quote ("py")))
+)
+
+
+
+;; ====
+;; Diff
+;; ====
+
+(use-package diff-mode
+  :config
+  (set-face-background 'diff-removed "#400")
+  (set-face-background 'diff-added "#031")
+)
+
+
+;; =========
+;; customize
+;; =========
+
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '
+;;  '(package-selected-packages
+;;    (quote
+;;     (use-package mmm-mode python-mode flycheck-rust dockerfile-mode lua-mode cargo multiple-cursors flycheck-pyflakes racer rust-mode pug-mode scss-mode vue-mode flx-ido projectile markdown-mode yaml-mode haskell-mode flycheck))))
  
