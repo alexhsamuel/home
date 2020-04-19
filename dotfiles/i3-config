@@ -79,6 +79,7 @@ bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle global
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -194,7 +195,7 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
 
-for_window [class="CITRIX"] floating enable  # FIXME
+for_window [class="Wfica"] floating enable  # Citrix
 for_window [class="^Firefox$"] border pixel 8
 
 # Start i3bar to display a workspace bar (plus the system information i3status
