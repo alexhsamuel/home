@@ -1,0 +1,30 @@
+IMAPAccount fastmail
+Host imap.fastmail.com
+User alexhsamuel@fastmail.com
+Pass b4474ygyqzrm44j8
+# PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/.mbsyncpass.gpg"
+Port 993
+SSLType IMAPS
+AuthMechs Login
+# CertificateFile /etc/ssl/certs/ca-bundle.crt
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore fastmail-remote
+Account fastmail
+
+MaildirStore fastmail-local
+Path ~/mail/fastmail/
+Inbox ~/mail/fastmail/INBOX
+Subfolders Verbatim
+
+Channel fastmail
+Master :fastmail-remote:
+Slave :fastmail-local:
+# Patterns "Sent Items" "INBOX" "Deleted Items"
+Patterns *
+Create Slave
+# Sync All
+Sync Pull
+# Expunge Both
+Expunge Slave
+SyncState *
