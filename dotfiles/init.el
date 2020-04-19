@@ -110,6 +110,14 @@
   (interactive)
   (set-buffer-file-coding-system default-buffer-file-coding-system))
 
+(defun unfill-region (beg end)
+  "Unfill the region, joining text paragraphs into a single logical line."
+  (interactive "*r")
+  (let ((fill-column (point-max)))
+    (fill-region beg end)))
+
+(define-key global-map "\C-\M-Q" 'unfill-region)
+
 
 ;; Functions to draw lines.
 
@@ -396,7 +404,7 @@
 
 (use-package markdown-mode
   :config
-  (set-face-font       'markdown-code-face "Inconsolata-14")
+  (set-face-font       'markdown-code-face "Inconsolata-13")
   (set-face-background 'markdown-code-face "#223")
   (set-face-foreground 'markdown-code-face "#ccc")
   (setq markdown-code-lang-modes
@@ -430,5 +438,4 @@
   (set-face-background 'diff-removed "#400")
   (set-face-background 'diff-added "#031")
 )
-
 
