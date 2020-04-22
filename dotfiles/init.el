@@ -25,6 +25,15 @@
       (load local-config-file)))
 
 
+;; ======
+;; Custom
+;; ======
+
+; Stop fucking up my init.el.
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(load custom-file 'noerror)
+
+
 ;; ===============
 ;; Package manager
 ;; ===============
