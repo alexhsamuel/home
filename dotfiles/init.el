@@ -252,10 +252,6 @@
 (setq default-frame-alist '((horizontal-scroll-bar . nil) 
 			    (menu-bar-lines . 0)))
 
-;; Turn off the idiot bars.
-(tool-bar-mode 0)
-(menu-bar-mode -99)
-
 
 ;; ======
 ;; Colors
