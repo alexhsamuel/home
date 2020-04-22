@@ -15,10 +15,10 @@
 
 ;; Elisp search path.
 (set-variable 'load-path 
-	      (append (list "/usr/local/share/emacs/site-lisp"
-			    (concat user-emacs-directory "lisp")
+              (append (list "/usr/local/share/emacs/site-lisp"
+                            (concat user-emacs-directory "lisp")
                             )
-		      load-path))
+                      load-path))
 
 (let ((local-config-file (concat home-directory "/.emacs.local")))
   (if (file-exists-p local-config-file)
@@ -157,7 +157,7 @@
   (while (> count 0)
     (insert (if (= (random 2) 1) "x" "o"))
     (if (>= (current-column) (current-fill-column))
-	(insert "\n"))
+        (insert "\n"))
     (setq count (1- count))))
 
 ;; C-x 8 r inserts RIGHTWARDS ARROW.
@@ -268,7 +268,7 @@
 
 ;; Some frame configuration.
 (setq default-frame-alist '((horizontal-scroll-bar . nil) 
-			    (menu-bar-lines . 0)))
+                            (menu-bar-lines . 0)))
 
 
 ;; ======
