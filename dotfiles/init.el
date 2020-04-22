@@ -238,6 +238,7 @@
 (global-set-key '[(meta ?s)] 'center-line)
 (global-set-key '[(meta control ? )] 'iso-transl-no-break-space)
 (global-set-key '[(control ?$)] 'toggle-truncate-lines)
+(global-set-key '[(control ?x) (meta ?t)] 'auto-revert-tail-mode)
 
 ;; The mouse wheelie.
 (defun mouse-wheel-up () (interactive) (scroll-down))
@@ -248,6 +249,14 @@
 (global-set-key '[mouse-5] 'mouse-wheel-down)
 (global-set-key '[(shift mouse-4)] 'mouse-wheel-up-slow)
 (global-set-key '[(shift mouse-5)] 'mouse-wheel-down-slow)
+
+(global-set-key '[(meta up  )] 'mouse-wheel-up-slow)
+(global-set-key '[(meta down)] 'mouse-wheel-down-slow)
+
+;; Scroll without moving point.
+(defun interactive-scroll-up   (count) (interactive "p") (scroll-up   count))
+(defun interactive-scroll-down (count) (interactive "p") (scroll-down count))
+
 
 ;; Display line and column in the status line.
 (setq line-number-mode t)
@@ -344,7 +353,12 @@
 ;; ========
 
 (use-package flycheck)
-(use-package flycheck-pyflakes)
+(use-package flycheck-pyflakes
+  :config
+  (add-hook 'python-mode-hook 'flycheck-mode)
+  (add-to-list 'flycheck-disabled-checkers 'python-flake8)
+  (add-to-list 'flycheck-disabled-checkers 'python-pylint)
+)
 
 
 ;; ========
