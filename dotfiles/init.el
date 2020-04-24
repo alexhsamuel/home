@@ -266,10 +266,6 @@
 (put 'eval-expression 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
-;; Some frame configuration.
-(setq default-frame-alist '((horizontal-scroll-bar . nil) 
-                            (menu-bar-lines . 0)))
-
 
 ;; ======
 ;; Colors
