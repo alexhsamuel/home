@@ -15,8 +15,8 @@ export EMAIL="alex@alexsamuel.net"
 PATH="/usr/local/bin:${PATH}"
 PATH="${PATH}:/usr/sbin:/sbin"
 
-if [[ -d $HOME/local/bin ]]; then
-    PATH="$HOME/local/bin:$PATH"
+if [[ -d $HOME/.local/bin ]]; then
+    PATH="$HOME/.local/bin:$PATH"
 fi
 
 # Python setup.
