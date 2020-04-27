@@ -443,7 +443,6 @@
 )
 
 
-
 ;; ====
 ;; Diff
 ;; ====
@@ -453,4 +452,49 @@
   (set-face-background 'diff-removed "#400")
   (set-face-background 'diff-added "#031")
 )
+
+
+;; ========
+;; LSP mode
+;; ========
+
+(setq lsp-keymap-prefix "M-l")
+
+(use-package lsp-mode
+  :hook ((python-mode . lsp))
+  :commands lsp
+  :config (lsp-register-client
+           (make-lsp-client
+            :new-connection (lsp-stdio-connection "pyls")
+            :major-modes '(python-mode)
+            :priority 1
+            )))
+
+
+;; ====
+;; mu4e
+;; ====
+
+; mu4e is installed with mu, by apt/dpkg.
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+
+(use-package mu4e
+  :config
+  (setq
+   mue4e-headers-skip-duplicates  t
+   mu4e-view-show-images t
+   mu4e-view-show-addresses t
+   mu4e-compose-format-flowed nil
+   mu4e-date-format "%Y-%m-%d"
+   mu4e-headers-date-format "%Y-%m-%d"
+   mu4e-change-filenames-when-moving t
+
+   mu4e-attachments-dir "~/dl"
+
+   mu4e-maildir "~/mail/fastmail"
+   mu4e-refile-folder "/Archive"
+   mu4e-sent-folder "/Sent"
+   mu4e-drafts-folder "/Drafts"
+   mu4e-trash-folder "/Trash"
+   ))
 
