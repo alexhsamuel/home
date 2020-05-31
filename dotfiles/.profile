@@ -77,6 +77,11 @@ if [[ -f $HOME/.profile.local ]]; then
     source $HOME/.profile.local
 fi
 
+# Set dircolors.
+if [[ -f $HOME/.dircolors ]]; then
+    eval $(dircolors $HOME/.dircolors)
+fi
+
 # Set up the shell environment.
 source $HOME/.bashrc
 
