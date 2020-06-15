@@ -175,8 +175,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 workspace 1 output DisplayPort-0
-workspace 2 output DisplayPort-1
-workspace 3 output DisplayPort-0
+workspace 2 output DisplayPort-0
 
 default_border normal 0
 hide_edge_borders smart
