@@ -175,8 +175,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 workspace 1 output DisplayPort-0
-workspace 2 output DisplayPort-1
-workspace 3 output DisplayPort-0
+workspace 2 output DisplayPort-0
 
 default_border normal 0
 hide_edge_borders smart
@@ -194,6 +193,11 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 # client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
+
+bindsym $mod+Shift+y exec /home/alex/dev/home/dotfiles/dpms-off
+
+# Print screen; see https://faq.i3wm.org/question/4818/screenshot-of-focused-window.1.html
+bindsym $mod+Print exec scrot --focused --exec 'notify-send screenshot: $f' > /home/alex/log 2>&1
 
 for_window [class="Wfica"] floating enable  # Citrix
 for_window [class="^Firefox$"] border pixel 8

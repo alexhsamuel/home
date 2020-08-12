@@ -18,6 +18,7 @@ TERM cons25
 TERM xterm
 TERM rxvt
 TERM xterm-color
+TERM xterm-256color
 TERM color-xterm
 TERM vt100
 TERM dtterm
@@ -25,14 +26,14 @@ TERM color_xterm
 EIGHTBIT 1
 
 NORMAL 00       # global default, although everything should be something.
-FILE 00;30      # normal file
-DIR 01          # directory
-LINK 34         # symbolic link
+FILE 00         # normal file
+DIR 01;38;5;36  # directory
+LINK 38;5;103   # symbolic link
 FIFO 31         # pipe
 SOCK 31         # socket
 BLK 31          # block device driver
 CHR 31          # character device driver
-ORPHAN 01;34    # orphaned syminks
+ORPHAN 38;5;103 # orphaned syminks
 MISSING 01;05;33 # ... and the files they point to
 
 EXEC 04
