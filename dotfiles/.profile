@@ -7,6 +7,9 @@
 if [[ $(uname -s) == "Darwin" ]]; then
     # I don't know WHY the fuck Apple things moronic shit like this is OK.
     export BASH_SILENCE_DEPRECATION_WARNING=1
+
+    # Completely different from GNU.
+    export LSCOLORS=GxExcxdxcxegedabagacad
 fi
 
 # Who am I?
