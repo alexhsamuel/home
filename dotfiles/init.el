@@ -163,6 +163,15 @@
 ;; C-x 8 r inserts RIGHTWARDS ARROW.
 (global-set-key (kbd "C-x 8 r") (lambda () (interactive) (insert "→")))
 
+;; Shortcuts for vowels with umlaut.
+(global-set-key (kbd "C-' a") (lambda () (interactive (insert "ä"))))
+(global-set-key (kbd "C-' o") (lambda () (interactive (insert "ö"))))
+(global-set-key (kbd "C-' u") (lambda () (interactive (insert "ü"))))
+(global-set-key (kbd "C-' A") (lambda () (interactive (insert "Ä"))))
+(global-set-key (kbd "C-' O") (lambda () (interactive (insert "Ö"))))
+(global-set-key (kbd "C-' U") (lambda () (interactive (insert "Ü"))))
+(global-set-key (kbd "C-' s") (lambda () (interactive (insert "ß"))))
+
 
 ;; ====================
 ;; C-mode customization
