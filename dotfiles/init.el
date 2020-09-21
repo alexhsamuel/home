@@ -372,12 +372,16 @@
 
 (use-package flyspell
   :config
-  (set-face-foreground 'flyspell-incorrect "white")
-  (set-face-background 'flyspell-incorrect "rgb:80/40/60")
-  (set-face-underline-p 'flyspell-incorrect nil)
-  (set-face-foreground 'flyspell-duplicate "white")
-  (set-face-background 'flyspell-duplicate "rgb:60/20/40")
-  (set-face-underline-p 'flyspell-duplicate nil)
+  (set-face-attribute
+   'flyspell-incorrect nil
+   :foreground nil
+   :background "#401"
+   :underline nil)
+  (set-face-attribute
+   'flyspell-duplicate nil
+   :foreground nil
+   :background "#280008"
+   :underline nil)
 )
 
 
@@ -505,5 +509,7 @@
    mu4e-sent-folder "/Sent"
    mu4e-drafts-folder "/Drafts"
    mu4e-trash-folder "/Trash"
+
+   mu4e-get-mail-command "/usr/bin/mbsync --pull --all"
    ))
 
