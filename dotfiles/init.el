@@ -74,6 +74,9 @@
 (global-unset-key [(control z)])
 (global-unset-key [(control x)(control z)])
 
+;; Undo instead.
+(global-set-key '[(control z)] 'undo)
+
 ;; Use the form of my name that I prefer.
 (setq-default user-full-name "Alex Samuel")
 
