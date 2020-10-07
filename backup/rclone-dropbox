@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+filter=$(dirname $0)/rclone-dropbox.filter
+rclone sync dropbox: $HOME/cloud/dropbox \
+       --progress \
+       --filter-from $filter \
+       --copy-links
+
