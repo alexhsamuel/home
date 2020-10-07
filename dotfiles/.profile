@@ -24,6 +24,7 @@ fi
 
 # Python setup.
 if [[ -d $HOME/sw/conda/bin ]]; then
+    eval $($HOME/sw/conda/bin/conda shell.bash hook)
     PATH=$HOME/sw/conda/bin:$PATH
 fi
 if [[ -f $HOME/.pythonstartup ]]; then
@@ -54,6 +55,11 @@ fi
 if [[ -d $HOME/sw/sbcl ]]; then
     PATH="$HOME/sw/sbcl/bin:$PATH"
     export SBCL_HOME=$HOME/sw/sbcl/lib/sbcl
+fi
+
+# Citrix setup.
+if [[ -d $HOME/sw/icaclient ]]; then
+    export ICAROOT=$HOME/sw/icaclient/linuxx64
 fi
 
 export MAIL=$HOME/mail/inbox
