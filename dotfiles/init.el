@@ -40,8 +40,8 @@
 
 (require 'package)
 (set 'package-archives '(
- ("marmalade"       . "http://marmalade-repo.org/packages/")
- ("melpa"           . "http://melpa.milkbox.net/packages/")
+;; ("marmalade"       . "http://marmalade-repo.org/packages/")
+;; ("melpa"           . "http://melpa.milkbox.net/packages/")
  ("melpa-stable"    . "http://stable.melpa.org/packages/")
  ("gnu"             . "http://elpa.gnu.org/packages/")
  ))
@@ -419,8 +419,8 @@
 
 (use-package markdown-mode
   :config
-  (set-face-font       'markdown-code-face "Inconsolata-13")
-  (set-face-background 'markdown-code-face "#223")
+  (face-spec-reset-face 'markdown-code-face)
+  (set-face-background 'markdown-code-face "#101418")
   (set-face-foreground 'markdown-code-face "#ccc")
   (setq markdown-code-lang-modes
    (quote

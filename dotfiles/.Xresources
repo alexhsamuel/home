@@ -1,46 +1,15 @@
-XTerm*title: XTerm
-XTerm*background: black
-XTerm*foreground: white
-XTerm*cursorColor: MediumTurquoise
-XTerm*font: 10x20
-XTerm*scrollBar: True
-XTerm*saveLines: 256
-XTerm*autoWrap: True
-XTerm*geometry: 80x30
-XTerm.mainMenu.geometry: +0
-XTerm.vtMenu.geometry: +0
-XTerm.fontMenu.geometry: +0
-XTerm.tekMenu.geometry: +0
-XTerm*color0: rgb:00/00/00
-XTerm*color1: rgb:80/00/00
-XTerm*color2: rgb:00/40/20
-XTerm*color3: rgb:70/70/30
-XTerm*color4: rgb:00/00/60
-XTerm*color5: rgb:50/00/60
-XTerm*color6: rgb:00/40/50
-XTerm*color7: rgb:80/80/80
-XTerm*color8: rgb:50/50/50
-XTerm*color9: rgb:80/00/00
-XTerm*color10: rgb:00/40/20
-XTerm*color11: rgb:70/70/30
-XTerm*color12: rgb:00/00/60
-XTerm*color13: rgb:50/00/60
-XTerm*color14: rgb:00/40/50
-XTerm*color15: rgb:80/80/80
-
 Emacs.FontBackend: xft
 Emacs.foreground: grey89
 Emacs.background: black
 Emacs.cursorColor: rgb:60/95/85
 Emacs.pointerColor: grey30
-Emacs.borderColor: grey30
-Emacs.Font: Monospace-10
-Emacs.*.*.*.marginHeight: 1
-Emacs.*.*.*.background: grey60
-Emacs.*.*.*.foreground: white
+Emacs.borderColor: red
+Emacs.borderWidth: 0
 Emacs.internalBorder: 0
-Emacs.BorderWidth: 0
-
+Emacs.Font: Menlo-10
+Emacs.*.*.*.marginHeight: 1
+Emacs.*.*.*.background: green
+Emacs.*.*.*.foreground: white
 Emacs.menuBar: off
 Emacs.verticalScrollBars: off
 Emacs.toolBar: 0
@@ -50,9 +19,9 @@ URxvt.font: xft:Inconsolata:9
 ! See: https://wiki.archlinux.org/index.php/Font_configuration
 Xft.antialias: true
 ! Fonts look terrible if hinting is on.
-Xft.hinting:   false
+Xft.hinting:   true
 Xft.rgba:      rgb
 Xft.hintstyle: hintfull  ! hint{none,slight,medium,full}
 ! 4K display physical DPI is around 162.
-Xft.dpi:       120
-
+Xft.dpi:       100
+Xft.lcdfilter: lcddefault
