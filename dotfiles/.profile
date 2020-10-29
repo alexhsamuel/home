@@ -15,21 +15,22 @@ fi
 # Who am I?
 export EMAIL="alex@alexsamuel.net"
 
-PATH="/usr/local/bin:${PATH}"
-PATH="${PATH}:/usr/sbin:/sbin"
-
 if [[ -d $HOME/.local/bin ]]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Python setup.
-if [[ -d $HOME/sw/conda/bin ]]; then
-    eval $($HOME/sw/conda/bin/conda shell.bash hook)
-    PATH=$HOME/sw/conda/bin:$PATH
-fi
+# Python setup.  
+
+# Conda currently disabled.
+# if [[ -d $HOME/sw/conda/bin ]]; then
+#     eval $($HOME/sw/conda/bin/conda shell.bash hook)
+#     PATH=$HOME/sw/conda/bin:$PATH
+# fi
+
 if [[ -f $HOME/.pythonstartup ]]; then
     export PYTHONSTARTUP=$HOME/.pythonstartup
 fi
+
 # Virtualenv is obnoxious.  Features should be opt-in.
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
