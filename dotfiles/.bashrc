@@ -63,6 +63,7 @@ function c++11 { c++ -std=c++11 -fdiagnostics-color=always "$@"; }
 function c++14 { c++ -std=c++14 -fdiagnostics-color=always "$@"; }
 
 function py { python -q "$@"; }
+function activate { source "$1"/bin/activate; }
 
 # Use my emacs.
 if [[ -d $HOME/sw/emacs ]]; then
