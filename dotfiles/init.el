@@ -41,7 +41,7 @@
 (require 'package)
 (set 'package-archives '(
  ("marmalade"       . "http://marmalade-repo.org/packages/")
- ("melpa"           . "http://melpa.milkbox.net/packages/")
+; ("melpa"           . "http://melpa.milkbox.net/packages/")
  ("melpa-stable"    . "http://stable.melpa.org/packages/")
  ("gnu"             . "http://elpa.gnu.org/packages/")
  ))
@@ -479,6 +479,8 @@
 (use-package lsp-mode
   :hook ((python-mode . lsp))
   :commands lsp
+  :custom
+  (lsp-enable-on-type-formatting nil "don't format if you don't know how to")
   :config (lsp-register-client
            (make-lsp-client
             :new-connection (lsp-stdio-connection "pyls")
