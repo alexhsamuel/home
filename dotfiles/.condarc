@@ -1,1 +1,3 @@
 changeps1: no
+auto_update_conda: no
+update_dependencies: False
