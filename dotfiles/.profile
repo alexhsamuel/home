@@ -87,7 +87,7 @@ if [[ -f $HOME/.profile.local ]]; then
 fi
 
 # Set dircolors.
-if [[ -x /usr/bin/dircolors -a -f $HOME/.dircolors ]]; then
+if [[ -x /usr/bin/dircolors && -f $HOME/.dircolors ]]; then
     eval $(/usr/bin/dircolors $HOME/.dircolors)
 fi
 
