@@ -69,9 +69,9 @@
 ;; ===========
 
 (setq-default inhibit-startup-screen t)
+(tool-bar-mode -1)
 
-;; Fuck that C-z shit.  Who thought it was a good idea?
-(global-unset-key [(control z)])
+(global-set-key [(control z)] 'undo)
 (global-unset-key [(control x)(control z)])
 
 ;; Undo instead.
@@ -174,6 +174,7 @@
 (global-set-key (kbd "C-' O") (lambda () (interactive (insert "Ö"))))
 (global-set-key (kbd "C-' U") (lambda () (interactive (insert "Ü"))))
 (global-set-key (kbd "C-' s") (lambda () (interactive (insert "ß"))))
+(global-set-key (kbd "C-' \"")(lambda () (interactive (insert "„")))) 
 
 
 ;; ====================
@@ -456,6 +457,7 @@
      ("py" . python-mode))))
   (setq markdown-fontify-code-blocks-natively t)
   (setq markdown-gfm-additional-languages (quote ("py")))
+  (add-hook 'markdown-mode-hook 'turn-on-auto-fill)
 )
 
 
@@ -517,4 +519,14 @@
 
    mu4e-get-mail-command "/usr/bin/mbsync --pull --all"
    ))
+
+
+;; ====================
+;; Host-specific config
+;; ====================
+
+; MacOS
+(when (string-equal system-type "darwin")
+  (setq ispell-program-name "/usr/local/bin/ispell"))
+
 
