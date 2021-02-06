@@ -21,11 +21,10 @@ fi
 
 # Python setup.  
 
-# Conda currently disabled.
-# if [[ -d $HOME/sw/conda/bin ]]; then
-#     eval $($HOME/sw/conda/bin/conda shell.bash hook)
-#     PATH=$HOME/sw/conda/bin:$PATH
-# fi
+if [[ -d $HOME/sw/conda/bin ]]; then
+    eval $($HOME/sw/conda/bin/conda shell.bash hook)
+    PATH=$HOME/sw/conda/bin:$PATH
+fi
 
 if [[ -f $HOME/.pythonstartup ]]; then
     export PYTHONSTARTUP=$HOME/.pythonstartup
@@ -88,8 +87,8 @@ if [[ -f $HOME/.profile.local ]]; then
 fi
 
 # Set dircolors.
-if [[ -f $HOME/.dircolors ]]; then
-    eval $(dircolors $HOME/.dircolors)
+if [[ -x /usr/bin/dircolors -a -f $HOME/.dircolors ]]; then
+    eval $(/usr/bin/dircolors $HOME/.dircolors)
 fi
 
 # Set up the shell environment.
