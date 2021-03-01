@@ -65,10 +65,12 @@ function c++14 { c++ -std=c++14 -fdiagnostics-color=always "$@"; }
 function py { python -q "$@"; }
 function activate { source "$1"/bin/activate; }
 
-# Use my emacs.
+# Use my emacs, if it's there.
 if [[ -d $HOME/sw/emacs ]]; then
     function emacs { $HOME/sw/emacs/bin/emacs "$@"; }
     export EDITOR=$HOME/sw/emacs/bin/emacs
+else
+    export EDITOR=emacs
 fi
 
 #
@@ -119,6 +121,12 @@ function use-root { source deactivate "$@"; }
 function git-delete-merged {
     git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d
 }
+
+if [[ -f $HOME/sw/dropbox/dropbox.py ]]; then
+    function dropbox {
+        python $HOME/sw/dropbox/dropbox.py "$@";
+    }
+fi
 
 function lock {
     i3lock -c 000000 -e
