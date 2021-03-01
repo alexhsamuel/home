@@ -64,8 +64,8 @@ fi
 
 export MAIL=$HOME/mail/inbox
 
-# The one true program.
-export EDITOR="emacs"
+# Fix the ssh-agent socket path.
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # Remote file access for rsync.
 export RSYNC_RSH="ssh"
@@ -73,6 +73,11 @@ export RSYNC_RSH="ssh"
 # Customize pager.
 export PAGER="less"
 export LESS="-RSX"
+
+# Define LANGUAGE if LC_ALL isn't set.
+if [[ -z "$LC_ALL" ]]; then
+    export LANGUAGE=en_US.UTF-8
+fi
 
 # Don't print whether we have mail.
 unset MAILCHECK
