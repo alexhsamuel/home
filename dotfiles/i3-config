@@ -177,6 +177,13 @@ workspace "4 rpg" output HDMI-A-0
 default_border normal 0
 hide_edge_borders smart
 
+# i3-bar stuff
+for_window [class=".*"] border pixel 0
+gaps outer 0
+gaps inner 10
+smart_gaps on
+smart_borders on
+
 # class                 border  backgr. text    indicator child_border
 client.focused          #204040 #204040 #ffffff #2e9ef4   #285577
 client.focused_inactive #102020 #102020 #ffffff #484e50   #5f676a
@@ -202,7 +209,7 @@ for_window [class="^Firefox$"] border pixel 8
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    status_command i3status
+    status_command env LC_ALL=en_US.UTF-8 i3status
     mode hide
     tray_output DisplayPort-0
     tray_padding 8
@@ -234,3 +241,4 @@ for_window [class="plasmashell" window_type="notification"] border none, move ri
 no_focus [class="plasmashell" window_type="notification"]
 
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
+
