@@ -24,3 +24,5 @@
         di = diff
         st = status -s
 
+[pull]
+	ff = only
