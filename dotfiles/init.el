@@ -328,6 +328,31 @@
 (set-face-foreground 'font-lock-type-face "#36795e")
 (set-face-foreground 'font-lock-variable-name-face "#265")
 
+(set-face-attribute
+ 'diff-indicator-removed nil
+ :foreground "#ff0000"
+ :background "#f8f8f8")
+(set-face-attribute
+ 'diff-removed nil
+ :foreground "#222"
+ :background "#fff0f0")
+(set-face-attribute
+ 'diff-refine-removed nil
+ :foreground "#222"
+ :background "#f0d0d0")
+
+(set-face-attribute
+ 'diff-indicator-added nil
+ :foreground "#00ff00"
+ :background "#f8f8f8")
+(set-face-attribute
+ 'diff-added nil
+ :foreground "#222"
+ :background "#f0fff0")
+(set-face-attribute
+ 'diff-refine-added nil
+ :foreground "#222"
+ :background "#d0f0d0")
 
 ;; =====
 ;; dired
