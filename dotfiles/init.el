@@ -330,7 +330,8 @@
 
 (set-face-attribute
  'diff-indicator-removed nil
- :foreground "#ff0000"
+ :weight `bold
+ :foreground "#a00"
  :background "#f8f8f8")
 (set-face-attribute
  'diff-removed nil
@@ -343,7 +344,8 @@
 
 (set-face-attribute
  'diff-indicator-added nil
- :foreground "#00ff00"
+ :weight `bold
+ :foreground "#0a4"
  :background "#f8f8f8")
 (set-face-attribute
  'diff-added nil
