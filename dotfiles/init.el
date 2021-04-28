@@ -314,19 +314,19 @@
  :foreground "#404040"
  :weight 'bold)
 
-(set-face-foreground 'font-lock-builtin-face "#547")
+(set-face-foreground 'font-lock-builtin-face "#6b4760")
 (set-face-foreground 'font-lock-comment-face "#808888")
 (set-face-foreground 'font-lock-constant-face "#247")
 (set-face-attribute
  'font-lock-doc-face nil
  :foreground "#808888"
  :weight `bold)
-(set-face-foreground 'font-lock-function-name-face "#286040")
-(set-face-foreground 'font-lock-keyword-face "#203a4c")
+(set-face-foreground 'font-lock-function-name-face "#2d6a6c")
+(set-face-foreground 'font-lock-keyword-face "#1c3a4f")
 (set-face-foreground 'font-lock-preprocessor-face "#6a6")
-(set-face-foreground 'font-lock-string-face "#684a64")
+(set-face-foreground 'font-lock-string-face "#635483")
 (set-face-foreground 'font-lock-type-face "#36795e")
-(set-face-foreground 'font-lock-variable-name-face "#265")
+(set-face-foreground 'font-lock-variable-name-face "#2d8667")
 
 (set-face-attribute
  'diff-indicator-removed nil
