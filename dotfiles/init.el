@@ -438,9 +438,10 @@
 
 (use-package markdown-mode
   :config
-  ; (set-face-font       'markdown-code-face "Inconsolata-11")
-  (set-face-background 'markdown-code-face "#223")
-  (set-face-foreground 'markdown-code-face "#ccc")
+  (set-face-attribute
+   'markdown-code-face nil
+   :foreground "#222"
+   :background "#ecf4f6")
   (setq markdown-code-lang-modes
    (quote
     (("ocaml" . tuareg-mode)
