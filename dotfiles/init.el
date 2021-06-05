@@ -503,6 +503,9 @@
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
 (use-package mu4e
+  :defer t
+  :init
+  (autoload 'mu4e "mu4e" nil t)  ; Not 100% sure this is right.
   :config
   (setq
    mue4e-headers-skip-duplicates  t
