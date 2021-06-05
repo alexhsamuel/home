@@ -39,12 +39,8 @@
 ;; ===============
 
 (require 'package)
-(set 'package-archives '(
- ("marmalade"       . "http://marmalade-repo.org/packages/")
-; ("melpa"           . "http://melpa.milkbox.net/packages/")
- ("melpa-stable"    . "http://stable.melpa.org/packages/")
- ("gnu"             . "http://elpa.gnu.org/packages/")
- ))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
 
@@ -497,25 +493,6 @@
    :foreground "#222"
    :background "#d0f0d0")
 )
-
-
-;; ========
-;; LSP mode
-;; ========
-
-(setq lsp-keymap-prefix "M-l")
-
-(use-package lsp-mode
-  :hook ((python-mode . lsp))
-  :commands lsp
-  :custom
-  (lsp-enable-on-type-formatting nil "don't format if you don't know how to")
-  :config (lsp-register-client
-           (make-lsp-client
-            :new-connection (lsp-stdio-connection "pyls")
-            :major-modes '(python-mode)
-            :priority 1
-            )))
 
 
 ;; ====
