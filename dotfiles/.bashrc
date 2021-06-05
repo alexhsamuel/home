@@ -62,7 +62,7 @@ function pyrg { rg -g '*.py' "$@"; }
 function c++11 { c++ -std=c++11 -fdiagnostics-color=always "$@"; }
 function c++14 { c++ -std=c++14 -fdiagnostics-color=always "$@"; }
 
-function py { python -q "$@"; }
+function py { python3 -q "$@"; }
 function activate { source "$1"/bin/activate; }
 
 # Use my emacs, if it's there.
