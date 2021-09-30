@@ -178,16 +178,16 @@ default_border normal 0
 hide_edge_borders smart
 
 # i3-gap stuff
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel 5
 gaps outer 0
-gaps inner 10
+gaps inner 5
 smart_gaps on
 smart_borders on
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #204040 #204040 #ffffff #2e9ef4   #285577
-client.focused_inactive #102020 #102020 #ffffff #484e50   #5f676a
-client.unfocused        #222222 #222222 #888888 #292d2e   #222222
+client.focused          #204080 #204040 #ffffff #2e9ef4   #606060
+client.focused_inactive #102020 #102020 #ffffff #484e50   #202020
+client.unfocused        #222222 #222222 #888888 #292d2e   #000000
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 # client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
@@ -211,7 +211,8 @@ for_window [class="^Firefox$"] border pixel 8
 bar {
     status_command env LC_ALL=en_US.UTF-8 i3status
     mode hide
-    tray_output DisplayPort-0
+    # tray_output DisplayPort-0
+    tray_output primary
     tray_padding 8
     font pango:DejaVu Sans Mono 10
     binding_mode_indicator yes
