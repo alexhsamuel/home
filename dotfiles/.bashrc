@@ -57,13 +57,12 @@ function lo { ls -G -oh "$@"; }
 function ll { ls -G -al "$@"; }
 function open { xdg-open "$@"; }
 
-function rg { $HOME/sw/ripgrep/rg "$@"; }
 function pyrg { rg -g '*.py' "$@"; }
 function c++11 { c++ -std=c++11 -fdiagnostics-color=always "$@"; }
 function c++14 { c++ -std=c++14 -fdiagnostics-color=always "$@"; }
 
 function py { python3 -q "$@"; }
-function activate { source "${1:-./env}"/bin/activate; }
+function activate { source "${1:-env}"/bin/activate; }
 
 # Use my emacs, if it's there.
 if [[ -d $HOME/sw/emacs ]]; then
@@ -72,18 +71,6 @@ if [[ -d $HOME/sw/emacs ]]; then
 else
     export EDITOR=emacs
 fi
-
-#
-# Compile a one-file C++14 progam to an executable, and run it.
-#
-function c++run {
-  src=$1
-  exe=$(abspath ${src%%.cc})
-  (
-    set -x
-    c++ -std=c++14 -Wall $src -o $exe && $exe
-  )
-}
 
 #
 # github-clone namespace/name
