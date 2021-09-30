@@ -34,7 +34,7 @@ Emacs.background: black
 Emacs.cursorColor: rgb:60/95/85
 Emacs.pointerColor: grey30
 Emacs.borderColor: grey30
-Emacs.Font: Monospace-10
+Emacs.Font: Monospace-9
 Emacs.*.*.*.marginHeight: 1
 Emacs.*.*.*.background: grey60
 Emacs.*.*.*.foreground: white
