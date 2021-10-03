@@ -21,11 +21,6 @@ fi
 
 # Python setup.  
 
-if [[ -d $HOME/sw/conda/bin ]]; then
-    eval $($HOME/sw/conda/bin/conda shell.bash hook)
-    PATH=$HOME/sw/conda/bin:$PATH
-fi
-
 if [[ -f $HOME/.pythonstartup ]]; then
     export PYTHONSTARTUP=$HOME/.pythonstartup
 fi
