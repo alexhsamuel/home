@@ -4,6 +4,13 @@
 #
 #-------------------------------------------------------------------------------
 
+# Config.
+
+# PiHole DNS service
+vpn0=159.65.46.5
+
+#-------------------------------------------------------------------------------
+
 # Set the shell prompt.
 export PS1='\h:\w\$ '
 
@@ -126,6 +133,53 @@ function lock {
 if [[ $(uname) == Darwin ]]; then
     function emacs {
         /Applications/Emacs.app/Contents/MacOS/Emacs "$@";
+    }
+
+    # Activate or deactivate PiHole in WiFi DNS.
+    #
+    # Turn PiHole off if WiFi captive portals aren't detected properly.
+    #
+    #   pihole on -- Set PiHole as the DNS.
+    #   pihole off -- Reset DNS to network defaults.
+    #   pihole whitelist [IP] -- Whitelist IP in PiHole's firewall.
+    #   pihole unwhitelist [IP] -- Unwhitelist IP.
+    #
+    function pihole {
+        device=Wi-Fi
+        if [[ $1 == "on" || $1 == "off" ]]; then
+            if [[ $1 == "on" ]]; then
+                dns="$vpn0 9.9.9.9"
+            else
+                dns=empty
+            fi
+            # Include a backup resolver.
+            networksetup -setdnsservers $device $dns
+            # Show current state.
+            networksetup -getdnsservers $device
+
+            # Flush DNS cache.
+            sudo dscacheutil -flushcache
+            sudo killall -HUP mDNSResponder
+
+        elif [[ $1 == "whitelist" || $1 == "unwhitelist" ]]; then
+            if [[ "$2" ]]; then
+                ip=$2
+            else
+                ip=$(curl -s https://api.ipify.org)
+            fi
+            rule="allow from $ip"
+            if [[ $1 == whitelist ]]; then
+                echo "whitelisting $ip in PiHole UFW"
+                ssh root@$vpn0 ufw $rule
+            else
+                echo "unwhitelisting $ip in PiHole UFW"
+                ssh root@$vpn0 ufw delete $rule
+            fi
+
+        else
+            echo "usage: pihole on|off" >&2
+            return
+        fi
     }
 fi
 
