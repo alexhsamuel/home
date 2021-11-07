@@ -20,9 +20,13 @@ if [[ -d $HOME/.local/bin ]]; then
 fi
 
 # Python setup.  
-
 if [[ -f $HOME/.pythonstartup ]]; then
     export PYTHONSTARTUP=$HOME/.pythonstartup
+fi
+
+# Zig setup.
+if [[ -f $HOME/sw/zig ]]; then
+    PATH="$HOME/sw/zig:$PATH"
 fi
 
 # Virtualenv is obnoxious.  Features should be opt-in.
@@ -34,22 +38,10 @@ if [[ -f $HOME/.cargo/env ]]; then
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 
-# Set up Java.
-if [[ -f $HOME/sw/java ]]; then
-    export JAVA_HOME=$HOME/sw/java
-    PATH="$JAVA_HOME/bin:$PATH"
-fi
-
 # Node setup.
 if [[ -d $HOME/sw/node ]]; then
     PATH="$HOME/sw/node/bin:$HOME/.npm-global/bin:$PATH"
     export NODE_PATH=$HOME/sw/node
-fi
-
-# SBCL setup.
-if [[ -d $HOME/sw/sbcl ]]; then
-    PATH="$HOME/sw/sbcl/bin:$PATH"
-    export SBCL_HOME=$HOME/sw/sbcl/lib/sbcl
 fi
 
 # Citrix setup.
