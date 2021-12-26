@@ -287,6 +287,7 @@
 (set-face-background 'region "#d0d2d2")
 (set-face-background 'highlight "rgb:70/30/90")
 (set-face-foreground 'link "#57b")
+(set-face-background 'cursor "#9bc0b0")
 
 ; Mode line.
 (set-face-attribute
@@ -360,12 +361,6 @@
 ;; ========
 
 (use-package flycheck)
-(use-package flycheck-pyflakes
-  :config
-  (add-hook 'python-mode-hook 'flycheck-mode)
-  (add-to-list 'flycheck-disabled-checkers 'python-flake8)
-  (add-to-list 'flycheck-disabled-checkers 'python-pylint)
-)
 
 
 ;; ========
@@ -493,6 +488,44 @@
    :foreground "#222"
    :background "#d0f0d0")
 )
+
+
+;; ===
+;; ivy
+;; ===
+
+(usage-package ivy
+  :defer nil
+  :config
+  (set-face-attribute
+   'ivy-current-match nil
+   :foreground "#111"
+   :background "#9bc0b0"
+   )
+  (set-face-attribute
+   'ivy-minibuffer-match-face-2 nil
+   :weight 'bold
+   :foreground "#111"
+   :background "#f8f8f8"
+   )
+  (set-face-attribute
+   'ivy-minibuffer-match-face-4 nil
+   :weight 'bold
+   :foreground "#222"
+   :background "#f8f8f8"
+   )
+  )
+
+
+;; ====================
+;; find-file-in-project
+;; ====================
+
+(use-package find-file-in-project
+  :defer nil
+  :config
+  (ivy-mode 1)
+  (global-set-key '[(control x) (control z)] 'find-file-in-project))
 
 
 ;; ====
