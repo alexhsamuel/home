@@ -494,7 +494,7 @@
 ;; ivy
 ;; ===
 
-(usage-package ivy
+(use-package ivy
   :defer nil
   :config
   (set-face-attribute
