@@ -24,5 +24,8 @@
         di = diff
         st = status -s
 
+[push]
+        default = current
+
 [pull]
 	ff = only
