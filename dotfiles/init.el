@@ -82,6 +82,11 @@
 ;; Wrap lines.
 (setq-default truncate-lines t)
 
+;; Show whitespace
+(setq-default show-trailing-whitespace t)
+(global-set-key '[(control ?c) (?w) (?w)] 'whitespace-mode)
+(global-set-key '[(control ?c) (?w) (?o)] 'whitespace-toggle-options)
+
 ;; Enable auto-revert (reload).
 (global-auto-revert-mode t)
 
