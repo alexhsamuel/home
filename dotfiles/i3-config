@@ -128,7 +128,7 @@ bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
 # Turn the big Ben-Q monitor on and off.
-bindsym $mod+m          exec xrandr --output HDMI-A-0 --preferred --output DisplayPort-0 --off --output DisplayPort-1 --off --output DisplayPort-2 --preferred --left-of HDMI-A-0
+bindsym $mod+m          exec xrandr --output HDMI-A-0 --preferred --output DisplayPort-0 --off --output DisplayPort-1 --preferred --left-of DisplayPort-2 --output DisplayPort-2 --preferred --left-of HDMI-A-0
 bindsym $mod+Shift+m    exec xrandr --output HDMI-A-0 --preferred --output DisplayPort-0 --off --output DisplayPort-1 --off --output DisplayPort-2 --off
 
 # reload the configuration file
