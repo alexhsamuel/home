@@ -502,6 +502,17 @@
 (use-package ivy
   :defer nil
   :config
+  )
+
+
+;; ====================
+;; find-file-in-project
+;; ====================
+
+(use-package find-file-in-project
+  :defer nil
+  :config
+  (ivy-mode 1)
   (set-face-attribute
    'ivy-current-match nil
    :foreground "#111"
@@ -519,17 +530,6 @@
    :foreground "#222"
    :background "#f8f8f8"
    )
-  )
-
-
-;; ====================
-;; find-file-in-project
-;; ====================
-
-(use-package find-file-in-project
-  :defer nil
-  :config
-  (ivy-mode 1)
   (global-set-key '[(control x) (control z)] 'find-file-in-project))
 
 
