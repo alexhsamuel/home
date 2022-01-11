@@ -502,11 +502,11 @@
 (use-package ivy
   :defer nil
   :config
-  (defun default-find-file ()
-    (interactive)
-    (exit-minibuffer)
-     (let  ((completing-read-function 'completing-read-default))
-       (call-interactively 'find-file) )))
+  ;; Don't use Ivy for find-file; it's annoying.
+  (setq read-file-name-function
+        (lambda (&rest args)
+          (let ((completing-read-function #'completing-read-default))
+            (apply #'read-file-name-default args)))))
 
 
 ;; ====================
