@@ -14,7 +14,7 @@
 ;; ===================
 
 ;; Elisp search path.
-(set-variable 'load-path 
+(set-variable 'load-path
               (append (list "/usr/local/share/emacs/site-lisp"
                             (concat user-emacs-directory "lisp")
                             )
@@ -156,7 +156,7 @@
 
 (global-set-key '[(meta ?i)] 'ahs-indent-to-4)
 
-(defun insert-xos (count) 
+(defun insert-xos (count)
   (interactive "nCount: ")
   (while (> count 0)
     (insert (if (= (random 2) 1) "x" "o"))
@@ -175,7 +175,7 @@
 (global-set-key (kbd "C-' O") (lambda () (interactive (insert "Ö"))))
 (global-set-key (kbd "C-' U") (lambda () (interactive (insert "Ü"))))
 (global-set-key (kbd "C-' s") (lambda () (interactive (insert "ß"))))
-(global-set-key (kbd "C-' \"")(lambda () (interactive (insert "„")))) 
+(global-set-key (kbd "C-' \"")(lambda () (interactive (insert "„"))))
 
 
 ;; ====================
@@ -192,7 +192,7 @@
   (interactive)
   (indent-to ahs-c-arg-column))
 
-(c-add-style 
+(c-add-style
  "ahs"   ;; style name
  '("user"  ;; base style
    (arglist-intro . +)
@@ -300,12 +300,12 @@
  :foreground "#eee"
  :background "#777"
  :box '(:line-width 1 :color "#888" :style "raised"))
-(set-face-attribute 
+(set-face-attribute
  'mode-line-highlight nil
  :foreground "#eef"
  :background "#777"
  :box '(:line-width 1 :color "#888" :style "raised"))
-(set-face-attribute 
+(set-face-attribute
  'mode-line-inactive nil
  :foreground "#999"
  :background "#666"
@@ -502,7 +502,11 @@
 (use-package ivy
   :defer nil
   :config
-  )
+  (defun default-find-file ()
+    (interactive)
+    (exit-minibuffer)
+     (let  ((completing-read-function 'completing-read-default))
+       (call-interactively 'find-file) )))
 
 
 ;; ====================
