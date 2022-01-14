@@ -354,6 +354,7 @@
 ;; ===============
 ;; JavaScript mode
 ;; ===============
+
 (use-package js
   :config
   (setq-default js-indent-level 2)
@@ -408,6 +409,16 @@
 
   ;; Put triple quotes for docstrings on their own lines.
   (setq python-fill-docstring-style 'django)
+)
+
+
+;; ==========
+;; shell mode
+;; ==========
+
+(use-package sh-script
+  :config
+  (set-face-foreground 'sh-quoted-exec "#a04060")
 )
 
 

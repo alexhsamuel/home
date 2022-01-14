@@ -20,7 +20,7 @@ for file in dev/home/dotfiles/.*; do
                     echo "already exists: $base -> $target" >&2
                 fi
             else
-                echo "already exists: $base" >&2 
+                echo "already exists: $base" >&2
             fi
 	else
 	    ln -s $file $base
