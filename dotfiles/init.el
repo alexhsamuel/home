@@ -131,6 +131,9 @@
 
 (define-key global-map "\C-\M-Q" 'unfill-region)
 
+; Don't ask about following a symlink to a VC file.
+(setq-default vc-follow-symlinks t)
+
 
 ;; Functions to draw lines.
 
@@ -287,8 +290,12 @@
 
 ;; M-x list-colors-display to show available colors.
 
-(set-face-background 'default "#f8f8f8")
-(set-face-foreground 'default "#222")
+(setq ahs-bg "#f8f8f8")
+(setq ahs-fg "#222")
+(setq ahs-fg-dim "#666")
+
+(set-face-background 'default ahs-bg)
+(set-face-foreground 'default ahs-fg)
 (set-face-background 'region "#d0d2d2")
 (set-face-background 'highlight "rgb:70/30/90")
 (set-face-foreground 'link "#57b")
@@ -506,18 +513,69 @@
 )
 
 
-;; ===
-;; ivy
-;; ===
+;; ====
+;; helm
+;; ====
 
-(use-package ivy
+(use-package helm
   :defer nil
   :config
-  ;; Don't use Ivy for find-file; it's annoying.
-  (setq read-file-name-function
-        (lambda (&rest args)
-          (let ((completing-read-function #'completing-read-default))
-            (apply #'read-file-name-default args)))))
+  (helm-mode 1)
+  ;; (global-set-key (kbd "M-x")                           'undefined)
+  ;; (global-set-key (kbd "M-x")                           'helm-M-x)
+  ;; (global-set-key (kbd "M-y")                           'helm-show-kill-ring)
+  (global-set-key (kbd "C-M-y")                         'helm-show-kill-ring)
+  (global-set-key (kbd "C-x C-f")                       'helm-find-files)
+  (global-set-key (kbd "C-c <SPC>")                     'helm-all-mark-rings)
+  ;; (global-set-key [remap bookmark-jump]                 'helm-filtered-bookmarks)
+  ;; (global-set-key (kbd "C-:")                           'helm-eval-expression-with-eldoc)
+  ;; (global-set-key (kbd "C-,")                           'helm-calcul-expression)
+  ;; (global-set-key (kbd "C-h d")                         'helm-info-at-point)
+  (global-set-key (kbd "C-h i")                         'helm-info)
+  (global-set-key (kbd "C-x C-d")                       'helm-browse-project)
+  ;; (global-set-key (kbd "<f1>")                          'helm-resume)
+  ;; (global-set-key (kbd "C-h C-f")                       'helm-apropos)
+  ;; (global-set-key (kbd "C-h a")                         'helm-apropos)
+  ;; (global-set-key (kbd "C-h C-d")                       'helm-debug-open-last-log)
+  ;; (global-set-key (kbd "<f5> s")                        'helm-find)
+  ;; (global-set-key (kbd "S-<f3>")                        'helm-execute-kmacro)
+  ;; (global-set-key (kbd "C-c i")                         'helm-imenu-in-all-buffers)
+  ;; (global-set-key (kbd "C-c C-i")                       'helm-imenu)
+  ;; (global-set-key (kbd "<f11>")                         nil)
+  ;; (global-set-key (kbd "<f11> o")                       'helm-org-agenda-files-headings)
+  ;; (global-set-key (kbd "M-s")                           nil)
+  ;; (global-set-key (kbd "M-s")                           'helm-occur-visible-buffers)
+  (global-set-key (kbd "M-s")                           'helm-occur)
+  ;; (global-set-key (kbd "<f6> h")                        'helm-emms)
+  (define-key global-map [remap jump-to-register]       'helm-register)
+  (define-key global-map [remap list-buffers]           'helm-mini)
+  (define-key global-map [remap dabbrev-expand]         'helm-dabbrev)
+  (define-key global-map [remap find-tag]               'helm-etags-select)
+  (define-key global-map [remap xref-find-definitions]  'helm-etags-select)
+  ;; (define-key global-map (kbd "M-g a")                  'helm-do-grep-ag)
+  ;; (define-key global-map (kbd "M-g g")                  'helm-grep-do-git-grep)
+  ;; (define-key global-map (kbd "M-g i")                  'helm-gid)
+  ;; (define-key global-map (kbd "C-x r p")                'helm-projects-history)
+  ;; (define-key global-map (kbd "C-x r c")                'helm-addressbook-bookmarks)
+  ;; (define-key global-map (kbd "C-c t r")                'helm-dictionary)
+
+  (set-face-attribute 'helm-buffer-directory nil :foreground ahs-fg :background ahs-bg)
+  (set-face-attribute 'helm-buffer-file nil :foreground ahs-fg :background ahs-bg)
+  (set-face-attribute 'helm-buffer-modified nil :foreground ahs-fg :background "#f8f0f0")
+  (set-face-attribute 'helm-buffer-process nil :foreground ahs-fg-dim :background ahs-bg)
+  (set-face-attribute 'helm-candidate-number nil :foreground "#bfe" :background "#777")
+  (set-face-attribute 'helm-ff-directory nil :foreground ahs-fg :background ahs-bg :weight 'bold)
+  (set-face-attribute 'helm-ff-dotted-directory nil :foreground ahs-fg-dim :background ahs-bg :weight 'bold)
+  (set-face-attribute 'helm-ff-dotted-symlink-directory nil :foreground ahs-fg-dim :background ahs-bg :weight 'bold)
+  (set-face-attribute 'helm-ff-executable nil :foreground ahs-fg)
+  (set-face-attribute 'helm-ff-file nil :foreground ahs-fg)
+  (set-face-attribute 'helm-ff-file-extension nil :foreground ahs-fg :weight 'normal)
+  (set-face-attribute 'helm-ff-symlink nil :foreground ahs-fg)
+  (set-face-attribute 'helm-ff-truename nil :foreground ahs-fg)
+  (set-face-attribute 'helm-match nil :foreground 'unspecified :underline t)
+  (set-face-attribute 'helm-selection nil :background "#d0e8e0" :weight 'unspecified)
+  (set-face-attribute 'helm-source-header nil :family "Monospace" :height 1.0 :background "#aaa" :foreground "white")
+)
 
 
 ;; ====================
@@ -527,24 +585,6 @@
 (use-package find-file-in-project
   :defer nil
   :config
-  (ivy-mode 1)
-  (set-face-attribute
-   'ivy-current-match nil
-   :foreground "#111"
-   :background "#9bc0b0"
-   )
-  (set-face-attribute
-   'ivy-minibuffer-match-face-2 nil
-   :weight 'bold
-   :foreground "#111"
-   :background "#f8f8f8"
-   )
-  (set-face-attribute
-   'ivy-minibuffer-match-face-4 nil
-   :weight 'bold
-   :foreground "#222"
-   :background "#f8f8f8"
-   )
   (global-set-key '[(control x) (control z)] 'find-file-in-project))
 
 
