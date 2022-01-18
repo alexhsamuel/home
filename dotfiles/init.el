@@ -521,6 +521,9 @@
   :defer nil
   :config
   (helm-mode 1)
+  (define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)
+  (define-key helm-map (kbd "<tab>") #'helm-execute-persistent-action)
+  (define-key helm-map (kbd "C-z") #'helm-select-action)
   ;; (global-set-key (kbd "M-x")                           'undefined)
   ;; (global-set-key (kbd "M-x")                           'helm-M-x)
   ;; (global-set-key (kbd "M-y")                           'helm-show-kill-ring)
