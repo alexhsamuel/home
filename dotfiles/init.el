@@ -373,7 +373,10 @@
 ;; Flycheck
 ;; ========
 
-(use-package flycheck)
+(use-package flycheck
+  :config
+  (setq-default flycheck-disabled-checkers '(python-pylint))
+  (global-flycheck-mode))
 
 
 ;; ========
