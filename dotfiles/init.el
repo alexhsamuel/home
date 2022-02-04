@@ -530,6 +530,7 @@
   (remove-function completing-read-function #'helm--completing-read-default)
   (remove-function read-file-name-function #'helm--generic-read-file-name)
   (remove-function read-buffer-function #'helm--generic-read-buffer)
+  (remove-function completion-in-region-function #'helm--completion-in-region)
 
   ;; Don't go overboard with helm stuff.  It's pretty annoyingly different from find-file.
   (define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)
