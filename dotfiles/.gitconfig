@@ -1,5 +1,5 @@
 [push]
-	default = simple
+	default = current
 
 [user]
 	name = Alex Samuel
@@ -10,10 +10,6 @@
 
 [core]
 	excludesfile = ~/.gitignore
-
-[http]
-        sslVerify = true
-        sslCAinfo = /etc/ssl/certs/ca-certificates.crt
 
 [color "diff"]
         whitespace = 
