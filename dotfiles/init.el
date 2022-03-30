@@ -516,86 +516,62 @@
 )
 
 
-;; ====
-;; helm
-;; ====
+;; =======
+;; vertico
+;; =======
 
-(use-package helm
+(use-package vertico
   :config
+  (set-face-attribute
+   'vertico-current nil
+   :foreground ahs-fg
+   :background "#e8fff0")
 
-  ;; I don't want helm-mode but I need helm to define stuff so I can configure it.
-  (helm-mode 1)
-  (helm-mode 0)
+  :init
+  (vertico-mode)
+  (setq vertico-resize t)
+  )
 
-  ;; ;; I'd like some helm functions, but I don't want it injected everywhere.  Uninject it.
-  ;; ;; Maybe there's a better way to do this.
-  ;; (helm-mode 1)
-  ;; (remove-function completing-read-function #'helm--completing-read-default)
-  ;; (remove-function read-file-name-function #'helm--generic-read-file-name)
-  ;; (remove-function read-buffer-function #'helm--generic-read-buffer)
-  ;; (remove-function completion-in-region-function #'helm--completion-in-region)
+;; =========
+;; orderless
+;; =========
 
-  ;; helm-prefix is C-x c
+(use-package orderless
+  :init
+  (setq completion-styles '(substring orderless))
+  )
 
-  ;; ;; Don't go overboard with helm stuff.  It's pretty annoyingly different from find-file.
-  (define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)
-  (define-key helm-map (kbd "<tab>") #'helm-execute-persistent-action)
-  (define-key helm-map (kbd "C-z") #'helm-select-action)
+;; ==========
+;; marginalia
+;; ==========
 
-  ;; (global-set-key (kbd "M-x")                           'undefined)
-  (global-set-key (kbd "M-x")                           'helm-M-x)
-  ;; (global-set-key (kbd "M-y")                           'helm-show-kill-ring)
-  ;; (global-set-key (kbd "C-c <SPC>")                     'helm-all-mark-rings)
-  ;; (global-set-key [remap bookmark-jump]                 'helm-filtered-bookmarks)
-  ;; (global-set-key (kbd "C-:")                           'helm-eval-expression-with-eldoc)
-  ;; (global-set-key (kbd "C-,")                           'helm-calcul-expression)
-  ;; (global-set-key (kbd "C-h d")                         'helm-info-at-point)
-  ;; (global-set-key (kbd "C-h i")                         'helm-info)
-  ;; (global-set-key (kbd "C-x C-a")                       'helm-browse-project)
-  ;; (global-set-key (kbd "<f1>")                          'helm-resume)
-  ;; (global-set-key (kbd "C-h C-f")                       'helm-apropos)
-  ;; (global-set-key (kbd "C-h C-d")                       'helm-debug-open-last-log)
-  ;; (global-set-key (kbd "<f5> s")                        'helm-find)
-  ;; (global-set-key (kbd "S-<f3>")                        'helm-execute-kmacro)
-  ;; (global-set-key (kbd "C-c i")                         'helm-imenu-in-all-buffers)
-  ;; (global-set-key (kbd "C-c C-i")                       'helm-imenu)
-  ;; (global-set-key (kbd "<f11>")                         nil)
-  ;; (global-set-key (kbd "<f11> o")                       'helm-org-agenda-files-headings)
-  ;; (global-set-key (kbd "M-s")                           nil)
-  ;; (global-set-key (kbd "M-s")                           'helm-occur-visible-buffers)
-  ;; FIXME: Shadows center-line, above.
-  ;; (global-set-key (kbd "M-s")                           'helm-occur)
-  ;; (global-set-key (kbd "<f6> h")                        'helm-emms)
-  ;; (define-key global-map [remap jump-to-register]       'helm-register)
-  ;; (define-key global-map [remap list-buffers]           'helm-mini)
-  ;; (define-key global-map [remap dabbrev-expand]         'helm-dabbrev)
-  ;; (define-key global-map [remap find-tag]               'helm-etags-select)
-  ;; (define-key global-map [remap xref-find-definitions]  'helm-etags-select)
-  ;; (define-key global-map (kbd "M-g a")                  'helm-do-grep-ag)
-  ;; (define-key global-map (kbd "M-g g")                  'helm-grep-do-git-grep)
-  ;; (define-key global-map (kbd "M-g i")                  'helm-gid)
-  ;; (define-key global-map (kbd "C-x r p")                'helm-projects-history)
-  ;; (define-key global-map (kbd "C-x r c")                'helm-addressbook-bookmarks)
-  ;; (define-key global-map (kbd "C-c t r")                'helm-dictionary)
+(use-package marginalia
+  :bind (:map minibuffer-local-map
+              ; Cycle through marginalia modes
+              ("C-SPC" . marginalia-cycle))
 
-  (set-face-attribute 'helm-buffer-directory nil :foreground ahs-fg :background ahs-bg)
-  (set-face-attribute 'helm-buffer-file nil :foreground ahs-fg :background ahs-bg)
-  (set-face-attribute 'helm-buffer-modified nil :foreground ahs-fg :background "#f8f0f0")
-  (set-face-attribute 'helm-buffer-process nil :foreground ahs-fg-dim :background ahs-bg)
-  (set-face-attribute 'helm-candidate-number nil :foreground "#bfe" :background "#777")
-  (set-face-attribute 'helm-ff-directory nil :foreground ahs-fg :background ahs-bg :weight 'bold)
-  (set-face-attribute 'helm-ff-dotted-directory nil :foreground ahs-fg-dim :background ahs-bg :weight 'bold)
-  (set-face-attribute 'helm-ff-dotted-symlink-directory nil :foreground ahs-fg-dim :background ahs-bg :weight 'bold)
-  (set-face-attribute 'helm-ff-executable nil :foreground ahs-fg)
-  (set-face-attribute 'helm-ff-file nil :foreground ahs-fg)
-  (set-face-attribute 'helm-ff-file-extension nil :foreground ahs-fg :weight 'normal)
-  (set-face-attribute 'helm-ff-symlink nil :foreground ahs-fg)
-  (set-face-attribute 'helm-ff-truename nil :foreground ahs-fg)
-  (set-face-attribute 'helm-match nil :foreground 'unspecified :underline t)
-  (set-face-attribute 'helm-selection nil :background "#d0e8e0" :weight 'unspecified)
-  (set-face-attribute 'helm-source-header nil :family "Monospace" :height 1.0 :background "#aaa" :foreground "white")
-)
+  :init
+  (marginalia-mode)
+  )
 
+;; ==========
+;; mini-frame
+;; ==========
+
+(use-package mini-frame
+  :config
+  (custom-set-variables
+   '(mini-frame-show-parameters
+     '((top . -1)
+       (width . 0.8)
+       (left . 0.5)
+       (height . 0)
+       (internal-border-width . 16)
+                       (background-color . "#ececec"))))
+
+  :init
+  (mini-frame-mode)
+  )
 
 ;; ====================
 ;; find-file-in-project
