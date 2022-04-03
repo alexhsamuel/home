@@ -37,7 +37,7 @@ function searchpath {
     shift
     eval $var="$(/usr/bin/python -E "$_searchpath" "${!var}" $@)"
 }
-  
+
 #-------------------------------------------------------------------------------
 
 # Load the path library, if present.
