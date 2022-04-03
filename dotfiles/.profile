@@ -19,7 +19,7 @@ if [[ -d $HOME/.local/bin ]]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Python setup.  
+# Python setup.
 if [[ -f $HOME/.pythonstartup ]]; then
     export PYTHONSTARTUP=$HOME/.pythonstartup
 fi
@@ -50,9 +50,6 @@ if [[ -d $HOME/sw/icaclient ]]; then
 fi
 
 export MAIL=$HOME/mail/inbox
-
-# Fix the ssh-agent socket path.
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # Remote file access for rsync.
 export RSYNC_RSH="ssh"
