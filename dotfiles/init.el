@@ -6,7 +6,7 @@
 
 ;; Who are we?
 (setq user-name (user-real-login-name))
-(setq home-directory (getenv "HOME"))
+(setq home-directory (file-name-as-directory (getenv "HOME")))
 
 
 ;; ===================
@@ -532,6 +532,7 @@
   (setq vertico-resize t)
   )
 
+
 ;; =========
 ;; orderless
 ;; =========
@@ -540,6 +541,7 @@
   :init
   (setq completion-styles '(substring orderless))
   )
+
 
 ;; ==========
 ;; marginalia
@@ -553,6 +555,7 @@
   :init
   (marginalia-mode)
   )
+
 
 ;; ==========
 ;; mini-frame
@@ -573,6 +576,7 @@
   (mini-frame-mode)
   )
 
+
 ;; ====================
 ;; find-file-in-project
 ;; ====================
@@ -581,6 +585,25 @@
   :defer nil
   :config
   (global-set-key (kbd "C-x C-d") 'find-file-in-project))
+
+
+;; ===
+;; org
+;; ===
+
+
+;; ===========
+;; org-journal
+;; ===========
+
+(use-package org-journal
+  :bind
+  ("C-c j" . org-journal-new-entry)
+  :custom
+  (org-journal-dir (concat home-directory "/org/journal"))
+  (org-journal-date-format "%Y-%m-%d")
+  (org-journal-file-format "%Y-%m-%d.org")
+  )
 
 
 ;; ====
