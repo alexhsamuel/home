@@ -336,6 +336,7 @@
 (set-face-foreground 'font-lock-string-face "#635483")
 (set-face-foreground 'font-lock-type-face "#36795e")
 (set-face-foreground 'font-lock-variable-name-face "#2d8667")
+(set-face-background 'trailing-whitespace "#fff8d8")
 
 
 ;; =====
