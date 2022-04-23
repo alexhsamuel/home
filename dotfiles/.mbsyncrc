@@ -1,7 +1,7 @@
 IMAPAccount fastmail
 Host imap.fastmail.com
 User alexhsamuel@fastmail.com
-Pass b4474ygyqzrm44j8
+Pass phmwu6qbly4h5bzt
 # PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/.mbsyncpass.gpg"
 Port 993
 SSLType IMAPS
