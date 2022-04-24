@@ -17,7 +17,7 @@ for file in dev/home/dotfiles/.*; do
                     # Good.
                     :
                 else
-                    echo "already exists: $base -> $target" >&2
+                    echo "already exists: $base → $target" >&2
                 fi
             else
                 echo "already exists: $base" >&2
