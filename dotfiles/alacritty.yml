@@ -23,7 +23,11 @@
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
 
-#window:
+window:
+  padding:
+   x: 4
+   y: 2
+
   # Window dimensions (changes require restart)
   #
   # Number of lines/columns (not pixels) in the terminal. The number of columns
@@ -110,7 +114,7 @@
 # Font configuration
 font:
   # Normal (roman) font face
-  # normal:
+  normal:
     # Font family
     #
     # Default:
@@ -121,6 +125,7 @@ font:
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
+    family: DejaVu Sans Mono
 
   # Bold font face
   #bold:
@@ -156,14 +161,14 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 10.0
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
-  #offset:
-  #  x: 0
-  #  y: 0
+  offset:
+    x: 0
+    y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the
@@ -438,7 +443,7 @@ live_config_reload: true
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
-#working_directory: None
+working_directory: /home/alex
 
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
