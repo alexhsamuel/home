@@ -19,6 +19,18 @@ if [[ -d $HOME/.local/bin ]]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# SSH agent setup.
+if [[ -z "$SSH_AUTH_SOCK" ]]; then
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+    if [[ ! -S $SSH_AUTH_SOCK ]]; then
+	echo "missing ssh-agent socket: $SSH_AUTH_SOCK" >&2
+    fi
+fi
+
+# Wayland stuff
+# Enable Wayland in Firefox.
+export MOZ_ENABLE_WAYLAND=1
+
 # Python setup.
 if [[ -f $HOME/.pythonstartup ]]; then
     export PYTHONSTARTUP=$HOME/.pythonstartup
