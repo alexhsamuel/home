@@ -20,7 +20,10 @@
                             )
                       load-path))
 
-(let ((local-config-file (concat home-directory "/.emacs.local")))
+;; Non-local defaults; to be overridden in .emacs.local.
+(setq ahs-font-size 14)
+
+(let ((local-config-file (concat home-directory ".emacs.local")))
   (if (file-exists-p local-config-file)
       (load local-config-file)))
 
@@ -295,7 +298,7 @@
 (setq ahs-fg "#222")
 (setq ahs-fg-dim "#666")
 
-(set-face-attribute 'default nil :family "DejaVu Sans Mono" :height 140)
+(set-face-attribute 'default nil :family "DejaVu Sans Mono" :height (* ahs-font-size 10))
 (set-face-background 'default ahs-bg)
 (set-face-foreground 'default ahs-fg)
 (set-face-background 'region "#d0d2d2")
@@ -306,6 +309,7 @@
 ; Mode line.
 (set-face-attribute
  'mode-line nil
+ :height (* ahs-font-size 10)
  :foreground "#eee"
  :background "#777"
  :box '(:line-width 1 :color "#888" :style "raised"))
