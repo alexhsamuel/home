@@ -17,13 +17,13 @@ Inbox ~/mail/fastmail/INBOX
 Subfolders Verbatim
 
 Channel fastmail
-Master :fastmail-remote:
-Slave :fastmail-local:
+Far :fastmail-remote:
+Near :fastmail-local:
 # Patterns "Sent Items" "INBOX" "Deleted Items"
 Patterns *
-Create Slave
+Create Near
 # Sync All
 Sync Pull
 # Expunge Both
-Expunge Slave
+Expunge Near
 SyncState *
