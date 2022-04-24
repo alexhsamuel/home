@@ -65,6 +65,7 @@
 ;; ===========
 
 (setq-default inhibit-startup-screen t)
+(menu-bar-mode -1)
 (tool-bar-mode -1)
 
 (global-set-key [(control z)] 'undo)
@@ -294,6 +295,7 @@
 (setq ahs-fg "#222")
 (setq ahs-fg-dim "#666")
 
+(set-face-attribute 'default nil :family "DejaVu Sans Mono" :height 140)
 (set-face-background 'default ahs-bg)
 (set-face-foreground 'default ahs-fg)
 (set-face-background 'region "#d0d2d2")
@@ -440,7 +442,6 @@
 (use-package rust-mode
   :config
   (add-hook 'rust-mode-hook 'cargo-minor-mode)
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
   (add-hook 'python-mode-hook 'flycheck-mode)
   (add-to-list 'flycheck-disabled-checkers 'python-flake8)
@@ -555,26 +556,6 @@
 
   :init
   (marginalia-mode)
-  )
-
-
-;; ==========
-;; mini-frame
-;; ==========
-
-(use-package mini-frame
-  :config
-  (custom-set-variables
-   '(mini-frame-show-parameters
-     '((top . -1)
-       (width . 0.8)
-       (left . 0.5)
-       (height . 0)
-       (internal-border-width . 16)
-                       (background-color . "#ececec"))))
-
-  :init
-  (mini-frame-mode)
   )
 
 
