@@ -535,6 +535,11 @@
    'vertico-current nil
    :foreground ahs-fg
    :background "#e8fff0")
+  (setq vertico-count 16)
+  (setq vertico-resize nil)
+  (setq completion-styles '(basic substring orderless))
+
+  :bind
 
   :init
   (vertico-mode)
@@ -548,7 +553,7 @@
 
 (use-package orderless
   :init
-  (setq completion-styles '(substring orderless))
+  (setq completion-styles '(substring orderless basic))
   )
 
 
