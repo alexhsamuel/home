@@ -69,6 +69,7 @@ export RSYNC_RSH="ssh"
 # Customize pager.
 export PAGER="less"
 export LESS="-RSX"
+export LESSCHARSET="utf-8"
 
 # Define LANGUAGE if LC_ALL isn't set.
 if [[ -z "$LC_ALL" ]]; then
