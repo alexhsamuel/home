@@ -1,0 +1,13 @@
+#!/bin/bash
+
+ver=$1
+dir=${2:-./env}
+
+verdir=$HOME/.pyenv/versions/$ver
+if [[ -e "$ver" || ! -d $verdir ]]; then
+    available=$(ls $HOME/.pyenv/versions)
+    echo "no pyenv version $verdir; available: $available" >&2
+    exit 1
+fi
+
+$verdir/bin/python -m venv $dir
