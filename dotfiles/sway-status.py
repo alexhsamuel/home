@@ -51,7 +51,10 @@ def get_count():
 
 
 def get_battery(ps="BAT1"):
-    battery = read_assignments(Path("/sys/class/power_supply") / ps / "uevent")
+    try:
+        battery = read_assignments(Path("/sys/class/power_supply") / ps / "uevent")
+    except FileNotFoundError:
+        return dict(COMMON)
     battery = { n[13 :]: v for n, v in battery.items() }
     charge  = int(battery["CHARGE_NOW"])
     full    = int(battery["CHARGE_FULL"])
