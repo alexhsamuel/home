@@ -103,5 +103,6 @@ while True:
     )
     sys.stdout.write(",")
     sys.stdout.flush()
-    time.sleep(1)
+    time.sleep(0.1)
+
 
