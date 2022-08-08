@@ -178,9 +178,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-workspace 1 output DisplayPort-0
-workspace 2 output DisplayPort-0
-workspace "4 rpg" output HDMI-A-0
+# workspace 1 output DisplayPort-0
+# workspace 2 output HDMI-A-0
 
 default_border normal 0
 hide_edge_borders smart
@@ -210,9 +209,6 @@ bindsym $mod+Shift+y exec /home/alex/dev/home/dotfiles/dpms-off
 
 # Print screen; see https://faq.i3wm.org/question/4818/screenshot-of-focused-window.1.html
 bindsym $mod+Print exec scrot --focused --exec 'notify-send screenshot: $f' > /home/alex/log 2>&1
-
-for_window [class="Wfica"] floating enable  # Citrix
-for_window [class="^Firefox$"] border pixel 8
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -248,7 +244,8 @@ for_window [class="Klipper"] floating enable; border none
 for_window [class="Plasmoidviewer"] floating enable; border none
 for_window [class="plasmashell" window_type="notification"] border none, move right 700px, move down 450px
 no_focus [class="plasmashell" window_type="notification"]
-
+for_window [class="Wfica"] floating enable  # Citrix
+# for_window [class="^Firefox$"] border pixel 8
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
 
 # See https://man.archlinux.org/man/sway-input.5

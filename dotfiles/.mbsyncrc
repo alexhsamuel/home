@@ -20,7 +20,8 @@ Channel fastmail
 Far :fastmail-remote:
 Near :fastmail-local:
 # Patterns "Sent Items" "INBOX" "Deleted Items"
-Patterns *
+# Patterns *
+Patterns "INBOX" "Sent" "Drafts" "Archive" "Trash"
 Create Near
 # Sync All
 Sync Pull
