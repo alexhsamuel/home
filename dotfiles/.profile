@@ -50,10 +50,9 @@ if [[ -f $HOME/.cargo/env ]]; then
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 
-# Node setup.
-if [[ -d $HOME/sw/node ]]; then
-    PATH="$HOME/sw/node/bin:$HOME/.npm-global/bin:$PATH"
-    export NODE_PATH=$HOME/sw/node
+# NVM setup.
+if [[ -f /usr/share/nvm/init-nvm.sh ]]; then
+    . /usr/share/nvm/init-nvm.sh
 fi
 
 # Citrix setup.
