@@ -21,7 +21,7 @@
                       load-path))
 
 ;; Non-local defaults; to be overridden in .emacs.local.
-(setq ahs-font-size 14)
+(setq ahs-font-size 11)
 (setq ahs-font-family "DejaVu Sans Mono")
 
 (let ((local-config-file (concat home-directory ".emacs.local")))
@@ -300,6 +300,9 @@
 (setq ahs-fg-dim "#666")
 
 (set-face-attribute 'default nil
+                    :family ahs-font-family
+                    :height (* ahs-font-size 10))
+(set-face-attribute 'fixed-pitch nil
                     :family ahs-font-family
                     :height (* ahs-font-size 10))
 (set-face-background 'default ahs-bg)
