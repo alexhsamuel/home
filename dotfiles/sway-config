@@ -171,9 +171,9 @@ bindsym $mod+Print exec scrot --focused --exec 'notify-send screenshot: $f' > /h
 # finds out, if available)
 bar {
     status_command python /home/alex/dev/home/dotfiles/sway-status.py
-    mode hide
-    # tray_output DisplayPort-0
-    tray_output primary
+    # mode hide
+    tray_output DP-1
+    # tray_output primary
     tray_padding 8
     font pango:DejaVu Sans Mono 11
     binding_mode_indicator yes
