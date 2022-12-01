@@ -1,0 +1,10 @@
+#!/bin/bash
+
+logfile=$HOME/.cache/swau
+mkdir -p $(dirname $logfile)
+if [[ -f $logfile ]]; then
+    mv $logfile $logfile~old
+fi
+
+sway > $logfile 2>&1
+
