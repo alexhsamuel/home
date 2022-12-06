@@ -2356,6 +2356,7 @@ xkb_symbols "alex"  {
     key <AD09> {[ o,            O,          odiaeresis, Odiaeresis ]};
     key <AD10> {[ p,            P,          aring,      Aring      ]};
     key <AE01> {[ 1,	        exclam,     1,          exclamdown ]};
+    key <AE11> {[ minus,        underscore, emdash,     endash     ]};
 
 };
 
