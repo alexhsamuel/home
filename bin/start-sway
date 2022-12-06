@@ -1,6 +1,6 @@
 #!/bin/bash
 
-logfile=$HOME/.cache/swau
+logfile=$HOME/.cache/sway.log
 mkdir -p $(dirname $logfile)
 if [[ -f $logfile ]]; then
     mv $logfile $logfile~old
