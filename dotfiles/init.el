@@ -401,12 +401,12 @@
   (set-face-attribute
    'flyspell-incorrect nil
    :foreground nil
-   :background "#401"
+   :background "#fff0f0"
    :underline nil)
   (set-face-attribute
    'flyspell-duplicate nil
    :foreground nil
-   :background "#280008"
+   :background "#f0f0ff"
    :underline nil)
 )
 
