@@ -1,15 +1,22 @@
 # -*- conf -*-
 
 # Output layout.
-output 'Samsung Electric Company U28D590 0x00000000' pos 0 0
-output 'BenQ Corporation BenQ PD3200U GBK00170019' pos 3840 0
+output 'BenQ Corporation BenQ PD3200U GBK00170019' pos 0 0
+output 'Samsung Electric Company U28D590 0x00000000' pos 3840 0
+# output 'Panasonic Industry Company AE-4000 0x00000001' modeline 74.5 1760 1888 2096 2208 960 1012 1028 1126 -hsync -vsync interlace
+output 'Panasonic Industry Company AE-4000 0x00000001' mode 1760x960@29.965Hz
+output 'Panasonic Industry Company AE-4000 0x00000001' pos 7280 0
+
+workspace 1 output 'Samsung Electric Company U28D590 0x00000000'
+workspace 2 output 'BenQ Corporation BenQ PD3200U GBK00170019'
 
 set $mod Mod4
 # Use Mouse+$mod to drag floating windows to their wanted position.
 floating_modifier $mod
 
 # Start a terminal.
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec foot
+bindsym $mod+Shift+Return exec alacritty
 bindsym $mod+Control+Return exec xfce4-terminal
 
 # Kill focused window.
