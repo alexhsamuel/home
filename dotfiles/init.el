@@ -385,6 +385,14 @@
 )
 
 
+;; ===============
+;; TypeScript mode
+;; ===============
+
+(use-package typescript-mode
+  :config
+  (setq-default typescript-indent-level 2))
+
 ;; ========
 ;; Flycheck
 ;; ========
