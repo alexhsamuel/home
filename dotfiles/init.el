@@ -92,6 +92,8 @@
 (global-set-key '[(control ?c) (?w) (?w)] 'whitespace-mode)
 (global-set-key '[(control ?c) (?w) (?o)] 'whitespace-toggle-options)
 
+(global-set-key '[(control ?c) (?a)] 'auto-save-visited-mode)
+
 ;; Enable auto-revert (reload).
 (global-auto-revert-mode t)
 
@@ -349,6 +351,7 @@
 (set-face-foreground 'font-lock-type-face "#36795e")
 (set-face-foreground 'font-lock-variable-name-face "#2d8667")
 (set-face-background 'trailing-whitespace "#fff8d8")
+(set-face-background 'mmm-default-submode-face "#ffffff")
 
 
 ;; =====
