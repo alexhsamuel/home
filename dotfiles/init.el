@@ -351,7 +351,6 @@
 (set-face-foreground 'font-lock-type-face "#36795e")
 (set-face-foreground 'font-lock-variable-name-face "#2d8667")
 (set-face-background 'trailing-whitespace "#fff8d8")
-(set-face-background 'mmm-default-submode-face "#ffffff")
 
 
 ;; =====
@@ -392,6 +391,16 @@
 (use-package typescript-mode
   :config
   (setq-default typescript-indent-level 2))
+
+
+;; ===
+;; mmm
+;; ===
+
+(use-package mmm-mode
+  :config
+  (set-face-background 'mmm-default-submode-face "#ffffff"))
+
 
 ;; ========
 ;; Flycheck
