@@ -366,33 +366,6 @@
 )
 
 
-;; ========
-;; SQL mode
-;; ========
-
-(setq-default sql-product 'ms)
-
-
-;; ===============
-;; JavaScript mode
-;; ===============
-
-(use-package js
-  :config
-  (setq-default js-indent-level 2)
-  (setq auto-mode-alist (cons '("\\.json\\'" . javascript-mode) auto-mode-alist))
-)
-
-
-;; ===============
-;; TypeScript mode
-;; ===============
-
-(use-package typescript-mode
-  :config
-  (setq-default typescript-indent-level 2))
-
-
 ;; ===
 ;; mmm
 ;; ===
@@ -546,6 +519,33 @@
    :foreground "#222"
    :background "#d0f0d0")
 )
+
+
+;; ========
+;; SQL mode
+;; ========
+
+(setq-default sql-product 'ms)
+
+
+;; ===============
+;; JavaScript mode
+;; ===============
+
+(use-package js
+  :config
+  (setq-default js-indent-level 2)
+  (setq auto-mode-alist (cons '("\\.json\\'" . javascript-mode) auto-mode-alist))
+)
+
+
+;; ===============
+;; TypeScript mode
+;; ===============
+
+(use-package typescript-mode
+  :config
+  (setq-default typescript-indent-level 2))
 
 
 ;; =======
