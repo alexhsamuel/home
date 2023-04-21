@@ -15,8 +15,7 @@
 
 ;; Elisp search path.
 (set-variable 'load-path
-              (append (list "/usr/local/share/emacs/site-lisp"
-                            (concat user-emacs-directory "lisp")
+              (append (list (concat user-emacs-directory "lisp")
                             )
                       load-path))
 
