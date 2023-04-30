@@ -1,11 +1,17 @@
 # -*- conf -*-
 
-# Output layout.
-output 'BenQ Corporation BenQ PD3200U GBK00170019' pos 0 0
-output 'Samsung Electric Company U28D590 0x00000000' pos 3840 0
+# Output layout - NYC
+# output 'BenQ Corporation BenQ PD3200U GBK00170019' pos 0 0
+# output 'Samsung Electric Company U28D590 0x00000000' pos 3840 0
+
+# Projector; doesn't really work.
 # output 'Panasonic Industry Company AE-4000 0x00000001' modeline 74.5 1760 1888 2096 2208 960 1012 1028 1126 -hsync -vsync interlace
-output 'Panasonic Industry Company AE-4000 0x00000001' mode 1760x960@29.965Hz
-output 'Panasonic Industry Company AE-4000 0x00000001' pos 7280 0
+# output 'Panasonic Industry Company AE-4000 0x00000001' mode 1760x960@29.965Hz
+# output 'Panasonic Industry Company AE-4000 0x00000001' pos 7280 0
+
+# Output layout - Tucson
+output 'LG Electronics LG HDR 4K 0x00008738' pos 3840 0
+output 'LG Electronics LG HDR 4K 0x000077DA' pos 0 0
 
 workspace 1 output 'Samsung Electric Company U28D590 0x00000000'
 workspace 2 output 'BenQ Corporation BenQ PD3200U GBK00170019'
