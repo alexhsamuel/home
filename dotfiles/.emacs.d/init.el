@@ -187,6 +187,22 @@
 (global-set-key (kbd "C-' \"")(lambda () (interactive (insert "„"))))
 
 
+;; =====
+;; Email
+;; =====
+
+; Outgoing mail via Fastmail SMTP.  This requires a line in ~/.authinfo that
+; contains this line:
+;
+;   machine smtp.fastmail.com port 587 login alexhsamuel@fastmail.com password API-KEY
+;
+; where API-KEY is obtained from the Fastmail UI.
+(setq send-mail-function 'smtpmail-send-it)
+(setq smtpmail-smtp-server "smtp.fastmail.com")
+(setq smtpmail-smtp-service 587)
+(setq smtpmail-stream-type 'starttls)
+
+
 ;; ====================
 ;; C-mode customization
 ;; ====================
