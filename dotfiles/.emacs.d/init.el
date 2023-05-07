@@ -86,6 +86,9 @@
 ;; Wrap lines.
 (setq-default truncate-lines t)
 
+;; Paste at point, not cursor, like every other system.
+(setq mouse-yank-at-point t)
+
 ;; Show whitespace
 (setq-default show-trailing-whitespace t)
 (global-set-key '[(control ?c) (?w) (?w)] 'whitespace-mode)
@@ -121,9 +124,15 @@
 ;; Colorize wherever possible.
 (global-font-lock-mode t)
 
+;; Show the current line in the current window.
+(global-hl-line-mode t)
+(setq global-hl-line-sticky-flag nil)
+
 ;; I hate electric indent.
 (electric-indent-mode -1)
 (add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
+;; But intent with C-RET.
+(global-set-key (kbd "C-<return>") 'newline-and-indent)
 
 (defun set-default-coding ()
   (interactive)
@@ -328,6 +337,7 @@
 (set-face-background 'highlight "rgb:70/30/90")
 (set-face-foreground 'link "#57b")
 (set-face-background 'cursor "#9bc0b0")
+(set-face-background 'hl-line "#faffff")
 
 ; Mode line.
 (set-face-attribute
@@ -420,6 +430,15 @@
 )
 
 
+;; ============
+;; golden-ratio
+;; ============
+
+; Resizes panes so that the focused one is larger.
+(use-package golden-ratio
+  :bind (("C-c g" . golden-ratio)))
+
+
 ;; ===========
 ;; Python mode
 ;; ===========
@@ -465,8 +484,6 @@
   (add-hook 'python-mode-hook 'flycheck-mode)
   (add-to-list 'flycheck-disabled-checkers 'python-flake8)
   (add-to-list 'flycheck-disabled-checkers 'python-pylint)
-
-  (setq rust-rustfmt-bin (concat home-directory "/.cargo/bin/rustfmt"))
 )
 
 
