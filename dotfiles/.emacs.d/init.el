@@ -378,6 +378,19 @@
 (set-face-background 'trailing-whitespace "#fff8d8")
 
 
+;; =========
+;; which-key
+;; =========
+
+(use-package which-key
+  :init
+  (which-key-mode)
+  (which-key-setup-minibuffer)
+  :config
+  (setq which-key-max-description-length 36)
+  (setq which-key-idle-delay 2)
+)
+
 ;; =====
 ;; dired
 ;; =====
@@ -479,7 +492,6 @@
 
 (use-package rust-mode
   :config
-  (add-hook 'rust-mode-hook 'cargo-minor-mode)
 )
 
 
