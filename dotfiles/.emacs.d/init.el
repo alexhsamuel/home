@@ -485,6 +485,18 @@
   (set-face-foreground 'sh-quoted-exec "#a04060")
 )
 
+(use-package lsp-mode)
+(use-package lsp-ui-mode
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-doc-enable nil))
+
+(use-package yasnippet)
+(use-package company)
+(use-package rustic)
+
 
 ;; =========
 ;; Rust mode
