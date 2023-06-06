@@ -72,8 +72,10 @@ def get_battery(ps="BAT1"):
         time        = "??:??:??"
 
     symbol = {
-        "Charging": "\N{electric plug}",
-        "Discharging": "\N{battery}",
+        # "Charging": "\N{electric plug}",
+        # "Discharging": "\N{battery}",
+        "Charging": "[CHG]",
+        "Discharging": "[DIS]",
     }.get(battery["STATUS"], "X")
 
     return {
