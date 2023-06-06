@@ -1,5 +1,7 @@
 # -*- conf -*-
 
+output * scale 1
+
 # Output layout - NYC
 # output 'BenQ Corporation BenQ PD3200U GBK00170019' pos 0 0
 # output 'Samsung Electric Company U28D590 0x00000000' pos 3840 0
@@ -10,11 +12,8 @@
 # output 'Panasonic Industry Company AE-4000 0x00000001' pos 7280 0
 
 # Output layout - Tucson
-output 'LG Electronics LG HDR 4K 0x00008738' pos 3840 0
-output 'LG Electronics LG HDR 4K 0x000077DA' pos 0 0
-
-workspace 1 output 'Samsung Electric Company U28D590 0x00000000'
-workspace 2 output 'BenQ Corporation BenQ PD3200U GBK00170019'
+# output 'LG Electronics LG HDR 4K 0x00008738' pos 3840 0
+# output 'LG Electronics LG HDR 4K 0x000077DA' pos 0 0
 
 set $mod Mod4
 # Use Mouse+$mod to drag floating windows to their wanted position.
@@ -228,6 +227,13 @@ input "type:keyboard" {
 
       # Use the right Alt as a compose key.
       # xkb_options "compose:ralt"
+}
+
+input "type:touchpad" {
+      # Enable tap (rather than click).
+      tap enabled
+      # Two-finger tap for right button, three-finger for middle.
+      tap_button_map lrm
 }
 
 exec swayidle -w \
