@@ -71,6 +71,8 @@ function c++14 { c++ -std=c++14 -fdiagnostics-color=always "$@"; }
 function py { python3 -q "$@"; }
 function activate { source "${1:-env}"/bin/activate; }
 
+function userctl { systemctl --user "$@"; }
+
 # Use my emacs, if it's there.
 if [[ -d $HOME/sw/emacs ]]; then
     function emacs { $HOME/sw/emacs/bin/emacs "$@"; }

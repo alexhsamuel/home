@@ -15,6 +15,10 @@ fi
 # Who am I?
 export EMAIL="alex@alexsamuel.net"
 
+if [[ -d $HOME/dev/home/bin ]]; then
+    PATH="$HOME/dev/home/bin:$PATH"
+fi
+
 if [[ -d $HOME/.local/bin ]]; then
     PATH="$HOME/.local/bin:$PATH"
 fi

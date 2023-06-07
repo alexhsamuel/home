@@ -2347,6 +2347,8 @@ xkb_symbols "alex"  {
     name[Group1] = "German, Swedish and Finnish (US)";
 
     key <AB06> {[ n,            N,          ntilde,     Ntilde     ]};
+    key <AB08> {[ comma,        less,       comma,     guillemotleft ]};
+    key <AB09> {[ period,       greater,    period,    guillemotright ]};
     key <AB10> {[ slash,        question,   slash,      questiondown ]};
     key <AC01> {[ a,            A,          adiaeresis, Adiaeresis ]};
     key <AC02> {[ s,            S,          ssharp,     U1E9E      ]};

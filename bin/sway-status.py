@@ -63,15 +63,20 @@ def get_battery(ps="BAT1"):
     frac        = charge / full
 
     # Time to dis/charge.
-    secs        = int(3600 * (full - charge) / curr)
-    mins, secs  = divmod(secs, 60)
-    hours, mins = divmod(mins, 60)
-    time        = f"{hours}:{mins:02d}:{secs:02d}"
+    if curr != 0:
+        secs        = int(3600 * (full - charge) / curr)
+        mins, secs  = divmod(secs, 60)
+        hours, mins = divmod(mins, 60)
+        time        = f"{hours}:{mins:02d}:{secs:02d}"
+    else:
+        time        = "??:??:??"
 
     symbol = {
-        "Charging": "\N{electric plug}",
-        "Discharging": "\N{battery}",
-    }[battery["STATUS"]]
+        # "Charging": "\N{electric plug}",
+        # "Discharging": "\N{battery}",
+        "Charging": "[CHG]",
+        "Discharging": "[DIS]",
+    }.get(battery["STATUS"], "X")
 
     return {
         **COMMON,

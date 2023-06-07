@@ -15,8 +15,7 @@
 
 ;; Elisp search path.
 (set-variable 'load-path
-              (append (list "/usr/local/share/emacs/site-lisp"
-                            (concat user-emacs-directory "lisp")
+              (append (list (concat user-emacs-directory "lisp")
                             )
                       load-path))
 
@@ -87,6 +86,9 @@
 ;; Wrap lines.
 (setq-default truncate-lines t)
 
+;; Paste at point, not cursor, like every other system.
+(setq mouse-yank-at-point t)
+
 ;; Show whitespace
 (setq-default show-trailing-whitespace t)
 (global-set-key '[(control ?c) (?w) (?w)] 'whitespace-mode)
@@ -122,9 +124,15 @@
 ;; Colorize wherever possible.
 (global-font-lock-mode t)
 
+;; Show the current line in the current window.
+(global-hl-line-mode t)
+(setq global-hl-line-sticky-flag nil)
+
 ;; I hate electric indent.
 (electric-indent-mode -1)
 (add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
+;; But intent with C-RET.
+(global-set-key (kbd "C-<return>") 'newline-and-indent)
 
 (defun set-default-coding ()
   (interactive)
@@ -186,6 +194,22 @@
 (global-set-key (kbd "C-' U") (lambda () (interactive (insert "Ü"))))
 (global-set-key (kbd "C-' s") (lambda () (interactive (insert "ß"))))
 (global-set-key (kbd "C-' \"")(lambda () (interactive (insert "„"))))
+
+
+;; =====
+;; Email
+;; =====
+
+; Outgoing mail via Fastmail SMTP.  This requires a line in ~/.authinfo that
+; contains this line:
+;
+;   machine smtp.fastmail.com port 587 login alexhsamuel@fastmail.com password API-KEY
+;
+; where API-KEY is obtained from the Fastmail UI.
+(setq send-mail-function 'smtpmail-send-it)
+(setq smtpmail-smtp-server "smtp.fastmail.com")
+(setq smtpmail-smtp-service 587)
+(setq smtpmail-stream-type 'starttls)
 
 
 ;; ====================
@@ -313,6 +337,7 @@
 (set-face-background 'highlight "rgb:70/30/90")
 (set-face-foreground 'link "#57b")
 (set-face-background 'cursor "#9bc0b0")
+(set-face-background 'hl-line "#faffff")
 
 ; Mode line.
 (set-face-attribute
@@ -351,8 +376,20 @@
 (set-face-foreground 'font-lock-type-face "#36795e")
 (set-face-foreground 'font-lock-variable-name-face "#2d8667")
 (set-face-background 'trailing-whitespace "#fff8d8")
-(set-face-background 'mmm-default-submode-face "#ffffff")
 
+
+;; =========
+;; which-key
+;; =========
+
+(use-package which-key
+  :init
+  (which-key-mode)
+  (which-key-setup-minibuffer)
+  :config
+  (setq which-key-max-description-length 36)
+  (setq which-key-idle-delay 2)
+)
 
 ;; =====
 ;; dired
@@ -367,22 +404,13 @@
 )
 
 
-;; ========
-;; SQL mode
-;; ========
+;; ===
+;; mmm
+;; ===
 
-(setq-default sql-product 'ms)
-
-
-;; ===============
-;; JavaScript mode
-;; ===============
-
-(use-package js
+(use-package mmm-mode
   :config
-  (setq-default js-indent-level 2)
-  (setq auto-mode-alist (cons '("\\.json\\'" . javascript-mode) auto-mode-alist))
-)
+  (set-face-background 'mmm-default-submode-face "#ffffff"))
 
 
 ;; ========
@@ -391,6 +419,7 @@
 
 (use-package flycheck
   :config
+  (require 'flycheck-ruff)
   (setq-default flycheck-disabled-checkers '(python-pylint))
   (global-flycheck-mode))
 
@@ -412,6 +441,15 @@
    :background "#f0f0ff"
    :underline nil)
 )
+
+
+;; ============
+;; golden-ratio
+;; ============
+
+; Resizes panes so that the focused one is larger.
+(use-package golden-ratio
+  :bind (("C-c g" . golden-ratio)))
 
 
 ;; ===========
@@ -447,6 +485,18 @@
   (set-face-foreground 'sh-quoted-exec "#a04060")
 )
 
+(use-package lsp-mode)
+(use-package lsp-ui-mode
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-doc-enable nil))
+
+(use-package yasnippet)
+(use-package company)
+(use-package rustic)
+
 
 ;; =========
 ;; Rust mode
@@ -454,13 +504,6 @@
 
 (use-package rust-mode
   :config
-  (add-hook 'rust-mode-hook 'cargo-minor-mode)
-
-  (add-hook 'python-mode-hook 'flycheck-mode)
-  (add-to-list 'flycheck-disabled-checkers 'python-flake8)
-  (add-to-list 'flycheck-disabled-checkers 'python-pylint)
-
-  (setq rust-rustfmt-bin (concat home-directory "/.cargo/bin/rustfmt"))
 )
 
 
@@ -529,6 +572,33 @@
    :foreground "#222"
    :background "#d0f0d0")
 )
+
+
+;; ========
+;; SQL mode
+;; ========
+
+(setq-default sql-product 'ms)
+
+
+;; ===============
+;; JavaScript mode
+;; ===============
+
+(use-package js
+  :config
+  (setq-default js-indent-level 2)
+  (setq auto-mode-alist (cons '("\\.json\\'" . javascript-mode) auto-mode-alist))
+)
+
+
+;; ===============
+;; TypeScript mode
+;; ===============
+
+(use-package typescript-mode
+  :config
+  (setq-default typescript-indent-level 2))
 
 
 ;; =======
