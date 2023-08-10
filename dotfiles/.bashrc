@@ -114,8 +114,14 @@ function pyrg { rg -g '*.py' "$@"; }
 function use-env { source activate "$@"; }
 function use-root { source deactivate "$@"; }
 
+function git-main-branch {
+    git rev-parse --verify master > /dev/null 2>&1 && echo master || echo main
+}
+
 function git-delete-merged {
-    git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d
+    local main=$(git-main-branch)
+    # FIXME: Handle the case of no unmerged branches.
+    git branch --merged $main | grep -v "\* $main" | xargs -n 1 git branch -d
 }
 
 if [[ -f $HOME/sw/dropbox/dropbox.py ]]; then
@@ -123,11 +129,6 @@ if [[ -f $HOME/sw/dropbox/dropbox.py ]]; then
         python $HOME/sw/dropbox/dropbox.py "$@";
     }
 fi
-
-function lock {
-    i3lock -c 000000 -e
-    $HOME/dev/home/dotfiles/dpms-off
-}
 
 # Activate or deactivate PiHole in WiFi DNS.
 #
