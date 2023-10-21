@@ -421,7 +421,10 @@
   :config
   (require 'flycheck-ruff)
   (setq-default flycheck-disabled-checkers '(python-pylint))
-  (global-flycheck-mode))
+  (global-flycheck-mode)
+  :bind
+  ("C-M-p" . flycheck-previous-error)
+  ("C-M-n" . flycheck-next-error))
 
 
 ;; ========
@@ -489,6 +492,7 @@
 (use-package lsp-ui-mode
   :commands lsp-ui-mode
   :custom
+  (define-key lsp-mode-map (kbd "C-;") lsp-command-map)
   (lsp-ui-peek-always-show t)
   (lsp-ui-sideline-show-hover t)
   (lsp-ui-doc-enable nil))

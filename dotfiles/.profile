@@ -45,6 +45,14 @@ if [[ -f $HOME/sw/zig ]]; then
     PATH="$HOME/sw/zig:$PATH"
 fi
 
+# Ruby.  This is recommended per https://wiki.archlinux.org/title/ruby.
+_gem="$(ruby -e 'puts Gem.user_dir')"
+if [[ -d "$_gem" ]]; then
+    export GEM_HOME="$_gem"
+    export PATH="$PATH:$_gem/bin"
+fi
+unset _gem
+
 # Virtualenv is obnoxious.  Features should be opt-in.
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
