@@ -3,6 +3,7 @@
 output * scale 1
 
 # NOTE: `swaybg` must be installed for `output bg` to work.
+output * bg #000000 solid_color
 
 # Output layout - NYC
 # output 'BenQ Corporation BenQ PD3200U GBK00170019' pos 0 0
