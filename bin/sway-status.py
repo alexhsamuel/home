@@ -1,7 +1,7 @@
 import datetime
 import json
-from pathlib import Path
-from pprint import pprint
+from   pathlib import Path
+import subprocess
 import sys
 import time
 import zoneinfo
@@ -89,6 +89,23 @@ def get_battery(ps="BAT1"):
     }
 
 
+def get_wifi():
+    """
+    Returns the SSID of the current wireless network.
+
+    Requires package `wireless_tools`.
+    """
+    try:
+        net = subprocess.check_output(["/usr/bin/iwgetid", "-r"], text=True).strip()
+    except subprocess.CalledProcessError:
+        net = None
+    return {
+        **COMMON,
+        "full_text": f"SSID: {net or 'none'}",
+        "separator": True,
+    }
+
+
 json.dump(
     {
         "version": 1,
@@ -100,6 +117,7 @@ print("[")
 while True:
     json.dump(
         [
+            get_wifi(),
             get_battery(),
             # get_count(),
             get_time(),
