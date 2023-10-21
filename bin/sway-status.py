@@ -97,8 +97,8 @@ def get_wifi():
     """
     try:
         net = subprocess.check_output(["/usr/bin/iwgetid", "-r"], text=True).strip()
-    except subprocess.CalledProcessError:
-        net = None
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return COMMON
     return {
         **COMMON,
         "full_text": f"SSID: {net or 'none'}",
