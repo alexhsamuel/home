@@ -656,6 +656,13 @@
   (global-set-key (kbd "C-x C-d") 'find-file-in-project))
 
 
+;; magit
+
+(use-package magit
+  :custom
+  (setq magit-section-initial-visibility-alist (quote ((untracked . hide)))))
+
+
 ;; ===
 ;; org
 ;; ===
