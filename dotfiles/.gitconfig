@@ -27,3 +27,7 @@
 	ff = only
 [init]
 	defaultBranch = main
+
+[status]
+        showUntrackedFiles = all
+
