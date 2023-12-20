@@ -19,11 +19,11 @@
                             )
                       load-path))
 
-;; Non-local defaults; to be overridden in .emacs.local.
+;; Non-local defaults; to be overridden in local.el.
 (setq ahs-font-size 11)
 (setq ahs-font-family "DejaVu Sans Mono")
 
-(let ((local-config-file (concat home-directory ".emacs.local")))
+(let ((local-config-file (concat user-emacs-directory "local.el")))
   (if (file-exists-p local-config-file)
       (load local-config-file)))
 
