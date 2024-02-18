@@ -1,0 +1,9 @@
+[Unit]
+Description=Headless Sway session
+
+[Service]
+ExecStart=env WLR_BACKENDS=headless WLR_LIBINPUT_NO_DEVICES=1 /usr/bin/sway
+
+[Install]
+WantedBy=default.target
+
