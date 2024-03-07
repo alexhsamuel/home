@@ -21,10 +21,24 @@ Far :fastmail-remote:
 Near :fastmail-local:
 # Patterns "Sent Items" "INBOX" "Deleted Items"
 # Patterns *
-Patterns "INBOX" "Sent" "Drafts" "Archive" "Trash"
+Patterns "INBOX" "Sent" "Drafts" "Archive" "Trash" "Notes"
 Create Near
 # Sync All
 Sync Pull
 # Expunge Both
 Expunge Near
 SyncState *
+
+Channel fastmail-notes
+Far :fastmail-remote:
+Near :fastmail-local:
+# Patterns "Sent Items" "INBOX" "Deleted Items"
+# Patterns *
+Patterns "Notes"
+Create Near
+# Sync All
+Sync Pull
+# Expunge Both
+Expunge Near
+SyncState *
+
