@@ -1,0 +1,15 @@
+[Unit]
+Description=VNC service for headless Sway session
+Requires=sway-headless.service
+
+[Service]
+# This is a hack because it takes sway a moment to come up, and I don't know how
+# to make it into a Type=notify service.
+# https://wiki.archlinux.org/title/Systemd#Handling_dependencies
+
+# ExecStart=env WAYLAND_DISPLAY=wayland-1 wayvnc 0.0.0.0
+ExecStart=bash -c "sleep 5; export WAYLAND_DISPLAY=wayland-1; exec /usr/bin/wayvnc 0.0.0.0"
+
+[Install]
+WantedBy=default.target
+
