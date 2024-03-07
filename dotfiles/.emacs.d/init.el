@@ -267,6 +267,13 @@
 (setq auto-mode-alist (append auto-mode-alist '(("\\.mjs\\'" . js-mode))))
 
 
+;; ===
+;; CSS
+;; ===
+
+(set-variable 'css-indent-offset 2)
+
+
 ;; ==============
 ;; Global key map
 ;; ==============
