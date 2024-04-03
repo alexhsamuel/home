@@ -19,6 +19,7 @@
         co = checkout
         di = diff
         st = status -s
+        brd = branch --sort committerdate --format '%(committerdate:short) %(refname)'
 
 [push]
         default = current
