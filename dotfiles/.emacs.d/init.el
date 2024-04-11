@@ -22,8 +22,7 @@
 ;; Non-local defaults; to be overridden in .emacs.local.
 (setq ahs-font-size 11)
 (setq ahs-font-family "DejaVu Sans Mono")
-
-(let ((local-config-file (concat home-directory ".emacs.local")))
+(let ((local-config-file (concat user-emacs-directory "local.el")))
   (if (file-exists-p local-config-file)
       (load local-config-file)))
 
@@ -541,6 +540,13 @@
   (setq markdown-gfm-additional-languages (quote ("py")))
   (add-hook 'markdown-mode-hook 'turn-on-auto-fill)
 )
+
+
+;; =========
+;; HTML & co
+;; =========
+
+(setq-default css-indent-offset 2)
 
 
 ;; ====
