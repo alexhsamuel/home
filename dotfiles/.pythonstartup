@@ -25,6 +25,11 @@ def dump_pickle_file(obj, path):
         pickle.dump(obj, file, pickle.HIGHEST_PROTOCOL)
 
 
+try:
+    from supdoc import help
+except ImportError:
+    pass
+
 #-------------------------------------------------------------------------------
 
 # If there's a .pythonstartup in cwd, source this too.

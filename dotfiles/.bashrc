@@ -69,7 +69,21 @@ function c++11 { c++ -std=c++11 -fdiagnostics-color=always "$@"; }
 function c++14 { c++ -std=c++14 -fdiagnostics-color=always "$@"; }
 
 function py { python3 -q "$@"; }
-function activate { source "${1:-env}"/bin/activate; }
+function activate { 
+    if [[ -z "$1" ]]; then
+        if [[ -d "./.pyenv" ]]; then
+            env=./.pyenv
+        elif [[ -d "./env" ]]; then
+            env=./env
+        else
+            echo "can't find env" >&2
+            return 1
+        fi
+    else
+        env=$1
+    fi
+    source "$env"/bin/activate;
+}
 
 function userctl { systemctl --user "$@"; }
 
