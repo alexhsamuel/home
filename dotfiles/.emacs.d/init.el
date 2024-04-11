@@ -550,6 +550,13 @@
 )
 
 
+;; =========
+;; HTML & co
+;; =========
+
+(setq-default css-indent-offset 2)
+
+
 ;; ====
 ;; Diff
 ;; ====
