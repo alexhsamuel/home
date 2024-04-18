@@ -49,10 +49,8 @@ URxvt.font: xft:Inconsolata:9
 
 ! See: https://wiki.archlinux.org/index.php/Font_configuration
 Xft.antialias: true
-! Fonts look terrible if hinting is on.
-Xft.hinting:   false
+Xft.hinting:   true
 Xft.rgba:      rgb
-Xft.hintstyle: hintfull  ! hint{none,slight,medium,full}
+Xft.hintstyle: hintslight  ! hint{none,slight,medium,full}
 ! 4K display physical DPI is around 162.
-Xft.dpi:       120
-
+Xft.dpi:       160

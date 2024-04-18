@@ -248,3 +248,7 @@ exec swayidle -w \
 # To lock:
 # 	timeout 1800 'swaylock -f' \
 
+# Load Xresources.  In particular, Emacs doesn't read fontconfig's config files,
+# and relies on Xresources for Xft configuration.
+exec xrdb -load ~/.Xresources
+
