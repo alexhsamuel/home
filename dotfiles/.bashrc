@@ -69,7 +69,12 @@ function c++11 { c++ -std=c++11 -fdiagnostics-color=always "$@"; }
 function c++14 { c++ -std=c++14 -fdiagnostics-color=always "$@"; }
 
 function py { python3 -q "$@"; }
-function activate { 
+function pyenv {
+    version="${1:-default}"
+    name="${2:-./.pyenv}"
+    $HOME/.pyenv/versions/"$version"/bin/python -m venv "$name"
+}
+function activate {
     if [[ -z "$1" ]]; then
         if [[ -d "./.pyenv" ]]; then
             env=./.pyenv
@@ -129,13 +134,20 @@ function use-env { source activate "$@"; }
 function use-root { source deactivate "$@"; }
 
 function git-main-branch {
-    git rev-parse --verify master > /dev/null 2>&1 && echo master || echo main
+    if [[ -n "$(git branch --all --list '*main')" ]]; then
+        echo main
+    elif [[ -n "$(git branch --all --list '*master')" ]]; then
+        echo master
+    fi
 }
 
 function git-delete-merged {
-    local main=$(git-main-branch)
-    # FIXME: Handle the case of no unmerged branches.
-    git branch --merged $main | grep -v "\* $main" | xargs -n 1 git branch -d
+    local main="$(git-main-branch)"
+    if [[ -z "$main" ]]; then
+        echo "unknown main branch" >&2
+        return
+    fi
+    git branch --merged $main | grep -v "$main" | xargs -n 1 -r git branch -d
 }
 
 if [[ -f $HOME/sw/dropbox/dropbox.py ]]; then
