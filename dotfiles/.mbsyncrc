@@ -1,7 +1,7 @@
 IMAPAccount fastmail
 Host imap.fastmail.com
 User alexhsamuel@fastmail.com
-PassCmd "cat ~/sec/mbsync"
+PassCmd "cat ~/sec/mbsync-methi"
 Port 993
 SSLType IMAPS
 AuthMechs Login

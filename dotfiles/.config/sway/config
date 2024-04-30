@@ -6,8 +6,10 @@ output * scale 1
 output * bg #000000 solid_color
 
 # Output layout - NYC
-# output 'BenQ Corporation BenQ PD3200U GBK00170019' pos 0 0
-# output 'Samsung Electric Company U28D590 0x00000000' pos 3840 0
+output 'BNQ BenQ PD3200U GBK00170019' pos 3840 0
+# Samsung
+# output 'Samsung Electric Company U28D590 0x00000000' pos 0 0
+output DP-3 pos 0 0
 
 # Projector; doesn't really work.
 # output 'Panasonic Industry Company AE-4000 0x00000001' modeline 74.5 1760 1888 2096 2208 960 1012 1028 1126 -hsync -vsync interlace
