@@ -678,7 +678,8 @@
 
 (use-package magit
   :custom
-  (setq magit-section-initial-visibility-alist (quote ((untracked . hide)))))
+  (setq magit-section-initial-visibility-alist (quote ((untracked . hide))))
+  (setq magit-save-repository-buffers nil))
 
 
 ;; ===
