@@ -69,11 +69,6 @@ function c++11 { c++ -std=c++11 -fdiagnostics-color=always "$@"; }
 function c++14 { c++ -std=c++14 -fdiagnostics-color=always "$@"; }
 
 function py { python3 -q "$@"; }
-function pyenv {
-    version="${1:-default}"
-    name="${2:-./.pyenv}"
-    $HOME/.pyenv/versions/"$version"/bin/python -m venv "$name"
-}
 function activate {
     if [[ -z "$1" ]]; then
         if [[ -d "./.pyenv" ]]; then
