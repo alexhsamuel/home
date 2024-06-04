@@ -6,5 +6,6 @@ if [[ -f $logfile ]]; then
     mv $logfile $logfile~old
 fi
 
+cd $HOME
 sway > $logfile 2>&1
 
