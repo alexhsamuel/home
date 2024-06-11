@@ -674,7 +674,9 @@
   (global-set-key (kbd "C-x C-d") 'find-file-in-project))
 
 
+;; =====
 ;; magit
+;; =====
 
 (use-package magit
   :custom
@@ -699,6 +701,8 @@
 (defun ahs-visit-journal-today ()
   (interactive)
   (ahs-visit-journal (current-time)))
+
+(global-set-key [(control ?c) (?j)] 'ahs-visit-journal-today)
 
 
 ;; ====
