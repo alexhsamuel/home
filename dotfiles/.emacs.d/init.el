@@ -682,23 +682,23 @@
   (setq magit-save-repository-buffers nil))
 
 
-;; ===
-;; org
-;; ===
+;; =======
+;; journal
+;; =======
 
+(defun ahs-journal-filename (date)
+  (concat home-directory
+          (file-name-as-directory "notes/journal")
+          (format-time-string "%Y-%m-%d" date)
+          ".md"))
 
-;; ===========
-;; org-journal
-;; ===========
+(defun ahs-visit-journal (date)
+  (interactive)
+  (find-file (ahs-journal-filename date)))
 
-(use-package org-journal
-  :bind
-  ("C-c j" . org-journal-new-entry)
-  :custom
-  (org-journal-dir (concat home-directory "/org/journal"))
-  (org-journal-date-format "%Y-%m-%d")
-  (org-journal-file-format "%Y-%m-%d.org")
-  )
+(defun ahs-visit-journal-today ()
+  (interactive)
+  (ahs-visit-journal (current-time)))
 
 
 ;; ====
