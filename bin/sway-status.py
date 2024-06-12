@@ -4,6 +4,7 @@ from   pathlib import Path
 import subprocess
 import sys
 import time
+import traceback
 import zoneinfo
 
 #-------------------------------------------------------------------------------
@@ -121,17 +122,21 @@ json.dump(
 print("\n")
 print("[")
 while True:
-    json.dump(
-        [
-            get_wifi(),
-            get_battery(),
-            # get_count(),
-            get_time(),
-        ],
-        sys.stdout
-    )
+    res = []
+    for fn in (
+            # get_count,
+            get_wifi,
+            get_battery,
+            get_time,
+    ):
+        try:
+            res.append(fn())
+        except Exception:
+            traceback.print_exc()
+
+    json.dump(res, sys.stdout)
     sys.stdout.write(",")
     sys.stdout.flush()
-    time.sleep(0.1)
+    time.sleep(0.25)
 
 
