@@ -56,11 +56,17 @@ def get_battery(ps="BAT1"):
     except FileNotFoundError:
         return dict(COMMON)
     battery = { n[13 :]: v for n, v in battery.items() }
-    charge  = int(battery["CHARGE_NOW"])
-    full    = int(battery["CHARGE_FULL"])
-    curr    = int(battery["CURRENT_NOW"])
-
-    frac        = charge / full
+    try:
+        charge  = int(battery["CHARGE_NOW"])
+        full    = int(battery["CHARGE_FULL"])
+        curr    = int(battery["CURRENT_NOW"])
+    except KeyError:
+        charge  = 0
+        full    = 0
+        curr    = 0
+        frac    = 0
+    else:
+        frac    = charge / full
 
     # Time to dis/charge.
     if curr != 0:
