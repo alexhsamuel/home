@@ -700,7 +700,8 @@
 
 (defun ahs-visit-journal-today ()
   (interactive)
-  (ahs-visit-journal (current-time)))
+  ; Subtract four hours so we roll over at 4 AM.
+  (ahs-visit-journal (time-add (current-time) -14400)))
 
 (global-set-key [(control ?c) (?j)] 'ahs-visit-journal-today)
 
