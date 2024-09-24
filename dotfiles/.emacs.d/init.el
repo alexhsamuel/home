@@ -426,7 +426,7 @@
 
 (use-package flycheck
   :config
-  (require 'flycheck-ruff)
+  ; (require 'flycheck-ruff)
   (setq-default flycheck-disabled-checkers '(python-pylint))
   (global-flycheck-mode)
   :bind
