@@ -3,7 +3,7 @@ Host imap.fastmail.com
 User alexhsamuel@fastmail.com
 PassCmd "cat ~/sec/mbsync-methi"
 Port 993
-SSLType IMAPS
+TLSType IMAPS
 AuthMechs Login
 # CertificateFile /etc/ssl/certs/ca-bundle.crt
 CertificateFile /etc/ssl/certs/ca-certificates.crt

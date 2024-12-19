@@ -20,7 +20,7 @@
                       load-path))
 
 ;; Non-local defaults; to be overridden in local.el.
-(setq ahs-font-size 11)
+(setq ahs-font-size 7)
 (setq ahs-font-family "DejaVu Sans Mono")
 
 (let ((local-config-file (concat user-emacs-directory "local.el")))
@@ -426,8 +426,7 @@
 
 (use-package flycheck
   :config
-  ; (require 'flycheck-ruff)
-  (setq-default flycheck-disabled-checkers '(python-pylint))
+  (setq-default flycheck-disabled-checkers '(python-pylint python-flake8))
   (global-flycheck-mode)
   :bind
   ("C-M-p" . flycheck-previous-error)
