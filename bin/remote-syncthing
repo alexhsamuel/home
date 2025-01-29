@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Usage: remote-syncthing host
+#
+# Creates an SSH tunnel to HOST for the syncthing GUI, and opens it in a local
+# browser window.  Press a key when finished to close the SSH tunnel.
+
+set -e
+
+host=$1
+if [[ -z "$host" ]]; then
+    echo "usage: $0 HOST" >&2
+    exit 1
+fi
+ 
+port=$((8192 + RANDOM % 16384))
+url="http://localhost:$port"
+
+clean_up () {
+    echo "shutting down SSH tunnel"
+    kill $pid
+}
+
+trap clean_up EXIT
+
+echo "connecting SSH tunnel"
+ssh -nTN -L $port:localhost:8384 alex@$host &
+pid=$!
+
+sleep 3
+
+echo "opening $url"
+/usr/bin/open $url
+
+read -p "hit any key to exit"
+
