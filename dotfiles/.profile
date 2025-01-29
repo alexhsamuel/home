@@ -10,6 +10,11 @@ if [[ $(uname -s) == "Darwin" ]]; then
 
     # Completely different from GNU.
     export LSCOLORS=GxExcxdxcxegedabagacad
+
+    # Use homebrew, if present.
+    if [[ -d /opt/homebrew/bin ]]; then
+	PATH="/opt/homebrew/bin:$PATH"
+    fi
 fi
 
 # Who am I?
