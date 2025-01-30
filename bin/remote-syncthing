@@ -12,7 +12,7 @@ if [[ -z "$host" ]]; then
     echo "usage: $0 HOST" >&2
     exit 1
 fi
- 
+
 port=$((8192 + RANDOM % 16384))
 url="http://localhost:$port"
 
@@ -30,7 +30,13 @@ pid=$!
 sleep 3
 
 echo "opening $url"
-/usr/bin/open $url
+if [[ -x /usr/bin/xdg-open ]]; then
+    /usr/bin/xdg-open $url
+elif [[ -x /usr/bin/open ]]; then
+    /usr/bin/open $url
+else
+    echo "no open available" >&2
+fi
 
 read -p "hit any key to exit"
 
