@@ -689,7 +689,7 @@
 
 (defun ahs-journal-filename (date)
   (concat home-directory
-          (file-name-as-directory "notes/journal")
+          (file-name-as-directory "doc/journal")
           (format-time-string "%Y-%m-%d" date)
           ".md"))
 
