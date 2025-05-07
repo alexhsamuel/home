@@ -352,17 +352,17 @@
  :height (* ahs-font-size 10)
  :foreground "#eee"
  :background "#777"
- :box '(:line-width 1 :color "#888" :style "raised"))
+)
 (set-face-attribute
  'mode-line-highlight nil
  :foreground "#eef"
  :background "#777"
- :box '(:line-width 1 :color "#888" :style "raised"))
+)
 (set-face-attribute
  'mode-line-inactive nil
  :foreground "#999"
  :background "#666"
- :box '(:line-width 1 :color "#666" :style "raised"))
+)
 
 (set-face-attribute
  'minibuffer-prompt nil
