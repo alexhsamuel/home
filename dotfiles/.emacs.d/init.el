@@ -144,7 +144,10 @@
   (let ((fill-column (point-max)))
     (fill-region beg end)))
 
+; Unwrap text.
 (define-key global-map "\C-\M-Q" 'unfill-region)
+; Yank directly from clipboard, not kill ring.
+(define-key global-map "\C-\M-Y" 'clipboard-yank)
 
 ; Don't ask about following a symlink to a VC file.
 (setq-default vc-follow-symlinks t)

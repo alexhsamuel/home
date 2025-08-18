@@ -64,10 +64,8 @@ function c++14 { c++ -std=c++14 -fdiagnostics-color=always "$@"; }
 function py { python3 -q "$@"; }
 function activate {
     if [[ -z "$1" ]]; then
-        if [[ -d "./.pyenv" ]]; then
-            env=./.pyenv
-        elif [[ -d "./env" ]]; then
-            env=./env
+        if [[ -d "./.venv" ]]; then
+            env=./.venv
         else
             echo "can't find env" >&2
             return 1
