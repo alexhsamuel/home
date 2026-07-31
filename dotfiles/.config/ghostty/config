@@ -1,0 +1,6 @@
+background = ffffff
+foreground = 202020
+font-family = monospace
+font-size = 9
+cursor-style = block
+shell-integration-features = no-cursor
