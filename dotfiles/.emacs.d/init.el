@@ -152,6 +152,9 @@
 ; Don't ask about following a symlink to a VC file.
 (setq-default vc-follow-symlinks t)
 
+; Don't ask to save buffers when grepping.
+(setq grep-save-buffers nil)
+
 
 ;; Functions to draw lines.
 
