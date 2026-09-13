@@ -377,8 +377,8 @@
 (set-face-foreground 'font-lock-constant-face "#247")
 (set-face-attribute
  'font-lock-doc-face nil
- :foreground "#808888"
- :weight `bold)
+ :foreground "#8088a0"
+ :weight `normal)
 (set-face-foreground 'font-lock-function-name-face "#2d6a6c")
 (set-face-foreground 'font-lock-keyword-face "#1c3a4f")
 (set-face-foreground 'font-lock-preprocessor-face "#6a6")
