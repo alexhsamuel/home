@@ -1,4 +1,5 @@
-;; =========================================================-*- lisp -*-
+;; -*-  mode: lisp; lexical-binding: t;  -*-
+;; =====================================================================
 ;;
 ;; .emacs : configuration for the One True Program
 ;;
@@ -396,6 +397,7 @@
 ;; =========
 
 (use-package which-key
+  :ensure t
   :init
   (which-key-mode)
   (which-key-setup-minibuffer)
@@ -422,6 +424,7 @@
 ;; ===
 
 (use-package mmm-mode
+  :ensure t
   :config
   (set-face-background 'mmm-default-submode-face "#ffffff"))
 
@@ -500,18 +503,19 @@
   (set-face-foreground 'sh-quoted-exec "#a04060")
 )
 
-(use-package lsp-mode)
-(use-package lsp-ui-mode
-  :commands lsp-ui-mode
+(use-package lsp-mode :ensure t)
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui
   :custom
   (define-key lsp-mode-map (kbd "C-;") lsp-command-map)
   (lsp-ui-peek-always-show t)
   (lsp-ui-sideline-show-hover t)
   (lsp-ui-doc-enable nil))
 
-(use-package yasnippet)
-(use-package company)
-(use-package rustic)
+(use-package yasnippet :ensure t)
+(use-package company :ensure t)
+(use-package rustic :ensure t)
 
 
 ;; =========
@@ -519,6 +523,7 @@
 ;; =========
 
 (use-package rust-mode
+  :ensure t
   :config
 )
 
@@ -528,6 +533,7 @@
 ;; ========
 
 (use-package markdown-mode
+  :ensure t
   :config
   (set-face-attribute
    'markdown-code-face nil
@@ -620,6 +626,7 @@
 ;; ===============
 
 (use-package typescript-mode
+  :ensure t
   :config
   (setq-default typescript-indent-level 2))
 
@@ -629,6 +636,7 @@
 ;; =======
 
 (use-package vertico
+  :ensure t
   :config
   (set-face-attribute
    'vertico-current nil
@@ -650,6 +658,7 @@
 ;; =========
 
 (use-package orderless
+  :ensure t
   :init
   (setq completion-styles '(basic substring orderless))
   )
@@ -660,6 +669,7 @@
 ;; ==========
 
 (use-package marginalia
+  :ensure t
   :bind (:map minibuffer-local-map
               ; Cycle through marginalia modes
               ("C-SPC" . marginalia-cycle))
@@ -674,6 +684,7 @@
 ;; ====================
 
 (use-package find-file-in-project
+  :ensure t
   :defer nil
   :config
   (global-set-key (kbd "C-x C-d") 'find-file-in-project))
@@ -684,6 +695,7 @@
 ;; =====
 
 (use-package magit
+  :ensure t
   :custom
   (setq magit-section-initial-visibility-alist (quote ((untracked . hide))))
   (setq magit-save-repository-buffers nil))
