@@ -255,4 +255,8 @@ exec swayidle -w \
 # and relies on Xresources for Xft configuration.
 exec xrdb -load ~/.Xresources
 
+# Tell DBUS about our session.
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+
 include /etc/sway/config.d/*
+
